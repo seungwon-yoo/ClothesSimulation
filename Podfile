@@ -5,6 +5,6 @@ target 'ClothSimulation' do
   use_frameworks!
 
   # Pods for ClothSimulation
-  pod 'Alamofire'
+  pod 'Alamofire', '~> 4.4'
 
 end
