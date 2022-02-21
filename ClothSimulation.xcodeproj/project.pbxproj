@@ -7,23 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		24E4A95A261661599DE4904F /* Pods_ClothSimulation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF9E9297617AA5706BF0F4BB /* Pods_ClothSimulation.framework */; };
 		E35EDF9A27C088D9009CF075 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35EDF9927C088D9009CF075 /* AppDelegate.swift */; };
 		E35EDF9C27C088D9009CF075 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35EDF9B27C088D9009CF075 /* SceneDelegate.swift */; };
-		E35EDF9E27C088D9009CF075 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35EDF9D27C088D9009CF075 /* ViewController.swift */; };
+		E35EDF9E27C088D9009CF075 /* ClothesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35EDF9D27C088D9009CF075 /* ClothesViewController.swift */; };
 		E35EDFA127C088D9009CF075 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E35EDF9F27C088D9009CF075 /* Main.storyboard */; };
 		E35EDFA327C088DB009CF075 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E35EDFA227C088DB009CF075 /* Assets.xcassets */; };
 		E35EDFA627C088DB009CF075 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E35EDFA427C088DB009CF075 /* LaunchScreen.storyboard */; };
+		E35EDFAE27C0D614009CF075 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35EDFAD27C0D614009CF075 /* WelcomeViewController.swift */; };
+		E35EDFB227C0D6E9009CF075 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35EDFB127C0D6E9009CF075 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		38FE0D7A07ADA6CA5C7F2B88 /* Pods-ClothSimulation.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClothSimulation.debug.xcconfig"; path = "Target Support Files/Pods-ClothSimulation/Pods-ClothSimulation.debug.xcconfig"; sourceTree = "<group>"; };
+		B9398D905BC6241BC24CFA9B /* Pods-ClothSimulation.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClothSimulation.release.xcconfig"; path = "Target Support Files/Pods-ClothSimulation/Pods-ClothSimulation.release.xcconfig"; sourceTree = "<group>"; };
+		DF9E9297617AA5706BF0F4BB /* Pods_ClothSimulation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ClothSimulation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E35EDF9627C088D9009CF075 /* ClothSimulation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClothSimulation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E35EDF9927C088D9009CF075 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E35EDF9B27C088D9009CF075 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		E35EDF9D27C088D9009CF075 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E35EDF9D27C088D9009CF075 /* ClothesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothesViewController.swift; sourceTree = "<group>"; };
 		E35EDFA027C088D9009CF075 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E35EDFA227C088DB009CF075 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E35EDFA527C088DB009CF075 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E35EDFA727C088DB009CF075 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E35EDFAD27C0D614009CF075 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		E35EDFB127C0D6E9009CF075 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +39,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24E4A95A261661599DE4904F /* Pods_ClothSimulation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		52801EADA9F8A95EEF0F6CCD /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				38FE0D7A07ADA6CA5C7F2B88 /* Pods-ClothSimulation.debug.xcconfig */,
+				B9398D905BC6241BC24CFA9B /* Pods-ClothSimulation.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		853EF82D6BB4F83F1398115D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DF9E9297617AA5706BF0F4BB /* Pods_ClothSimulation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		E35EDF8D27C088D9009CF075 = {
 			isa = PBXGroup;
 			children = (
 				E35EDF9827C088D9009CF075 /* ClothSimulation */,
 				E35EDF9727C088D9009CF075 /* Products */,
+				52801EADA9F8A95EEF0F6CCD /* Pods */,
+				853EF82D6BB4F83F1398115D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,13 +86,31 @@
 			children = (
 				E35EDF9927C088D9009CF075 /* AppDelegate.swift */,
 				E35EDF9B27C088D9009CF075 /* SceneDelegate.swift */,
-				E35EDF9D27C088D9009CF075 /* ViewController.swift */,
-				E35EDF9F27C088D9009CF075 /* Main.storyboard */,
+				E35EDFAF27C0D68A009CF075 /* Controller */,
+				E35EDFB027C0D6B8009CF075 /* View */,
 				E35EDFA227C088DB009CF075 /* Assets.xcassets */,
 				E35EDFA427C088DB009CF075 /* LaunchScreen.storyboard */,
 				E35EDFA727C088DB009CF075 /* Info.plist */,
+				E35EDFB127C0D6E9009CF075 /* Constants.swift */,
 			);
 			path = ClothSimulation;
+			sourceTree = "<group>";
+		};
+		E35EDFAF27C0D68A009CF075 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E35EDFAD27C0D614009CF075 /* WelcomeViewController.swift */,
+				E35EDF9D27C088D9009CF075 /* ClothesViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		E35EDFB027C0D6B8009CF075 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E35EDF9F27C088D9009CF075 /* Main.storyboard */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +120,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E35EDFAA27C088DB009CF075 /* Build configuration list for PBXNativeTarget "ClothSimulation" */;
 			buildPhases = (
+				3442C34325FC0CC6B49A2599 /* [CP] Check Pods Manifest.lock */,
 				E35EDF9227C088D9009CF075 /* Sources */,
 				E35EDF9327C088D9009CF075 /* Frameworks */,
 				E35EDF9427C088D9009CF075 /* Resources */,
+				0CD7F5883C103DF815F7BB30 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -133,12 +181,56 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0CD7F5883C103DF815F7BB30 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ClothSimulation/Pods-ClothSimulation-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ClothSimulation/Pods-ClothSimulation-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ClothSimulation/Pods-ClothSimulation-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3442C34325FC0CC6B49A2599 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ClothSimulation-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		E35EDF9227C088D9009CF075 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E35EDF9E27C088D9009CF075 /* ViewController.swift in Sources */,
+				E35EDFB227C0D6E9009CF075 /* Constants.swift in Sources */,
+				E35EDF9E27C088D9009CF075 /* ClothesViewController.swift in Sources */,
+				E35EDFAE27C0D614009CF075 /* WelcomeViewController.swift in Sources */,
 				E35EDF9A27C088D9009CF075 /* AppDelegate.swift in Sources */,
 				E35EDF9C27C088D9009CF075 /* SceneDelegate.swift in Sources */,
 			);
@@ -284,6 +376,7 @@
 		};
 		E35EDFAB27C088DB009CF075 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 38FE0D7A07ADA6CA5C7F2B88 /* Pods-ClothSimulation.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -312,6 +405,7 @@
 		};
 		E35EDFAC27C088DB009CF075 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B9398D905BC6241BC24CFA9B /* Pods-ClothSimulation.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
