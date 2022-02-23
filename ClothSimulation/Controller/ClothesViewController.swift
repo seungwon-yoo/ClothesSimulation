@@ -44,7 +44,7 @@ class ClothesViewController: UIViewController, UICollectionViewDelegate, UIColle
     }
     
     func startInitialSettings() {
-        let url = "http://127.0.0.1:5000/settings/init"
+        let url = "http://192.168.0.51:80/settings/init"
         Alamofire.request(url, method: .get).responseJSON { response in
             var settings: Settings
             do {
