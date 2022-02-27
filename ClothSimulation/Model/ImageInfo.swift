@@ -9,11 +9,11 @@ import Foundation
 import UIKit
 
 struct ImageInfo {
-    let id: Int
+    let category: String
     let image: UIImage
     
-    init(id: Int, image: UIImage) {
-        self.id = id
+    init(category: String, image: UIImage) {
+        self.category = category
         self.image = image
     }
     

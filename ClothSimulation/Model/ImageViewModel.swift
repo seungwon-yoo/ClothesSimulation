@@ -10,13 +10,29 @@ import UIKit
 
 class ImageViewModel {
     var imageInfoList: [ImageInfo] = []
+    var totalImageInfoList: [ImageInfo] = []
     
-    func addImageInfo(index: Int, image: UIImage) {
-        imageInfoList.append(ImageInfo(id: index, image: image))
+    func addImageInfo(category: String, image: UIImage) {
+        totalImageInfoList.append(ImageInfo(category: category, image: image))
     }
     
     var countOfImageList: Int {
         return imageInfoList.count
+    }
+    
+    func setToShowSpecificImageList(of category: String = "전체") {
+        imageInfoList.removeAll()
+        
+        if category == "전체" {
+            imageInfoList = totalImageInfoList
+            return
+        }
+        
+        for imageInfo in totalImageInfoList {
+            if imageInfo.category == category {
+                imageInfoList.append(imageInfo)
+            }
+        }
     }
     
     func imageInfo(at index: Int) -> ImageInfo {

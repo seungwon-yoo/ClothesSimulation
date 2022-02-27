@@ -8,5 +8,10 @@
 import Foundation
 
 struct Settings: Codable {
-    let result: [String]
+    let clothes: [Clothes]
+}
+
+struct Clothes: Codable {
+    let category: String
+    let result: String
 }
