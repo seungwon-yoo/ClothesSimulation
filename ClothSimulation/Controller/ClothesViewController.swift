@@ -10,7 +10,8 @@ import Alamofire
 import SceneKit
 
 class ClothesViewController: UIViewController {
-    
+
+    @IBOutlet weak var toolbar: UIToolbar!
     @IBOutlet weak var sceneView: SCNView!
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -18,12 +19,23 @@ class ClothesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        toolbar.items![toolbar.items!.startIndex].tintColor = .systemBlue
         set3DModel()
         startInitialSettings()
     }
 
+    //MARK: - Emphasize the toolbar items
     @IBAction func itemTapped(_ sender: UIBarButtonItem) {
         model.setToShowSpecificImageList(of: sender.title!)
+        
+        for index in toolbar.items!.indices {
+            toolbar.items![index].tintColor = .systemGray4
+        }
+        
+        if let senderIndex = toolbar.items?.firstIndex(of: sender) {
+            toolbar.items![senderIndex].tintColor = .systemBlue
+        }
+        
         self.collectionView.reloadData()
     }
     
@@ -32,7 +44,7 @@ class ClothesViewController: UIViewController {
 extension ClothesViewController {
     //MARK: - Initial Setting Methods
     func startInitialSettings() {
-        let url = "http://192.168.0.51:80/settings/init"
+        let url = "http://192.168.0.8:80/settings/init"
         Alamofire.request(url, method: .get).responseJSON { response in
             var settings: Settings
             do {
@@ -62,7 +74,7 @@ extension ClothesViewController {
     
     func set3DModel() {
         // 1: Load .obj file
-        let scene = SCNScene(named: "FinalBaseMesh.obj")
+        let scene = SCNScene(named: "art.scnassets/FinalBaseMesh.obj")
         
         // 2: Add camera node
         let cameraNode = SCNNode()

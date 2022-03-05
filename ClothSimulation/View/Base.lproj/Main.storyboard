@@ -66,36 +66,42 @@
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <items>
                                     <barButtonItem title="전체" id="R9d-jf-VWq">
+                                        <color key="tintColor" systemColor="systemGray4Color"/>
                                         <connections>
                                             <action selector="itemTapped:" destination="BYZ-38-t0r" id="k4V-sI-cM8"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="VuV-j3-p8o"/>
                                     <barButtonItem title="OUTER" id="GmR-hh-Vrs">
+                                        <color key="tintColor" systemColor="systemGray4Color"/>
                                         <connections>
                                             <action selector="itemTapped:" destination="BYZ-38-t0r" id="AGG-AY-Mfx"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="QOo-NI-2tE"/>
                                     <barButtonItem title="TOP" id="M4I-I4-1VA">
+                                        <color key="tintColor" systemColor="systemGray4Color"/>
                                         <connections>
                                             <action selector="itemTapped:" destination="BYZ-38-t0r" id="m15-mq-dBl"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="gYj-d5-77p"/>
                                     <barButtonItem title="SKIRT" id="YDC-Bb-xS1">
+                                        <color key="tintColor" systemColor="systemGray4Color"/>
                                         <connections>
                                             <action selector="itemTapped:" destination="BYZ-38-t0r" id="LPZ-gQ-DsY"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="5d4-TP-Mrz"/>
                                     <barButtonItem title="PANTS" id="wVJ-Hi-Hg4">
+                                        <color key="tintColor" systemColor="systemGray4Color"/>
                                         <connections>
                                             <action selector="itemTapped:" destination="BYZ-38-t0r" id="LZj-Og-O2V"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="cNQ-3r-i6A"/>
                                     <barButtonItem title="DRESS" id="3hM-WJ-YaF">
+                                        <color key="tintColor" systemColor="systemGray4Color"/>
                                         <connections>
                                             <action selector="itemTapped:" destination="BYZ-38-t0r" id="iE2-79-qxZ"/>
                                         </connections>
@@ -121,16 +127,46 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Virtual Fitting" id="ZwH-1X-ZFD">
-                        <barButtonItem key="rightBarButtonItem" systemItem="camera" id="WI1-WT-ghw"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="camera" id="WI1-WT-ghw">
+                            <connections>
+                                <segue destination="OjR-e3-Zmf" kind="show" id="BwD-K1-e3E"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="4Za-EH-BZD" id="Teo-FP-9Vt"/>
                         <outlet property="sceneView" destination="kGf-Ap-hgJ" id="A2G-6P-Nlz"/>
+                        <outlet property="toolbar" destination="swx-bt-NNG" id="68Q-Vp-3am"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3589.8550724637685" y="52.901785714285715"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="rkV-Hu-coZ">
+            <objects>
+                <viewController id="OjR-e3-Zmf" customClass="ARViewController" customModule="ClothSimulation" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="f5D-fD-xOY">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="egV-wd-qum">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </arscnView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="68h-Qn-quo"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="LHd-0e-Rdb"/>
+                    <connections>
+                        <outlet property="sceneView" destination="egV-wd-qum" id="LEV-Gp-jHA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1oI-8k-CVg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4404.347826086957" y="52.901785714285715"/>
         </scene>
         <!--Welcome View Controller-->
         <scene sceneID="TaB-I3-U8h">
@@ -202,6 +238,9 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray4Color">
+            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="tintColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
