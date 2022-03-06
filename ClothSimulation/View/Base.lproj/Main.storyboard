@@ -66,7 +66,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <items>
                                     <barButtonItem title="전체" id="R9d-jf-VWq">
-                                        <color key="tintColor" systemColor="systemGray4Color"/>
+                                        <color key="tintColor" red="0.18431372549019609" green="0.42352941176470588" blue="0.8666666666666667" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <connections>
                                             <action selector="itemTapped:" destination="BYZ-38-t0r" id="k4V-sI-cM8"/>
                                         </connections>
@@ -110,6 +110,17 @@
                                 <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="barTintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </toolbar>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UhF-NJ-0WT">
+                                <rect key="frame" x="344" y="108" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="0i8-Jw-2og"/>
+                                    <constraint firstAttribute="width" constant="50" id="wQi-Of-4Xx"/>
+                                </constraints>
+                                <buttonConfiguration key="configuration" style="gray" image="Change User" cornerStyle="capsule"/>
+                                <connections>
+                                    <action selector="changeButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qRH-7K-GQg"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="VLn-al-22J"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -117,6 +128,8 @@
                             <constraint firstItem="kGf-Ap-hgJ" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="6LO-m5-NVD"/>
                             <constraint firstAttribute="bottom" secondItem="swx-bt-NNG" secondAttribute="bottom" constant="39" id="74C-gE-3oE"/>
                             <constraint firstAttribute="trailing" secondItem="swx-bt-NNG" secondAttribute="trailing" id="Fqa-GP-hRx"/>
+                            <constraint firstItem="UhF-NJ-0WT" firstAttribute="top" secondItem="VLn-al-22J" secondAttribute="top" constant="20" id="LCs-aj-evj"/>
+                            <constraint firstItem="VLn-al-22J" firstAttribute="trailing" secondItem="UhF-NJ-0WT" secondAttribute="trailing" constant="20" id="ObC-Rj-dRW"/>
                             <constraint firstItem="swx-bt-NNG" firstAttribute="top" secondItem="kGf-Ap-hgJ" secondAttribute="bottom" id="PVJ-9S-sjd"/>
                             <constraint firstItem="kGf-Ap-hgJ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Q1m-nd-hac"/>
                             <constraint firstItem="kGf-Ap-hgJ" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Tgy-cJ-JOX"/>
@@ -128,6 +141,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Virtual Fitting" id="ZwH-1X-ZFD">
                         <barButtonItem key="rightBarButtonItem" systemItem="camera" id="WI1-WT-ghw">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <segue destination="OjR-e3-Zmf" kind="show" id="BwD-K1-e3E"/>
                             </connections>
@@ -179,7 +193,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="👕BestFit👖" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="IWH-OV-tKA">
                                 <rect key="frame" x="80" y="328" width="254" height="53"/>
                                 <fontDescription key="fontDescription" type="system" weight="black" pointSize="44"/>
-                                <color key="textColor" systemColor="tintColor"/>
+                                <color key="textColor" systemColor="systemBlueColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zUi-59-CXn">
@@ -187,6 +201,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="시작하기">
                                     <fontDescription key="titleFontDescription" type="system" pointSize="18"/>
+                                    <color key="baseForegroundColor" systemColor="systemBlueColor"/>
                                 </buttonConfiguration>
                                 <connections>
                                     <segue destination="BYZ-38-t0r" kind="show" id="APX-WF-QFN"/>
@@ -224,6 +239,9 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="nNY-Wg-82t">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -235,15 +253,17 @@
             <point key="canvasLocation" x="1895.6521739130437" y="52.901785714285715"/>
         </scene>
     </scenes>
+    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
     <resources>
+        <image name="Change User" width="50" height="50"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemGray4Color">
             <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="tintColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

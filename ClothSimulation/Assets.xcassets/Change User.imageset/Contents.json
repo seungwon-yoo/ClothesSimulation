@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "Change User-595b40b85ba036ed117dbf9f.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "Change User-595b40b85ba036ed117dbf9f@2x.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "Change User-595b40b85ba036ed117dbf9f@3x.png",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

@@ -10,7 +10,7 @@ import Alamofire
 import SceneKit
 
 class ClothesViewController: UIViewController {
-
+    
     @IBOutlet weak var toolbar: UIToolbar!
     @IBOutlet weak var sceneView: SCNView!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -20,10 +20,36 @@ class ClothesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         toolbar.items![toolbar.items!.startIndex].tintColor = .systemBlue
-        set3DModel()
+        set3DModel(name: "art.scnassets/male.obj")
         startInitialSettings()
     }
-
+    
+    @IBAction func changeButtonPressed(_ sender: UIButton) {
+        // Create the action buttons for the alert.
+        let manAction = UIAlertAction(title: "남성",
+                                      style: .default) { (action) in
+            self.set3DModel(name: "art.scnassets/male.obj")
+        }
+        let womanAction = UIAlertAction(title: "여성",
+                                        style: .default) { (action) in
+            self.set3DModel(name: "art.scnassets/female.obj")
+        }
+        let cancelAction = UIAlertAction(title: "닫기", style: .cancel)
+        
+        // Create and configure the alert controller.
+        let alert = UIAlertController(title: "모델 선택",
+                                      message: "",
+                                      preferredStyle: .actionSheet)
+        alert.addAction(manAction)
+        alert.addAction(womanAction)
+        alert.addAction(cancelAction)
+        
+        self.present(alert, animated: true) {
+            // The alert was presented
+        }
+    }
+    
+    
     //MARK: - Emphasize the toolbar items
     @IBAction func itemTapped(_ sender: UIBarButtonItem) {
         model.setToShowSpecificImageList(of: sender.title!)
@@ -72,16 +98,16 @@ extension ClothesViewController {
         return nil
     }
     
-    func set3DModel() {
+    func set3DModel(name: String) {
         // 1: Load .obj file
-        let scene = SCNScene(named: "art.scnassets/FinalBaseMesh.obj")
+        let scene = SCNScene(named: name)
         
         // 2: Add camera node
         let cameraNode = SCNNode()
         cameraNode.camera = SCNCamera()
         
         // 3: Place camera
-        cameraNode.position = SCNVector3(x: 0, y: 10, z: 35)
+        cameraNode.position = SCNVector3(x: 0, y: 40, z: 100)
         
         // 4: Set camera on scene
         scene?.rootNode.addChildNode(cameraNode)
@@ -90,7 +116,7 @@ extension ClothesViewController {
         let lightNode = SCNNode()
         lightNode.light = SCNLight()
         lightNode.light?.type = .omni
-        lightNode.position = SCNVector3(x: 0, y: 10, z: 35)
+        lightNode.position = SCNVector3(x: 0, y: 40, z: 100)
         scene?.rootNode.addChildNode(lightNode)
         
         // 6: Creating and adding ambient light to scene
