@@ -18,7 +18,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <sceneKitView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kGf-Ap-hgJ">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="6wh-GH-P2E" appends="YES" id="r1B-kC-MAs"/>
+                                    <outletCollection property="gestureRecognizers" destination="MQA-Pn-k10" appends="YES" id="Vaf-cF-uQ3"/>
+                                </connections>
                             </sceneKitView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="4Za-EH-BZD">
                                 <rect key="frame" x="0.0" y="713" width="414" height="100"/>
@@ -132,7 +137,7 @@
                             <constraint firstItem="VLn-al-22J" firstAttribute="trailing" secondItem="UhF-NJ-0WT" secondAttribute="trailing" constant="20" id="ObC-Rj-dRW"/>
                             <constraint firstItem="swx-bt-NNG" firstAttribute="top" secondItem="kGf-Ap-hgJ" secondAttribute="bottom" id="PVJ-9S-sjd"/>
                             <constraint firstItem="kGf-Ap-hgJ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Q1m-nd-hac"/>
-                            <constraint firstItem="kGf-Ap-hgJ" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Tgy-cJ-JOX"/>
+                            <constraint firstItem="kGf-Ap-hgJ" firstAttribute="top" secondItem="VLn-al-22J" secondAttribute="top" id="Tgy-cJ-JOX"/>
                             <constraint firstItem="swx-bt-NNG" firstAttribute="top" secondItem="4Za-EH-BZD" secondAttribute="bottom" id="dAa-Az-ay0"/>
                             <constraint firstItem="swx-bt-NNG" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="lV1-sL-7Z0"/>
                             <constraint firstItem="4Za-EH-BZD" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="tHH-S9-Htr"/>
@@ -141,7 +146,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Virtual Fitting" id="ZwH-1X-ZFD">
                         <barButtonItem key="rightBarButtonItem" systemItem="camera" id="WI1-WT-ghw">
-                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="tintColor" systemColor="tintColor"/>
                             <connections>
                                 <segue destination="OjR-e3-Zmf" kind="show" id="BwD-K1-e3E"/>
                             </connections>
@@ -149,11 +154,22 @@
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="4Za-EH-BZD" id="Teo-FP-9Vt"/>
+                        <outlet property="pinchGestureRecognizer" destination="MQA-Pn-k10" id="CpB-Hn-nth"/>
                         <outlet property="sceneView" destination="kGf-Ap-hgJ" id="A2G-6P-Nlz"/>
                         <outlet property="toolbar" destination="swx-bt-NNG" id="68Q-Vp-3am"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="6wh-GH-P2E">
+                    <connections>
+                        <action selector="panAction:" destination="BYZ-38-t0r" id="0ho-ey-gc6"/>
+                    </connections>
+                </panGestureRecognizer>
+                <pinchGestureRecognizer id="MQA-Pn-k10">
+                    <connections>
+                        <action selector="pinchAction:" destination="BYZ-38-t0r" id="r5X-tU-QIY"/>
+                    </connections>
+                </pinchGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="3589.8550724637685" y="52.901785714285715"/>
         </scene>
@@ -239,9 +255,6 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="nNY-Wg-82t">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <textAttributes key="titleTextAttributes">
-                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -253,7 +266,6 @@
             <point key="canvasLocation" x="1895.6521739130437" y="52.901785714285715"/>
         </scene>
     </scenes>
-    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
     <resources>
         <image name="Change User" width="50" height="50"/>
         <systemColor name="systemBackgroundColor">
@@ -264,6 +276,9 @@
         </systemColor>
         <systemColor name="systemGray4Color">
             <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="tintColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
