@@ -35,11 +35,20 @@ class ClothesViewController: UIViewController {
     @IBAction func pinchAction(_ sender: UIPinchGestureRecognizer) {
         // 모델 자체를 확대 축소해야 한다.
         if sender.state == .began || sender.state == .changed {
+            let zPos = sceneView.scene?.rootNode.position.z
+            var matrix = matrix_identity_float4x4
+            matrix.columns.3.z = Float(zPos! + 0.0000000001)
+            SCNTransaction.begin()
+            SCNTransaction.animationDuration = 1
+            sceneView.pointOfView?.position.z = Float(matrix.columns.3.z)
+            SCNTransaction.commit()
+//            let location = sender.location(in: sceneView)
+//            sceneView.defaultCameraController.translateInCameraSpaceBy(x: Float(location.x), y: Float(location.y), z: 0.5)
             // 스택오버플로 참고하고 있었음. rootNode말고 하나하나 해볼 것.
-            let node = sceneView.scene?.rootNode.transform
-            let translation = SCNMatrix4MakeTranslation(1.0, 1.0, Float(sender.scale))
-            let newTrans = SCNMatrix4Mult(node!, translation)
-            sceneView.scene?.rootNode.transform = newTrans
+//            let transform = sceneView.scene?.rootNode.childNodes[0].transform
+//            let translation = SCNMatrix4MakeTranslation(1.0, 1.0, Float32(sender.scale))
+//            let newTrans = SCNMatrix4Mult(transform!, translation)
+//            sceneView.scene?.rootNode.transform = newTrans
             sender.scale = 1.0
             
 //            sender.view?.transform = (sender.view?.transform.scaledBy(x: sender.scale, y: sender.scale))!
@@ -98,32 +107,29 @@ class ClothesViewController: UIViewController {
 extension ClothesViewController {
     //MARK: - Initial Setting Methods
     func startInitialSettings() {
-        let url = "http://192.168.0.8:80/settings/init"
-        Alamofire.request(url, method: .get).responseJSON { response in
+        let url = "http://192.168.0.9:80"
+        let settingUrl = "/settings/init"
+        Alamofire.request(url + settingUrl, method: .get).responseJSON { response in
             var settings: Settings
             do {
                 let decoder = JSONDecoder()
                 settings = try decoder.decode(Settings.self, from: response.data!)
                 
                 for clothes in settings.clothes {
-                    if let image = self.convertStringToUIImage(str: clothes.result) {
-                        self.model.addImageInfo(category: clothes.category, image: image)
-                    }
+                    let imageUrl = clothes.image
+                    Alamofire.request(url + imageUrl, method: .get).response { response in
+                        if let image = UIImage(data: response.data!) {
+                            self.model.addImageInfo(category: clothes.category, image: image)
+                            self.model.setToShowSpecificImageList()
+                            self.collectionView.reloadData()
+                        }
+                    }.resume()
                 }
                 
-                self.model.setToShowSpecificImageList()
-                self.collectionView.reloadData()
             } catch {
                 print("\(error)")
             }
         }.resume()
-    }
-    
-    func convertStringToUIImage(str: String) -> UIImage? {
-        if let data = Data(base64Encoded: str, options: .ignoreUnknownCharacters){
-            return UIImage(data: data)
-        }
-        return nil
     }
     
     func set3DModel(name: String) {

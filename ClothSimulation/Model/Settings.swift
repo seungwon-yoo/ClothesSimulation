@@ -13,5 +13,5 @@ struct Settings: Codable {
 
 struct Clothes: Codable {
     let category: String
-    let result: String
+    let image: String
 }
