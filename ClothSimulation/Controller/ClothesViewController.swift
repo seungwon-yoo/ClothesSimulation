@@ -23,7 +23,6 @@ class ClothesViewController: UIViewController {
         toolbar.items![toolbar.items!.startIndex].tintColor = .systemBlue
         set3DModel(name: "art.scnassets/FinalBaseMesh.obj")
         startInitialSettings()
-        print(sceneView.transform)
     }
     
     @IBAction func panAction(_ sender: UIPanGestureRecognizer) {
@@ -34,41 +33,39 @@ class ClothesViewController: UIViewController {
     
     @IBAction func pinchAction(_ sender: UIPinchGestureRecognizer) {
         // 모델 자체를 확대 축소해야 한다.
-        if sender.state == .began || sender.state == .changed {
-            let zPos = sceneView.scene?.rootNode.position.z
-            var matrix = matrix_identity_float4x4
-            matrix.columns.3.z = Float(zPos! + 0.0000000001)
-            SCNTransaction.begin()
-            SCNTransaction.animationDuration = 1
-            sceneView.pointOfView?.position.z = Float(matrix.columns.3.z)
-            SCNTransaction.commit()
-//            let location = sender.location(in: sceneView)
-//            sceneView.defaultCameraController.translateInCameraSpaceBy(x: Float(location.x), y: Float(location.y), z: 0.5)
-            // 스택오버플로 참고하고 있었음. rootNode말고 하나하나 해볼 것.
-//            let transform = sceneView.scene?.rootNode.childNodes[0].transform
-//            let translation = SCNMatrix4MakeTranslation(1.0, 1.0, Float32(sender.scale))
-//            let newTrans = SCNMatrix4Mult(transform!, translation)
-//            sceneView.scene?.rootNode.transform = newTrans
-            sender.scale = 1.0
-            
-//            sender.view?.transform = (sender.view?.transform.scaledBy(x: sender.scale, y: sender.scale))!
-//            sender.scale = 1.0
-       }
+        let cameraNode = sceneView.scene?.rootNode.childNodes[1]
+        let maximumFOV:CGFloat = 25
+        let minimumFOV:CGFloat = 90
+        
+        switch sender.state {
+        case .began:
+            break
+        case .changed:
+            cameraNode?.camera?.fieldOfView = (cameraNode?.camera!.fieldOfView)! - sender.velocity
+            if (cameraNode?.camera!.fieldOfView)! <= maximumFOV {
+                cameraNode?.camera?.fieldOfView = maximumFOV
+            }
+            if (cameraNode?.camera!.fieldOfView)! >= minimumFOV {
+                cameraNode?.camera?.fieldOfView = minimumFOV
+            }
+        default:
+            break
+        }
     }
     
     @IBAction func changeButtonPressed(_ sender: UIButton) {
         // Create the action buttons for the alert.
-        let bulkyManAction = UIAlertAction(title: "다부진 남성",
+        let bulkyManAction = UIAlertAction(title: "차렷 남성",
                                       style: .default) { (action) in
             self.set3DModel(name: "art.scnassets/FinalBaseMesh.obj")
         }
-        let skinnyManAction = UIAlertAction(title: "마른 남성",
+        let skinnyManAction = UIAlertAction(title: "팔을 벌린 남성",
                                       style: .default) { (action) in
-            self.set3DModel(name: "art.scnassets/male.obj")
+            self.set3DModel(name: "art.scnassets/SMPL_male.obj")
         }
-        let womanAction = UIAlertAction(title: "여성",
+        let womanAction = UIAlertAction(title: "팔을 벌린 여성",
                                         style: .default) { (action) in
-            self.set3DModel(name: "art.scnassets/female.obj")
+            self.set3DModel(name: "art.scnassets/SMPL_female.obj")
         }
         let cancelAction = UIAlertAction(title: "닫기", style: .cancel)
         
@@ -125,7 +122,6 @@ extension ClothesViewController {
                         }
                     }.resume()
                 }
-                
             } catch {
                 print("\(error)")
             }
