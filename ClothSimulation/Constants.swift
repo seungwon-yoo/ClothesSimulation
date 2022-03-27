@@ -9,8 +9,8 @@ struct K {
     static let appName = "👕BestFit👖"
 //    static let cellIdentifier = "ReusableCell"
 //    static let cellNibName = "MessageCell"
-//    static let registerSegue = "RegisterToChat"
-//    static let loginSegue = "LoginToChat"
+    static let registerSegue = "RegisterToFit"
+    static let loginSegue = "LogInToFit"
 //
 //    struct BrandColors {
 //        static let purple = "BrandPurple"

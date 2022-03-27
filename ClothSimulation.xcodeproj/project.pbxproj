@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		24E4A95A261661599DE4904F /* Pods_ClothSimulation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF9E9297617AA5706BF0F4BB /* Pods_ClothSimulation.framework */; };
+		E34F445F27F0916400760822 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E34F445E27F0916400760822 /* GoogleService-Info.plist */; };
+		E34F446127F0957900760822 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34F446027F0957900760822 /* RegisterViewController.swift */; };
+		E34F446327F0958B00760822 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34F446227F0958B00760822 /* LoginViewController.swift */; };
 		E35EDF9A27C088D9009CF075 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35EDF9927C088D9009CF075 /* AppDelegate.swift */; };
 		E35EDF9C27C088D9009CF075 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35EDF9B27C088D9009CF075 /* SceneDelegate.swift */; };
 		E35EDF9E27C088D9009CF075 /* ClothesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35EDF9D27C088D9009CF075 /* ClothesViewController.swift */; };
@@ -27,6 +30,9 @@
 		38FE0D7A07ADA6CA5C7F2B88 /* Pods-ClothSimulation.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClothSimulation.debug.xcconfig"; path = "Target Support Files/Pods-ClothSimulation/Pods-ClothSimulation.debug.xcconfig"; sourceTree = "<group>"; };
 		B9398D905BC6241BC24CFA9B /* Pods-ClothSimulation.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClothSimulation.release.xcconfig"; path = "Target Support Files/Pods-ClothSimulation/Pods-ClothSimulation.release.xcconfig"; sourceTree = "<group>"; };
 		DF9E9297617AA5706BF0F4BB /* Pods_ClothSimulation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ClothSimulation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E34F445E27F0916400760822 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E34F446027F0957900760822 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		E34F446227F0958B00760822 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		E35EDF9627C088D9009CF075 /* ClothSimulation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClothSimulation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E35EDF9927C088D9009CF075 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E35EDF9B27C088D9009CF075 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -100,9 +106,10 @@
 				E35EDFAF27C0D68A009CF075 /* Controller */,
 				E35EDFB027C0D6B8009CF075 /* View */,
 				E35EDFA227C088DB009CF075 /* Assets.xcassets */,
+				E35EDFB127C0D6E9009CF075 /* Constants.swift */,
 				E35EDFA427C088DB009CF075 /* LaunchScreen.storyboard */,
 				E35EDFA727C088DB009CF075 /* Info.plist */,
-				E35EDFB127C0D6E9009CF075 /* Constants.swift */,
+				E34F445E27F0916400760822 /* GoogleService-Info.plist */,
 				E3D9071A27CF6205009A5935 /* art.scnassets */,
 			);
 			path = ClothSimulation;
@@ -112,6 +119,8 @@
 			isa = PBXGroup;
 			children = (
 				E35EDFAD27C0D614009CF075 /* WelcomeViewController.swift */,
+				E34F446027F0957900760822 /* RegisterViewController.swift */,
+				E34F446227F0958B00760822 /* LoginViewController.swift */,
 				E35EDF9D27C088D9009CF075 /* ClothesViewController.swift */,
 				E3D9071627CF5E01009A5935 /* ARViewController.swift */,
 			);
@@ -198,6 +207,7 @@
 			files = (
 				E35EDFA627C088DB009CF075 /* LaunchScreen.storyboard in Resources */,
 				E3D9071B27CF6205009A5935 /* art.scnassets in Resources */,
+				E34F445F27F0916400760822 /* GoogleService-Info.plist in Resources */,
 				E35EDFA327C088DB009CF075 /* Assets.xcassets in Resources */,
 				E35EDFA127C088D9009CF075 /* Main.storyboard in Resources */,
 			);
@@ -256,11 +266,13 @@
 				E35EDFB227C0D6E9009CF075 /* Constants.swift in Sources */,
 				E3EC05E627C3BC73007DD29D /* Settings.swift in Sources */,
 				E3D9071727CF5E01009A5935 /* ARViewController.swift in Sources */,
+				E34F446327F0958B00760822 /* LoginViewController.swift in Sources */,
 				E35EDF9E27C088D9009CF075 /* ClothesViewController.swift in Sources */,
 				E35EDFAE27C0D614009CF075 /* WelcomeViewController.swift in Sources */,
 				E3EC05E227C34294007DD29D /* ImageInfo.swift in Sources */,
 				E35EDF9A27C088D9009CF075 /* AppDelegate.swift in Sources */,
 				E35EDF9C27C088D9009CF075 /* SceneDelegate.swift in Sources */,
+				E34F446127F0957900760822 /* RegisterViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -413,6 +425,7 @@
 				DEVELOPMENT_TEAM = LHV8YV598B;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ClothSimulation/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "해당 기능을 사용하려면 카메라를 허용해야 합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -442,6 +455,7 @@
 				DEVELOPMENT_TEAM = LHV8YV598B;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ClothSimulation/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "해당 기능을 사용하려면 카메라를 허용해야 합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

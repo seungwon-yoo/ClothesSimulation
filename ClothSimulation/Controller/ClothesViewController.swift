@@ -8,6 +8,7 @@
 import UIKit
 import Alamofire
 import SceneKit
+import Firebase
 
 class ClothesViewController: UIViewController {
     
@@ -21,8 +22,15 @@ class ClothesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         toolbar.items![toolbar.items!.startIndex].tintColor = .systemBlue
-        set3DModel(name: "art.scnassets/FinalBaseMesh.obj")
+        // set3DModel(name: "art.scnassets/FinalBaseMesh.obj")
+        set3DModel(name: "art.scnassets/bboyFixed.scn")
         startInitialSettings()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationItem.hidesBackButton = true
     }
     
     @IBAction func panAction(_ sender: UIPanGestureRecognizer) {
@@ -55,15 +63,15 @@ class ClothesViewController: UIViewController {
     
     @IBAction func changeButtonPressed(_ sender: UIButton) {
         // Create the action buttons for the alert.
-        let bulkyManAction = UIAlertAction(title: "차렷 남성",
+        let bulkyManAction = UIAlertAction(title: "일반 남성",
                                       style: .default) { (action) in
             self.set3DModel(name: "art.scnassets/FinalBaseMesh.obj")
         }
-        let skinnyManAction = UIAlertAction(title: "팔을 벌린 남성",
+        let skinnyManAction = UIAlertAction(title: "SMPL 남성",
                                       style: .default) { (action) in
             self.set3DModel(name: "art.scnassets/SMPL_male.obj")
         }
-        let womanAction = UIAlertAction(title: "팔을 벌린 여성",
+        let womanAction = UIAlertAction(title: "SMPL 여성",
                                         style: .default) { (action) in
             self.set3DModel(name: "art.scnassets/SMPL_female.obj")
         }
@@ -176,7 +184,7 @@ extension ClothesViewController {
         // sceneView.showsStatistics = true
         
         // Set background color
-        sceneView.backgroundColor = UIColor.systemGray
+        sceneView.backgroundColor = UIColor.white
         
         // Allow user translate image
         sceneView.cameraControlConfiguration.allowsTranslation = false
