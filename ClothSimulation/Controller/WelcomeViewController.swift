@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class WelcomeViewController: UIViewController {
     
@@ -32,4 +33,14 @@ class WelcomeViewController: UIViewController {
             charIndex += 1
         }
     }
+    
+    @IBAction func startPressed(_ sender: UIButton) {
+        if let user = Auth.auth().currentUser {
+            self.performSegue(withIdentifier: K.welcomeToFitSegue, sender: self)
+            print("You're sign in as \(user.uid), email: \(user.email ?? "no email")")
+        } else {
+            self.performSegue(withIdentifier: K.welcomeToLogInSegue, sender: self)
+        }
+    }
+    
 }

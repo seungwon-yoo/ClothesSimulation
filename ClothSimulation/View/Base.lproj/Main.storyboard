@@ -14,11 +14,11 @@
             <objects>
                 <viewController id="UIX-uz-j3M" customClass="RegisterViewController" customModule="ClothSimulation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Kfj-f0-WgI">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Gc7-ih-8Nf">
-                                <rect key="frame" x="10" y="98" width="394" height="76"/>
+                                <rect key="frame" x="10" y="54" width="394" height="76"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zR3-e8-W9E">
                                         <rect key="frame" x="0.0" y="0.0" width="394" height="34"/>
@@ -40,7 +40,7 @@
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Zu-ZO-1IK">
-                                <rect key="frame" x="168.5" y="224" width="77.5" height="31"/>
+                                <rect key="frame" x="168.5" y="180" width="77.5" height="31"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Register"/>
                                 <connections>
@@ -67,18 +67,18 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hnX-uL-61J" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3441" y="-686"/>
+            <point key="canvasLocation" x="1519" y="855"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="cmt-L6-aGd">
             <objects>
                 <viewController id="bea-aZ-QQq" customClass="LoginViewController" customModule="ClothSimulation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rlY-On-Bs4">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="OVh-eC-bGZ">
-                                <rect key="frame" x="10" y="98" width="394" height="76"/>
+                                <rect key="frame" x="10" y="54" width="394" height="76"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MBP-WP-NLl">
                                         <rect key="frame" x="0.0" y="0.0" width="394" height="34"/>
@@ -100,7 +100,7 @@
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OlC-kw-8i9">
-                                <rect key="frame" x="10" y="224" width="394" height="31"/>
+                                <rect key="frame" x="10" y="180" width="394" height="31"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Log In"/>
                                 <connections>
@@ -108,40 +108,36 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SWX-xJ-oXe">
-                                <rect key="frame" x="10" y="305" width="394" height="31"/>
+                                <rect key="frame" x="10" y="261" width="394" height="31"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="계정 생성하기"/>
                                 <connections>
                                     <segue destination="UIX-uz-j3M" kind="show" id="prN-G6-Fv6"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0U2-SQ-mTW" customClass="GIDSignInButton">
-                                <rect key="frame" x="10" y="346" width="394" height="50"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="h9V-3M-re5"/>
-                                </constraints>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hlY-Mv-s4t">
+                                <rect key="frame" x="139.5" y="372" width="135" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="gray" title="Google로 계속하기"/>
                                 <connections>
-                                    <action selector="googleSignInBtnPressed:" destination="bea-aZ-QQq" eventType="valueChanged" id="JsU-1d-ysA"/>
+                                    <action selector="googleLogInPressed:" destination="bea-aZ-QQq" eventType="touchUpInside" id="6Mn-ik-tNi"/>
                                 </connections>
-                            </view>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="2qR-el-mEP"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="SWX-xJ-oXe" firstAttribute="leading" secondItem="2qR-el-mEP" secondAttribute="leading" constant="10" id="07U-HS-34l"/>
-                            <constraint firstItem="0U2-SQ-mTW" firstAttribute="leading" secondItem="2qR-el-mEP" secondAttribute="leading" constant="10" id="5cY-tT-HzP"/>
                             <constraint firstItem="OVh-eC-bGZ" firstAttribute="centerX" secondItem="rlY-On-Bs4" secondAttribute="centerX" id="6yr-ec-4J6"/>
-                            <constraint firstItem="0U2-SQ-mTW" firstAttribute="top" secondItem="SWX-xJ-oXe" secondAttribute="bottom" constant="10" id="A2S-1p-HHc"/>
                             <constraint firstItem="OlC-kw-8i9" firstAttribute="centerX" secondItem="rlY-On-Bs4" secondAttribute="centerX" id="G9z-0K-siV"/>
-                            <constraint firstItem="0U2-SQ-mTW" firstAttribute="centerX" secondItem="rlY-On-Bs4" secondAttribute="centerX" id="HEm-cI-855"/>
                             <constraint firstItem="2qR-el-mEP" firstAttribute="trailing" secondItem="SWX-xJ-oXe" secondAttribute="trailing" constant="10" id="Hfn-Jr-08g"/>
                             <constraint firstItem="2qR-el-mEP" firstAttribute="trailing" secondItem="OVh-eC-bGZ" secondAttribute="trailing" constant="10" id="IwF-hq-jZr"/>
                             <constraint firstItem="SWX-xJ-oXe" firstAttribute="top" secondItem="OlC-kw-8i9" secondAttribute="bottom" constant="50" id="P4d-e4-zMD"/>
                             <constraint firstItem="OlC-kw-8i9" firstAttribute="top" secondItem="OVh-eC-bGZ" secondAttribute="bottom" constant="50" id="QCg-Qc-TTQ"/>
                             <constraint firstItem="OlC-kw-8i9" firstAttribute="leading" secondItem="2qR-el-mEP" secondAttribute="leading" constant="10" id="SYW-Rr-0v9"/>
+                            <constraint firstItem="hlY-Mv-s4t" firstAttribute="top" secondItem="SWX-xJ-oXe" secondAttribute="bottom" constant="80" id="Wwq-t7-ezU"/>
                             <constraint firstItem="OVh-eC-bGZ" firstAttribute="leading" secondItem="2qR-el-mEP" secondAttribute="leading" constant="10" id="b7H-3I-g41"/>
-                            <constraint firstItem="2qR-el-mEP" firstAttribute="trailing" secondItem="0U2-SQ-mTW" secondAttribute="trailing" constant="10" id="bxP-Qd-Cfg"/>
+                            <constraint firstItem="hlY-Mv-s4t" firstAttribute="centerX" secondItem="rlY-On-Bs4" secondAttribute="centerX" id="kzC-hz-emz"/>
                             <constraint firstItem="SWX-xJ-oXe" firstAttribute="centerX" secondItem="rlY-On-Bs4" secondAttribute="centerX" id="oJl-Oz-nQa"/>
                             <constraint firstItem="OVh-eC-bGZ" firstAttribute="top" secondItem="2qR-el-mEP" secondAttribute="top" constant="10" id="odV-Py-Wcq"/>
                             <constraint firstItem="2qR-el-mEP" firstAttribute="trailing" secondItem="OlC-kw-8i9" secondAttribute="trailing" constant="10" id="rzB-hs-cZX"/>
@@ -150,25 +146,24 @@
                     <navigationItem key="navigationItem" id="tpD-hT-EXc"/>
                     <connections>
                         <outlet property="emailTextField" destination="MBP-WP-NLl" id="Yz4-Td-YNR"/>
-                        <outlet property="googleSignInBtn" destination="0U2-SQ-mTW" id="8W7-53-9W6"/>
                         <outlet property="passwordTextField" destination="RgL-vP-Qh3" id="tPz-DH-MZv"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="LogInToFit" id="Alu-nY-HMX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T74-py-leU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2524.6376811594205" y="52.901785714285715"/>
+            <point key="canvasLocation" x="1519" y="139"/>
         </scene>
         <!--Virtual Fitting-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ClothesViewController" customModule="ClothSimulation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <sceneKitView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kGf-Ap-hgJ">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="715"/>
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="6wh-GH-P2E" appends="YES" id="r1B-kC-MAs"/>
@@ -176,7 +171,7 @@
                                 </connections>
                             </sceneKitView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="4Za-EH-BZD">
-                                <rect key="frame" x="0.0" y="713" width="414" height="100"/>
+                                <rect key="frame" x="0.0" y="659" width="414" height="100"/>
                                 <color key="backgroundColor" white="0.75" alpha="0.34000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="9Jc-WF-CVW"/>
@@ -217,7 +212,7 @@
                                 </connections>
                             </collectionView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="swx-bt-NNG">
-                                <rect key="frame" x="0.0" y="813" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="759" width="414" height="44"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <items>
                                     <barButtonItem title="전체" id="R9d-jf-VWq">
@@ -266,7 +261,7 @@
                                 <color key="barTintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </toolbar>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UhF-NJ-0WT">
-                                <rect key="frame" x="344" y="108" width="50" height="50"/>
+                                <rect key="frame" x="344" y="64" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="0i8-Jw-2og"/>
                                     <constraint firstAttribute="width" constant="50" id="wQi-Of-4Xx"/>
@@ -274,6 +269,15 @@
                                 <buttonConfiguration key="configuration" style="gray" image="Change User" cornerStyle="capsule"/>
                                 <connections>
                                     <action selector="changeButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qRH-7K-GQg"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aBj-4W-egO">
+                                <rect key="frame" x="17" y="118" width="116" height="54"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="tinted" title="로그아웃"/>
+                                <connections>
+                                    <action selector="logoutPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="d9n-sh-wdU"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -307,6 +311,7 @@
                         <outlet property="pinchGestureRecognizer" destination="MQA-Pn-k10" id="CpB-Hn-nth"/>
                         <outlet property="sceneView" destination="kGf-Ap-hgJ" id="A2G-6P-Nlz"/>
                         <outlet property="toolbar" destination="swx-bt-NNG" id="68Q-Vp-3am"/>
+                        <segue destination="2cq-vW-4aF" kind="show" identifier="FitToWelcome" id="tOb-Kl-TgW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -321,14 +326,14 @@
                     </connections>
                 </pinchGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="4300" y="53"/>
+            <point key="canvasLocation" x="2924.6376811594205" y="138.61607142857142"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="rkV-Hu-coZ">
             <objects>
                 <viewController id="OjR-e3-Zmf" customClass="ARViewController" customModule="ClothSimulation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="f5D-fD-xOY">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="egV-wd-qum">
@@ -353,24 +358,24 @@
             <objects>
                 <viewController id="2cq-vW-4aF" customClass="WelcomeViewController" customModule="ClothSimulation" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ERL-dn-mfa">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="👕BestFit👖" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="IWH-OV-tKA">
-                                <rect key="frame" x="80" y="328" width="254" height="53"/>
+                                <rect key="frame" x="80" y="284" width="254" height="53"/>
                                 <fontDescription key="fontDescription" type="system" weight="black" pointSize="44"/>
                                 <color key="textColor" systemColor="systemBlueColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zUi-59-CXn">
-                                <rect key="frame" x="150" y="706.5" width="114" height="35.5"/>
+                                <rect key="frame" x="150" y="686.5" width="114" height="35.5"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="시작하기">
                                     <fontDescription key="titleFontDescription" type="system" pointSize="18"/>
                                     <color key="baseForegroundColor" systemColor="systemBlueColor"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <segue destination="bea-aZ-QQq" kind="show" id="rJo-cx-as2"/>
+                                    <action selector="startPressed:" destination="2cq-vW-4aF" eventType="touchUpInside" id="YB6-VM-sA0"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -390,11 +395,13 @@
                     <navigationItem key="navigationItem" id="8wm-pM-VT2"/>
                     <connections>
                         <outlet property="titleLabel" destination="IWH-OV-tKA" id="yXT-ns-s2N"/>
+                        <segue destination="bea-aZ-QQq" kind="show" identifier="WelcomeToLogIn" id="e2n-BI-WVm"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="WelcomeToFit" id="ejI-rB-qew"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="29J-X6-Y4S" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1520" y="53"/>
+            <point key="canvasLocation" x="1519" y="-675"/>
         </scene>
         <!--Item-->
         <scene sceneID="DeF-PU-kqv">
@@ -413,10 +420,11 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4fL-lK-vgN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="610" y="53"/>
+            <point key="canvasLocation" x="113" y="139"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="tOb-Kl-TgW"/>
         <segue reference="Alu-nY-HMX"/>
     </inferredMetricsTieBreakers>
     <resources>

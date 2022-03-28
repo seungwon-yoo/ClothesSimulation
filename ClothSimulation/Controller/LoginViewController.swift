@@ -12,14 +12,13 @@ import GoogleSignIn
 class LoginViewController: UIViewController {
     
     
-    @IBOutlet weak var googleSignInBtn: GIDSignInButton!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        googleSignInBtn.style = .wide
+        
     }
     
     @IBAction func logInPressed(_ sender: UIButton) {
@@ -28,8 +27,27 @@ class LoginViewController: UIViewController {
                 if let e = error {
                     print(e)
                 } else {
-                    self.performSegue(withIdentifier: K.loginSegue, sender: self)
+                    self.performSegue(withIdentifier: K.loginInToFitSegue, sender: self)
                 }
+            }
+        }
+    }
+    
+    @IBAction func googleLogInPressed(_ sender: Any) {
+        guard let clientID = FirebaseApp.app()?.options.clientID else { return }
+        let signInConfig = GIDConfiguration.init(clientID: clientID)
+                
+        GIDSignIn.sharedInstance.signIn(with: signInConfig, presenting: self) { user, error in
+            guard error == nil else { return }
+
+            guard let authentication = user?.authentication else { return }
+            let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken!, accessToken: authentication.accessToken)
+            // access token 부여 받음
+
+            // 파베 인증정보 등록
+            Auth.auth().signIn(with: credential) { _, _ in
+                // token을 넘겨주면, 성공했는지 안했는지에 대한 result값과 error값을 넘겨줌
+                self.performSegue(withIdentifier: K.loginInToFitSegue, sender: self)
             }
         }
     }
