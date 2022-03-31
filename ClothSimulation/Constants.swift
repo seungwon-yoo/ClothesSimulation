@@ -6,7 +6,7 @@
 //
 
 struct K {
-    static let appName = "👕BestFit👖"
+    static let appName = "BestFit"
 //    static let cellIdentifier = "ReusableCell"
 //    static let cellNibName = "MessageCell"
     static let registerToFitSegue = "RegisterToFit"
@@ -14,6 +14,7 @@ struct K {
     static let welcomeToFitSegue = "WelcomeToFit"
     static let welcomeToLogInSegue = "WelcomeToLogIn"
     static let fitToWelcome = "FitToWelcome"
+    static let welcomeToRegister = "welcomeToRegister"
 //
 //    struct BrandColors {
 //        static let purple = "BrandPurple"

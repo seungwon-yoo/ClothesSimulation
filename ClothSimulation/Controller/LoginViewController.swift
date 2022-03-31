@@ -8,17 +8,55 @@
 import UIKit
 import Firebase
 import GoogleSignIn
+import TextFieldEffects
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
     
-    
+    @IBOutlet weak var googleLoginBtn: UIButton!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let image = UIImage(named: "google")
+        googleLoginBtn.setImage(image, for: .normal)
+        googleLoginBtn.imageView?.contentMode = .scaleAspectFill
         
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        emailTextField.addUnderLine()
+        passwordTextField.addUnderLine()
+    }
+    
+    @objc
+    func keyboardWillShow(_ sender: Notification) {
+        self.view.frame.origin.y = -150 // Move view 150 points upward
+    }
+    
+    @objc
+    func keyboardWillHide(_ sender: Notification) {
+        self.view.frame.origin.y = 0 // Move view to original position
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+//        emailTextField.addUnderLine()
+//        passwordTextField.addUnderLine()
+        
+}
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
     
     @IBAction func logInPressed(_ sender: UIButton) {

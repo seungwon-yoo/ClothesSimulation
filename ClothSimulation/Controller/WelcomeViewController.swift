@@ -34,7 +34,7 @@ class WelcomeViewController: UIViewController {
         }
     }
     
-    @IBAction func startPressed(_ sender: UIButton) {
+    @IBAction func logInPressed(_ sender: Any) {
         if let user = Auth.auth().currentUser {
             self.performSegue(withIdentifier: K.welcomeToFitSegue, sender: self)
             print("You're sign in as \(user.uid), email: \(user.email ?? "no email")")
@@ -42,5 +42,4 @@ class WelcomeViewController: UIViewController {
             self.performSegue(withIdentifier: K.welcomeToLogInSegue, sender: self)
         }
     }
-    
 }

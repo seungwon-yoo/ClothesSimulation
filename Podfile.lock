@@ -315,12 +315,14 @@ PODS:
   - nanopb/decode (1.30906.0)
   - nanopb/encode (1.30906.0)
   - PromisesObjC (1.2.12)
+  - TextFieldEffects (1.6.0)
 
 DEPENDENCIES:
   - Alamofire (~> 4.4)
   - Firebase/Auth
   - Firebase/Firestore
   - GoogleSignIn
+  - TextFieldEffects
 
 SPEC REPOS:
   trunk:
@@ -343,6 +345,7 @@ SPEC REPOS:
     - leveldb-library
     - nanopb
     - PromisesObjC
+    - TextFieldEffects
 
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
@@ -364,7 +367,8 @@ SPEC CHECKSUMS:
   leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
+  TextFieldEffects: 529b8aff706fb40f82c41c780c0777941a893796
 
-PODFILE CHECKSUM: 499c2483a03be44ecf75b3aeb7917bd0f4b458b4
+PODFILE CHECKSUM: 5b002fd02c39ba6d0dd3fa5cabf57a072405ac77
 
 COCOAPODS: 1.11.2

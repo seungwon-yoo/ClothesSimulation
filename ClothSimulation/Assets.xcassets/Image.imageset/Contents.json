@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Article_Allergies_PembrokeWelshCorgis.jpg",
+      "filename" : "Image.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "Image-1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "Image-2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

@@ -19,6 +19,7 @@
 		E35EDFA627C088DB009CF075 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E35EDFA427C088DB009CF075 /* LaunchScreen.storyboard */; };
 		E35EDFAE27C0D614009CF075 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35EDFAD27C0D614009CF075 /* WelcomeViewController.swift */; };
 		E35EDFB227C0D6E9009CF075 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35EDFB127C0D6E9009CF075 /* Constants.swift */; };
+		E39AE46827F56499002363F7 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39AE46727F56499002363F7 /* Extensions.swift */; };
 		E3D9071727CF5E01009A5935 /* ARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D9071627CF5E01009A5935 /* ARViewController.swift */; };
 		E3D9071B27CF6205009A5935 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = E3D9071A27CF6205009A5935 /* art.scnassets */; };
 		E3EC05E227C34294007DD29D /* ImageInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3EC05E127C34294007DD29D /* ImageInfo.swift */; };
@@ -43,6 +44,7 @@
 		E35EDFA727C088DB009CF075 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E35EDFAD27C0D614009CF075 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		E35EDFB127C0D6E9009CF075 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		E39AE46727F56499002363F7 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		E3D9071627CF5E01009A5935 /* ARViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewController.swift; sourceTree = "<group>"; };
 		E3D9071A27CF6205009A5935 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 		E3EC05E127C34294007DD29D /* ImageInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageInfo.swift; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				E35EDF9F27C088D9009CF075 /* Main.storyboard */,
+				E39AE46727F56499002363F7 /* Extensions.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -269,6 +272,7 @@
 				E34F446327F0958B00760822 /* LoginViewController.swift in Sources */,
 				E35EDF9E27C088D9009CF075 /* ClothesViewController.swift in Sources */,
 				E35EDFAE27C0D614009CF075 /* WelcomeViewController.swift in Sources */,
+				E39AE46827F56499002363F7 /* Extensions.swift in Sources */,
 				E3EC05E227C34294007DD29D /* ImageInfo.swift in Sources */,
 				E35EDF9A27C088D9009CF075 /* AppDelegate.swift in Sources */,
 				E35EDF9C27C088D9009CF075 /* SceneDelegate.swift in Sources */,
