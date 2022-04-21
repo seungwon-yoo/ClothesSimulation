@@ -9,8 +9,12 @@ import UIKit
 import Alamofire
 import SceneKit
 import Firebase
+import SideMenu
+import FirebaseStorage
 
 class ClothesViewController: UIViewController {
+    
+    let storage = Storage.storage()
     
     @IBOutlet var pinchGestureRecognizer: UIPinchGestureRecognizer!
     @IBOutlet weak var toolbar: UIToolbar!
@@ -21,16 +25,18 @@ class ClothesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         toolbar.items![toolbar.items!.startIndex].tintColor = .systemBlue
         // set3DModel(name: "art.scnassets/FinalBaseMesh.obj")
         set3DModel(name: "art.scnassets/bboyFixed.scn")
-        startInitialSettings()
+        
+        collectionView.reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.navigationItem.hidesBackButton = true
+        self.navigationController?.navigationBar.topItem?.title = "나의 모델"
     }
     
     @IBAction func panAction(_ sender: UIPanGestureRecognizer) {
@@ -122,31 +128,31 @@ class ClothesViewController: UIViewController {
 }
 
 extension ClothesViewController {
-    //MARK: - Initial Setting Methods
-    func startInitialSettings() {
-        let url = "http://192.168.0.9:80"
-        let settingUrl = "/settings/init"
-        Alamofire.request(url + settingUrl, method: .get).responseJSON { response in
-            var settings: Settings
-            do {
-                let decoder = JSONDecoder()
-                settings = try decoder.decode(Settings.self, from: response.data!)
-                
-                for clothes in settings.clothes {
-                    let imageUrl = clothes.image
-                    Alamofire.request(url + imageUrl, method: .get).response { response in
-                        if let image = UIImage(data: response.data!) {
-                            self.model.addImageInfo(category: clothes.category, image: image)
-                            self.model.setToShowSpecificImageList()
-                            self.collectionView.reloadData()
-                        }
-                    }.resume()
-                }
-            } catch {
-                print("\(error)")
-            }
-        }.resume()
-    }
+//    //MARK: - Initial Setting Methods
+//    func startInitialSettings() {
+//        let url = "http://192.168.0.9:80"
+//        let settingUrl = "/settings/init"
+//        Alamofire.request(url + settingUrl, method: .get).responseJSON { response in
+//            var settings: Settings
+//            do {
+//                let decoder = JSONDecoder()
+//                settings = try decoder.decode(Settings.self, from: response.data!)
+//
+//                for clothes in settings.clothes {
+//                    let imageUrl = clothes.image
+//                    Alamofire.request(url + imageUrl, method: .get).response { response in
+//                        if let image = UIImage(data: response.data!) {
+//                            self.model.addImageInfo(category: clothes.category, image: image)
+//                            self.model.setToShowSpecificImageList()
+//                            self.collectionView.reloadData()
+//                        }
+//                    }.resume()
+//                }
+//            } catch {
+//                print("\(error)")
+//            }
+//        }.resume()
+//    }
     
     func set3DModel(name: String) {
         // 1: Load .obj file

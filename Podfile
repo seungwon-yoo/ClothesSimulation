@@ -1,4 +1,4 @@
-platform :ios, '9.0'
+# platform :ios, '9.0'
 
 target 'ClothSimulation' do
   # Comment the next line if you don't want to use dynamic frameworks
@@ -10,7 +10,7 @@ target 'ClothSimulation' do
 
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
+  pod 'Firebase/Storage'
   pod 'GoogleSignIn'
-  use_frameworks!
-  pod 'TextFieldEffects'
+  pod 'SideMenu', '~> 6.5.0'
 end

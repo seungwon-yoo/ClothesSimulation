@@ -8,7 +8,6 @@
 import UIKit
 import Firebase
 import GoogleSignIn
-import TextFieldEffects
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
     

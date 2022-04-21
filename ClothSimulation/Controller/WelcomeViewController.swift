@@ -22,6 +22,12 @@ class WelcomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // 로그인이 되어있던 경우 바로 메인 화면으로 이동
+        if let user = Auth.auth().currentUser {
+            self.performSegue(withIdentifier: K.welcomeToFitSegue, sender: self)
+            print("You're sign in as \(user.uid), email: \(user.email ?? "no email")")
+        }
 
         titleLabel.text = ""
         var charIndex = 0.0
@@ -31,15 +37,6 @@ class WelcomeViewController: UIViewController {
                 self.titleLabel.text?.append(letter)
             }
             charIndex += 1
-        }
-    }
-    
-    @IBAction func logInPressed(_ sender: Any) {
-        if let user = Auth.auth().currentUser {
-            self.performSegue(withIdentifier: K.welcomeToFitSegue, sender: self)
-            print("You're sign in as \(user.uid), email: \(user.email ?? "no email")")
-        } else {
-            self.performSegue(withIdentifier: K.welcomeToLogInSegue, sender: self)
         }
     }
 }

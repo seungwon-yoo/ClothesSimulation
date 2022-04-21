@@ -11,10 +11,16 @@ import UIKit
 struct ImageInfo {
     let category: String
     let image: UIImage
+    let number: Int
     
-    init(category: String, image: UIImage) {
+    init(category: String, image: UIImage, path: String) {
         self.category = category
         self.image = image
+        
+        let start = path.index(path.lastIndex(of: "/")!, offsetBy: 1)
+        let end = path.index(path.endIndex, offsetBy: -5)
+        
+        self.number = Int(path[start...end])!
     }
     
     func getImage() -> UIImage? {
