@@ -8,6 +8,7 @@
 import UIKit
 import Firebase
 import GoogleSignIn
+import FirebaseAuth
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
@@ -31,6 +32,37 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         emailTextField.addUnderLine()
         passwordTextField.addUnderLine()
     }
+    
+    @IBAction func findingPasswordButtonPressed(_ sender: UIButton) {
+        let alert = UIAlertController(title: "비밀번호 재설정", message: "비밀번호 재설정을 위해 이메일을 입력해주세요.", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "OK", style: .default) { ok in
+            Auth.auth().sendPasswordReset(withEmail: (alert.textFields?[0].text)!) { error in
+                if error != nil {
+                    print("wrong email")
+                } else {
+                    print("send email")
+                    
+                    let completeAlert = UIAlertController(title: "비밀번호 재설정", message: "메일이 전송되었습니다. 비밀번호를 변경한 후 로그인해 주세요.", preferredStyle: .alert)
+                    
+                    let okAction = UIAlertAction(title: "OK", style: .destructive, handler: nil)
+                    
+                    completeAlert.addAction(okAction)
+                    
+                    self.present(completeAlert, animated: true, completion: nil)
+                }
+            }
+        }
+        
+        let cancel = UIAlertAction(title: "cancel", style: .cancel, handler: nil)
+        
+        alert.addAction(cancel)
+        alert.addAction(ok)
+        
+        alert.addTextField()
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     
     @objc
     func keyboardWillShow(_ sender: Notification) {

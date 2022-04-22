@@ -58,7 +58,7 @@
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hmf-4a-WOR">
                                                 <rect key="frame" x="28.5" y="0.0" width="285.5" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" textContentType="password"/>
+                                                <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -209,6 +209,9 @@
                                 <buttonConfiguration key="configuration" style="plain" title="Forgot your password?">
                                     <fontDescription key="titleFontDescription" type="boldSystem" pointSize="13"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="findingPasswordButtonPressed:" destination="bea-aZ-QQq" eventType="touchUpInside" id="ZXf-oc-eA5"/>
+                                </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Nvg-rf-gd4">
                                 <rect key="frame" x="40" y="612.5" width="334" height="139.5"/>
@@ -822,7 +825,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="tOb-Kl-TgW"/>
-        <segue reference="Z5F-ar-Tkx"/>
+        <segue reference="2pc-nK-GRA"/>
         <segue reference="3Qt-mh-WyO"/>
         <segue reference="oSr-C3-BNY"/>
     </inferredMetricsTieBreakers>
