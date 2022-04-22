@@ -24,6 +24,7 @@
 		E37EAFF928116C9300639BB0 /* CustomSideMenuNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37EAFF828116C9300639BB0 /* CustomSideMenuNavigation.swift */; };
 		E37EAFFB2811703700639BB0 /* SideMenuModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37EAFFA2811703700639BB0 /* SideMenuModel.swift */; };
 		E37EAFFD2811706400639BB0 /* SideMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37EAFFC2811706400639BB0 /* SideMenuCell.swift */; };
+		E37EAFFF2812854F00639BB0 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37EAFFE2812854F00639BB0 /* UserModel.swift */; };
 		E39AE46827F56499002363F7 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39AE46727F56499002363F7 /* Extensions.swift */; };
 		E3AC9CBC280836CC006C143B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3AC9CBB280836CC006C143B /* GoogleService-Info.plist */; };
 		E3B1330528080C900073FB62 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B1330428080C900073FB62 /* CategoryViewController.swift */; };
@@ -57,6 +58,7 @@
 		E37EAFF828116C9300639BB0 /* CustomSideMenuNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSideMenuNavigation.swift; sourceTree = "<group>"; };
 		E37EAFFA2811703700639BB0 /* SideMenuModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuModel.swift; sourceTree = "<group>"; };
 		E37EAFFC2811706400639BB0 /* SideMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuCell.swift; sourceTree = "<group>"; };
+		E37EAFFE2812854F00639BB0 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		E39AE46727F56499002363F7 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		E3AC9CBB280836CC006C143B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Desktop/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E3B1330428080C900073FB62 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 				E3EC05E327C342ED007DD29D /* ImageViewModel.swift */,
 				E3EC05E527C3BC73007DD29D /* Settings.swift */,
 				E37EAFFA2811703700639BB0 /* SideMenuModel.swift */,
+				E37EAFFE2812854F00639BB0 /* UserModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -316,6 +319,7 @@
 				E3B1330C280814760073FB62 /* CategoryCell.swift in Sources */,
 				E35EDF9A27C088D9009CF075 /* AppDelegate.swift in Sources */,
 				E35EDF9C27C088D9009CF075 /* SceneDelegate.swift in Sources */,
+				E37EAFFF2812854F00639BB0 /* UserModel.swift in Sources */,
 				E34F446127F0957900760822 /* RegisterViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

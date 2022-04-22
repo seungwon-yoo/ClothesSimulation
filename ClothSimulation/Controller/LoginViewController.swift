@@ -14,6 +14,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var googleLoginBtn: UIButton!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var warningTextField: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,9 +45,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-//        emailTextField.addUnderLine()
-//        passwordTextField.addUnderLine()
-        
 }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -63,6 +61,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
                 if let e = error {
                     print(e)
+                    self.passwordTextField.replaceUnderLine(color: .red)
+                    self.passwordTextField.shakeTextField()
+                    self.warningTextField.text = "이메일 혹은 비밀번호가 틀렸습니다."
                 } else {
                     self.performSegue(withIdentifier: K.loginInToFitSegue, sender: self)
                 }
