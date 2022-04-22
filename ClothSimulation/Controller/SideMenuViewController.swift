@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 protocol SideMenuViewControllerDelegate {
     func selectedCell(_ row: Int)
@@ -87,9 +88,18 @@ extension SideMenuViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         self.delegate?.selectedCell(indexPath.row)
         
+        // logout
+        if indexPath.row == 6 {
+            let firebaseAuth = Auth.auth()
+            do {
+                try firebaseAuth.signOut()
+                performSegue(withIdentifier: K.tabBarToWelcome, sender: self)
+            } catch let signOutError as NSError {
+                print("Error signing out: %@", signOutError)
+            }
+        }
         // Remove highlighted color when you press the 'Profile' and 'Like us on facebook' cell
         if indexPath.row == 4 || indexPath.row == 6 {
             tableView.deselectRow(at: indexPath, animated: true)

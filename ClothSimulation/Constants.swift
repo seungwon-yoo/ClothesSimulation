@@ -15,6 +15,7 @@ struct K {
     static let welcomeToLogInSegue = "WelcomeToLogIn"
     static let fitToWelcome = "FitToWelcome"
     static let welcomeToRegister = "welcomeToRegister"
+    static let tabBarToWelcome = "tabBarToWelcome"
 //
 //    struct BrandColors {
 //        static let purple = "BrandPurple"

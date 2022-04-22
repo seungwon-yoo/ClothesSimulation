@@ -67,18 +67,6 @@ class ClothesViewController: UIViewController {
         }
     }
     
-    @IBAction func logoutPressed(_ sender: Any) {
-        let firebaseAuth = Auth.auth()
-        do {
-            try firebaseAuth.signOut()
-            performSegue(withIdentifier: K.fitToWelcome, sender: self)
-        } catch let signOutError as NSError {
-            print("Error signing out: %@", signOutError)
-        }
-      
-    }
-    
-    
     @IBAction func changeButtonPressed(_ sender: UIButton) {
         // Create the action buttons for the alert.
         let bulkyManAction = UIAlertAction(title: "일반 남성",
