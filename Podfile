@@ -10,6 +10,8 @@ target 'ClothSimulation' do
 
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
+  # pod 'Firebase/Core'
+  # pod 'FirebaseFirestoreSwift', '8.15.0-beta'
   pod 'Firebase/Storage'
   pod 'GoogleSignIn'
   pod 'SideMenu', '~> 6.5.0'

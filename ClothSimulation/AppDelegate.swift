@@ -17,11 +17,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FirebaseApp.configure()
         
-        if let user = Auth.auth().currentUser { print("You're sign in as \(user.uid), email: \(user.email ?? "no email")") }
+        if let user = Auth.auth().currentUser {
+            UserInfo.shared.uid = user.uid
+            UserInfo.shared.email = user.email
+            
+            print("You're sign in as \(user.uid), email: \(user.email ?? "no email")")
+            
+        }
 
         let db = Firestore.firestore()
         
         print(db)
+        
         return true
     }
 

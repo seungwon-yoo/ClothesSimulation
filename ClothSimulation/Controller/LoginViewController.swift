@@ -97,6 +97,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     self.passwordTextField.shakeTextField()
                     self.warningTextField.text = "이메일 혹은 비밀번호가 틀렸습니다."
                 } else {
+                    UserInfo.shared.uid = authResult!.user.uid
+                    UserInfo.shared.email = authResult!.user.email
                     self.performSegue(withIdentifier: K.loginInToFitSegue, sender: self)
                 }
             }

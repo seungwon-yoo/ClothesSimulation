@@ -57,6 +57,8 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
                     print(e.localizedDescription)
                 } else {
                     // Navigate to the ChatViewController
+                    UserInfo.shared.uid = authResult!.user.uid
+                    UserInfo.shared.email = authResult!.user.email
                     self.performSegue(withIdentifier: K.registerToFitSegue, sender: self)
                 }
             }

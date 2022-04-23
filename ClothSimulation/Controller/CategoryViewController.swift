@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseStorage
+import FirebaseFirestore
 
 class CategoryViewController: UIViewController {
     
@@ -15,14 +16,31 @@ class CategoryViewController: UIViewController {
     
     let storage = Storage.storage()
     
+    let db = Firestore.firestore()
+    
     let model = ImageViewModel()
     
-    let categoryDict = ["아우터": "OUTER", "상의": "TOP", "바지": "PANTS", "원피스": "DRESS", "스커트": "SKIRT", "신발": "SNEAKERS", "모자": "CAP", "악세사리": "ACCESSORY"]
+    let categoryList = ["OUTER", "TOP", "PANTS", "DRESS", "SKIRT"]
     
     @IBOutlet var collectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Firestore에 사용자 의상 정보 초기화
+        if let uid = UserInfo.shared.uid {
+            let uidRef = db.collection("users").document(uid)
+
+            uidRef.getDocument { document, error in
+                if let document = document, document.exists {
+                    print("Document exist")
+                } else {
+                    print("Document does not exist")
+                    
+                    self.initializeUserDB(uid: uid, email: UserInfo.shared.email!)
+                }
+            }
+        }
         
         // Progress View
         progressView.trackTintColor = .lightGray
@@ -50,12 +68,12 @@ class CategoryViewController: UIViewController {
     func downloadSpecificCategoryImages(of category: String = "전체") {
         var categories: [String]
         
-        if category == "전체" { categories = Array(categoryDict.keys) }
-        else { categories = [categoryDict[category]!] }
+        if category == "전체" { categories = categoryList }
+        else { categories = [category] }
         
         for cat in categories {
             let mainURL = "gs://clothsimulation-3af50.appspot.com/"
-            let url = mainURL + "clothes/" + categoryDict[cat]!
+            let url = mainURL + "clothes/" + cat
             storage.reference(forURL: url).listAll { result, error in
                 if let error = error {
                     print(error)
@@ -135,7 +153,49 @@ class CategoryViewController: UIViewController {
 //        self.collectionView.reloadData()
 //    }
     
+    func initializeUserDB(uid: String, email: String) {
+        var data: [String: Any] = ["email": email]
+        for cat in categoryList {
+            data[cat] = []
+        }
+        
+        db.collection("users").document(uid).setData(data)
+    }
     
+    func insertClothesInfo(imageInfo: ImageInfo, uid: String) {
+        let uidReference = db.collection("users").document(uid)
+
+        db.runTransaction({ transaction, errorPointer -> Any? in
+            let uidDocument: DocumentSnapshot
+            do {
+                try uidDocument = transaction.getDocument(uidReference)
+            } catch let fetchError as NSError {
+                errorPointer?.pointee = fetchError
+                return nil
+            }
+
+            guard let oldFashion = uidDocument.data()?[imageInfo.category] as? [Int] else {
+                let error = NSError(
+                    domain: "AppErrorDomain",
+                    code: -1,
+                    userInfo: [
+                        NSLocalizedDescriptionKey: "Unable to retrieve population from snapshot \(uidDocument)"
+                    ]
+                )
+                errorPointer?.pointee = error
+                return nil
+            }
+            
+            transaction.updateData([imageInfo.category: oldFashion + [imageInfo.number]], forDocument: uidReference)
+            return nil
+        }) { object, error in
+            if let error = error {
+                print("Transaction failed: \(error)")
+            } else {
+                print("Transaction successfully committed!")
+            }
+        }
+    }
 }
 
 // cell data
@@ -152,6 +212,30 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
         cell.update(info: imageInfo)
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let uid = UserInfo.shared.uid {
+            insertClothesInfo(imageInfo: model.imageInfo(at: indexPath.item), uid: uid)
+        }
+        
+        // var ref: DocumentReference? = nil
+        
+        
+        
+        
+        
+        
+//        ref = db.collection("users").addDocument(data: [
+//            "uid": UserInfo.shared.uid as Any,
+//            "clothes": ["1"]
+//        ]) { err in
+//            if let err = err {
+//                print("Error adding document: \(err)")
+//            } else {
+//                print("Document added with ID: \(ref!.documentID)")
+//            }
+//        }
     }
 }
 
