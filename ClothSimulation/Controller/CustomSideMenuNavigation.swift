@@ -15,6 +15,7 @@ class CustomSideMenuNavigation: SideMenuNavigationController {
 
         self.presentationStyle = .menuSlideIn
         self.leftSide = true
+        self.menuWidth = 200
     }
     
 }

@@ -18,9 +18,7 @@ class CategoryViewController: UIViewController {
     
     let db = Firestore.firestore()
     
-    let model = ImageViewModel()
-    
-    let categoryList = ["OUTER", "TOP", "PANTS", "DRESS", "SKIRT"]
+    let model = CategoryCollectionViewModel.shared
     
     @IBOutlet var collectionView: UICollectionView!
     
@@ -68,7 +66,7 @@ class CategoryViewController: UIViewController {
     func downloadSpecificCategoryImages(of category: String = "전체") {
         var categories: [String]
         
-        if category == "전체" { categories = categoryList }
+        if category == "전체" { categories = model.categoryList }
         else { categories = [category] }
         
         for cat in categories {
@@ -98,23 +96,27 @@ class CategoryViewController: UIViewController {
                 }
                 
                 result.items.forEach { ref in
-                    let url = mainURL + ref.fullPath
+                    let url = mainURL// + ref.fullPath
                     
-                    self.storage.reference(forURL: url).downloadURL { url, error in
+                    let ref = self.storage.reference(forURL: url).child(ref.fullPath)
+                    
+                    ref.getData(maxSize: 1 * 1024 * 1024) { data, error in
                         if let error = error {
-                            
+
                             print(error)
-                            
+
                         } else {
-                            
-                            let data = NSData(contentsOf: url!)
                             if let image = UIImage(data: data! as Data) {
                                 self.model.addImageInfo(category: cat, image: image, path: ref.fullPath)
-                                self.model.setToShowSpecificImageList(of: cat)
+                                
+                                if category == "전체" {
+                                    self.model.setToShowSpecificImageList()
+                                } else {
+                                    self.model.setToShowSpecificImageList(of: cat)
+                                }
+                                
                                 count += 1
-                                // self.collectionView.reloadData()
                             }
-                            
                         }
                     }
                 }
@@ -126,15 +128,15 @@ class CategoryViewController: UIViewController {
     //MARK: - Emphasize the toolbar items
     @IBAction func itemTapped(_ sender: UIBarButtonItem) {
         model.setToShowSpecificImageList(of: sender.title!)
-        
+
         for index in toolbar.items!.indices {
             toolbar.items![index].tintColor = .systemGray4
         }
-        
+
         if let senderIndex = toolbar.items?.firstIndex(of: sender) {
             toolbar.items![senderIndex].tintColor = .black
         }
-        
+
             self.collectionView.reloadData()
     }
     
@@ -155,46 +157,11 @@ class CategoryViewController: UIViewController {
     
     func initializeUserDB(uid: String, email: String) {
         var data: [String: Any] = ["email": email]
-        for cat in categoryList {
+        for cat in model.categoryList {
             data[cat] = []
         }
         
         db.collection("users").document(uid).setData(data)
-    }
-    
-    func insertClothesInfo(imageInfo: ImageInfo, uid: String) {
-        let uidReference = db.collection("users").document(uid)
-
-        db.runTransaction({ transaction, errorPointer -> Any? in
-            let uidDocument: DocumentSnapshot
-            do {
-                try uidDocument = transaction.getDocument(uidReference)
-            } catch let fetchError as NSError {
-                errorPointer?.pointee = fetchError
-                return nil
-            }
-
-            guard let oldFashion = uidDocument.data()?[imageInfo.category] as? [Int] else {
-                let error = NSError(
-                    domain: "AppErrorDomain",
-                    code: -1,
-                    userInfo: [
-                        NSLocalizedDescriptionKey: "Unable to retrieve population from snapshot \(uidDocument)"
-                    ]
-                )
-                errorPointer?.pointee = error
-                return nil
-            }
-            
-            transaction.updateData([imageInfo.category: oldFashion + [imageInfo.number]], forDocument: uidReference)
-            return nil
-        }) { object, error in
-            if let error = error {
-                print("Transaction failed: \(error)")
-            } else {
-                print("Transaction successfully committed!")
-            }
-        }
     }
 }
 
@@ -215,27 +182,17 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let uid = UserInfo.shared.uid {
-            insertClothesInfo(imageInfo: model.imageInfo(at: indexPath.item), uid: uid)
-        }
-        
-        // var ref: DocumentReference? = nil
-        
-        
-        
-        
-        
-        
-//        ref = db.collection("users").addDocument(data: [
-//            "uid": UserInfo.shared.uid as Any,
-//            "clothes": ["1"]
-//        ]) { err in
-//            if let err = err {
-//                print("Error adding document: \(err)")
-//            } else {
-//                print("Document added with ID: \(ref!.documentID)")
-//            }
+//        // Firestore 사용자 의상 정보에 해당 의상 추가
+//        if let uid = UserInfo.shared.uid {
+//            insertClothesInfo(imageInfo: model.imageInfo(at: indexPath.item), uid: uid)
 //        }
+        
+        guard let vc = storyboard?.instantiateViewController(identifier: "clothesItemViewController") as? ClothesItemViewController else { return }
+        
+        let info = model.imageInfo(at: indexPath.item)
+        vc.clothesInfo = info
+        
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 

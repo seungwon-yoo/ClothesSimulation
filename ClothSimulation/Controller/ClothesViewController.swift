@@ -21,22 +21,24 @@ class ClothesViewController: UIViewController {
     @IBOutlet weak var sceneView: SCNView!
     @IBOutlet weak var collectionView: UICollectionView!
     
-    let model = ImageViewModel()
+    let db = Firestore.firestore()
+    let model = ClothesCollectionViewModel.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         toolbar.items![toolbar.items!.startIndex].tintColor = .systemBlue
-        // set3DModel(name: "art.scnassets/FinalBaseMesh.obj")
-        set3DModel(name: "art.scnassets/bboyFixed.scn")
+        set3DModel(name: "art.scnassets/FinalBaseMesh.obj")
+        // set3DModel(name: "art.scnassets/bboyFixed.scn")
         
-        collectionView.reloadData()
+        fetchClothesInfo()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         self.navigationController?.navigationBar.topItem?.title = "나의 모델"
+        self.collectionView.reloadData()
     }
     
     @IBAction func panAction(_ sender: UIPanGestureRecognizer) {
@@ -116,7 +118,67 @@ class ClothesViewController: UIViewController {
 }
 
 extension ClothesViewController {
-//    //MARK: - Initial Setting Methods
+    //MARK: - fetch User's clothes information
+    func fetchClothesInfo() {
+        let mainURL = "gs://clothsimulation-3af50.appspot.com/"
+        
+        if let uid = UserInfo.shared.uid {
+            let uidRef = db.collection("users").document(uid)
+            
+            uidRef.getDocument { document, error in
+                if let document = document, document.exists {
+                    for data in document.data()! {
+                        if self.model.categoryList.contains(data.key) {
+                            for item in data.value as! Array<Int> {
+                                let fullPath = "clothes/\(data.key)/\(item).png"
+                                
+                                let ref = self.storage.reference(forURL: mainURL).child(fullPath)
+                                
+                                ref.getData(maxSize: 1 * 1024 * 1024) { imageData, error in
+                                    if let error = error {
+
+                                        print(error)
+
+                                    } else {
+                                        if let image = UIImage(data: imageData! as Data) {
+                                            self.model.addImageInfo(category: data.key, image: image, path: ref.fullPath)
+                                            self.model.setToShowSpecificImageList()
+                                            self.collectionView.reloadData()
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    print("Document does not exist")
+                }
+            }
+        }
+    }
+    
+    
+    
+    // 카테고리랑 네임을 모른다.
+    func updateClothesInfo(category: String, name: String) {
+        let mainURL = "gs://clothsimulation-3af50.appspot.com/"
+        let fullPath = "clothes/\(category)/\(name).png"
+        
+        let ref = self.storage.reference(forURL: mainURL).child(fullPath)
+        
+        ref.getData(maxSize: 1 * 1024 * 1024) { imageData, error in
+            if let error = error {
+                print(error)
+            } else {
+                if let image = UIImage(data: imageData! as Data) {
+                    self.model.addImageInfo(category: category, image: image, path: fullPath)
+                    self.model.setToShowSpecificImageList(of: self.model.currentCategory)
+                    self.collectionView.reloadData()
+                }
+            }
+        }
+    }
+    
 //    func startInitialSettings() {
 //        let url = "http://192.168.0.9:80"
 //        let settingUrl = "/settings/init"
@@ -240,4 +302,5 @@ class Cell: UICollectionViewCell {
         // label.text = String(info.id)
     }
 }
+
 

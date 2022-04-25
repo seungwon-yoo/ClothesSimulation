@@ -26,6 +26,8 @@
 		E37EAFFD2811706400639BB0 /* SideMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37EAFFC2811706400639BB0 /* SideMenuCell.swift */; };
 		E37EAFFF2812854F00639BB0 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37EAFFE2812854F00639BB0 /* UserModel.swift */; };
 		E37EB0052813D94E00639BB0 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37EB0042813D94E00639BB0 /* UserInfo.swift */; };
+		E37EB00728166F5D00639BB0 /* ClothesItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37EB00628166F5D00639BB0 /* ClothesItemViewController.swift */; };
+		E37EB00B2816D9E700639BB0 /* ClothesCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37EB00A2816D9E700639BB0 /* ClothesCollectionViewModel.swift */; };
 		E39AE46827F56499002363F7 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39AE46727F56499002363F7 /* Extensions.swift */; };
 		E3AC9CBC280836CC006C143B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3AC9CBB280836CC006C143B /* GoogleService-Info.plist */; };
 		E3B1330528080C900073FB62 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B1330428080C900073FB62 /* CategoryViewController.swift */; };
@@ -33,7 +35,7 @@
 		E3D9071727CF5E01009A5935 /* ARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D9071627CF5E01009A5935 /* ARViewController.swift */; };
 		E3D9071B27CF6205009A5935 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = E3D9071A27CF6205009A5935 /* art.scnassets */; };
 		E3EC05E227C34294007DD29D /* ImageInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3EC05E127C34294007DD29D /* ImageInfo.swift */; };
-		E3EC05E427C342ED007DD29D /* ImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3EC05E327C342ED007DD29D /* ImageViewModel.swift */; };
+		E3EC05E427C342ED007DD29D /* CategoryCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3EC05E327C342ED007DD29D /* CategoryCollectionViewModel.swift */; };
 		E3EC05E627C3BC73007DD29D /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3EC05E527C3BC73007DD29D /* Settings.swift */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +63,8 @@
 		E37EAFFC2811706400639BB0 /* SideMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuCell.swift; sourceTree = "<group>"; };
 		E37EAFFE2812854F00639BB0 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		E37EB0042813D94E00639BB0 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
+		E37EB00628166F5D00639BB0 /* ClothesItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothesItemViewController.swift; sourceTree = "<group>"; };
+		E37EB00A2816D9E700639BB0 /* ClothesCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothesCollectionViewModel.swift; sourceTree = "<group>"; };
 		E39AE46727F56499002363F7 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		E3AC9CBB280836CC006C143B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Desktop/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E3B1330428080C900073FB62 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
@@ -68,7 +72,7 @@
 		E3D9071627CF5E01009A5935 /* ARViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewController.swift; sourceTree = "<group>"; };
 		E3D9071A27CF6205009A5935 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 		E3EC05E127C34294007DD29D /* ImageInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageInfo.swift; sourceTree = "<group>"; };
-		E3EC05E327C342ED007DD29D /* ImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewModel.swift; sourceTree = "<group>"; };
+		E3EC05E327C342ED007DD29D /* CategoryCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewModel.swift; sourceTree = "<group>"; };
 		E3EC05E527C3BC73007DD29D /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -150,6 +154,7 @@
 				E37EAFAD2811277300639BB0 /* TabBarController.swift */,
 				E37EAFF628116AA800639BB0 /* SideMenuViewController.swift */,
 				E37EAFF828116C9300639BB0 /* CustomSideMenuNavigation.swift */,
+				E37EB00628166F5D00639BB0 /* ClothesItemViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -177,7 +182,8 @@
 			isa = PBXGroup;
 			children = (
 				E3EC05E127C34294007DD29D /* ImageInfo.swift */,
-				E3EC05E327C342ED007DD29D /* ImageViewModel.swift */,
+				E3EC05E327C342ED007DD29D /* CategoryCollectionViewModel.swift */,
+				E37EB00A2816D9E700639BB0 /* ClothesCollectionViewModel.swift */,
 				E3EC05E527C3BC73007DD29D /* Settings.swift */,
 				E37EAFFA2811703700639BB0 /* SideMenuModel.swift */,
 				E37EAFFE2812854F00639BB0 /* UserModel.swift */,
@@ -304,14 +310,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E37EB00B2816D9E700639BB0 /* ClothesCollectionViewModel.swift in Sources */,
 				E37EAFF728116AA800639BB0 /* SideMenuViewController.swift in Sources */,
-				E3EC05E427C342ED007DD29D /* ImageViewModel.swift in Sources */,
+				E3EC05E427C342ED007DD29D /* CategoryCollectionViewModel.swift in Sources */,
 				E37EAFFD2811706400639BB0 /* SideMenuCell.swift in Sources */,
 				E35EDFB227C0D6E9009CF075 /* Constants.swift in Sources */,
 				E3EC05E627C3BC73007DD29D /* Settings.swift in Sources */,
 				E3D9071727CF5E01009A5935 /* ARViewController.swift in Sources */,
 				E34F446327F0958B00760822 /* LoginViewController.swift in Sources */,
 				E37EAFF928116C9300639BB0 /* CustomSideMenuNavigation.swift in Sources */,
+				E37EB00728166F5D00639BB0 /* ClothesItemViewController.swift in Sources */,
 				E37EAFAE2811277300639BB0 /* TabBarController.swift in Sources */,
 				E35EDF9E27C088D9009CF075 /* ClothesViewController.swift in Sources */,
 				E35EDFAE27C0D614009CF075 /* WelcomeViewController.swift in Sources */,

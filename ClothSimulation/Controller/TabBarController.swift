@@ -9,17 +9,9 @@ import UIKit
 import SideMenu
 
 class TabBarController: UITabBarController {
-    
-    var menu: SideMenuNavigationController?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        menu = SideMenuNavigationController(rootViewController: SideMenuViewController())
-//        menu?.leftSide = true
-//        // SideMenuManager.default.addPanGestureToPresent(toView: view)
-//        SideMenuManager.default.leftMenuNavigationController = menu
-
         // side menu button
         self.navigationItem.leftBarButtonItem = UIBarButtonItem( image: UIImage(systemName: "line.3.horizontal"),
                                                                  style: .plain,

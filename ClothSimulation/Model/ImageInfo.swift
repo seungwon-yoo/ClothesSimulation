@@ -23,6 +23,12 @@ struct ImageInfo {
         self.number = Int(path[start...end])!
     }
     
+    init(category: String, image: UIImage, number: Int) {
+        self.category = category
+        self.image = image
+        self.number = number
+    }
+    
     func getImage() -> UIImage? {
         return image
     }
