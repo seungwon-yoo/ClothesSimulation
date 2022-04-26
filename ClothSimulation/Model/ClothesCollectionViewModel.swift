@@ -50,6 +50,11 @@ class ClothesCollectionViewModel {
         return imageInfoList[index]
     }
     
+    func logout() {
+        imageInfoList.removeAll()
+        totalImageInfoList.removeAll()
+    }
+    
     func startInitialSettings() {
 //        let url = "http://192.168.0.9:80"
 //        let settingUrl = "/settings/init"

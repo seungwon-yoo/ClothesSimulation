@@ -15,5 +15,4 @@ target 'ClothSimulation' do
   pod 'Firebase/Storage'
   pod 'GoogleSignIn'
   pod 'SideMenu', '~> 6.5.0'
-  pod 'FirebaseUI/Storage'
 end

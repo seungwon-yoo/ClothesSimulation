@@ -95,6 +95,8 @@ extension SideMenuViewController: UITableViewDataSource {
             let firebaseAuth = Auth.auth()
             do {
                 try firebaseAuth.signOut()
+                CategoryCollectionViewModel.shared.logout()
+                ClothesCollectionViewModel.shared.logout()
                 performSegue(withIdentifier: K.tabBarToWelcome, sender: self)
             } catch let signOutError as NSError {
                 print("Error signing out: %@", signOutError)

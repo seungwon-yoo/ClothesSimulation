@@ -13,10 +13,11 @@ class TabBarController: UITabBarController {
         super.viewDidLoad()
         
         // side menu button
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem( image: UIImage(systemName: "line.3.horizontal"),
-                                                                 style: .plain,
-                                                                 target: self,
-                                                                 action: #selector(sideMenuPressed))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(
+            image: UIImage(systemName: "line.3.horizontal"),
+            style: .plain,
+            target: self,
+            action: #selector(sideMenuPressed))
 
         self.navigationItem.leftBarButtonItem?.tintColor = .black
     }

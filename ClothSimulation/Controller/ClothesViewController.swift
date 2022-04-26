@@ -11,18 +11,21 @@ import SceneKit
 import Firebase
 import SideMenu
 import FirebaseStorage
+import Photos
+import PhotosUI
 
-class ClothesViewController: UIViewController {
-    
-    let storage = Storage.storage()
-    
+class ClothesViewController: UIViewController, UINavigationControllerDelegate {
     @IBOutlet var pinchGestureRecognizer: UIPinchGestureRecognizer!
     @IBOutlet weak var toolbar: UIToolbar!
     @IBOutlet weak var sceneView: SCNView!
     @IBOutlet weak var collectionView: UICollectionView!
     
+    
+    let storage = Storage.storage()
     let db = Firestore.firestore()
     let model = ClothesCollectionViewModel.shared
+    
+    let imagePickerController = UIImagePickerController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +35,19 @@ class ClothesViewController: UIViewController {
         // set3DModel(name: "art.scnassets/bboyFixed.scn")
         
         fetchClothesInfo()
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonPressed(_:)))
+        
+        self.navigationItem.rightBarButtonItem?.tintColor = .systemBlue
+    }
+    
+    @objc func addButtonPressed(_ sender: Any) {
+        // 갤러리 화면을 가져온다.
+        if #available(iOS 14, *) {
+            pickImage()
+        } else {
+            openGallery()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -290,6 +306,39 @@ extension ClothesViewController: UICollectionViewDataSource {
         cell.update(info: imageInfo)
         
         return cell
+    }
+}
+
+extension ClothesViewController: PHPickerViewControllerDelegate {
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        // 이미지 선택이 끝나면 할 것들
+    }
+    
+    func pickImage() {
+        var configuration = PHPickerConfiguration()
+        
+        configuration.selectionLimit = 1 // 가져올 이미지 갯수 제한
+        configuration.filter = .any(of: [.images]) // 보여줄 asset type
+        
+        let picker = PHPickerViewController(configuration: configuration)
+        
+        picker.delegate = self
+        present(picker, animated: true, completion: nil)
+    }
+}
+
+extension ClothesViewController: UIImagePickerControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        // 이미지 선택한 다음 할 것들
+    }
+    
+    
+    func openGallery() {
+        let picker = UIImagePickerController()
+        
+        picker.delegate = self
+        picker.sourceType = .photoLibrary
+        present(picker, animated: true, completion: nil)
     }
 }
 
