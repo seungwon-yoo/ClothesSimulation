@@ -16,6 +16,7 @@ class SideMenuViewController: UIViewController {
     @IBOutlet weak var headerImageView: UIImageView!
     @IBOutlet weak var sideMenuTableView: UITableView!
     @IBOutlet weak var footerLabel: UILabel!
+    @IBOutlet weak var emailLabel: UILabel!
     
     var defaultHighlightedCell: Int = 0
     
@@ -34,6 +35,8 @@ class SideMenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        emailLabel.text = UserInfo.shared.email
+        
         // TableView
         self.sideMenuTableView.delegate = self
         self.sideMenuTableView.dataSource = self
