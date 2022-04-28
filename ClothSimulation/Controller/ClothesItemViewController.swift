@@ -29,7 +29,7 @@ class ClothesItemViewController: UIViewController {
     @objc func addButtonPressed(_ sender: Any) {
         if let uid = UserInfo.shared.uid {
             insertClothesInfo(imageInfo: clothesInfo!, uid: uid)
-            model.addImageInfo(category: clothesInfo!.category, image: clothesInfo!.image, number: clothesInfo!.number)
+            model.addImageInfoSelectively(of: clothesInfo!.category, image: clothesInfo!.image, number: clothesInfo!.number)
             model.setToShowSpecificImageList(of: model.currentCategory)
         }
     }

@@ -142,9 +142,10 @@ extension ClothesViewController {
 
                                     } else {
                                         if let image = UIImage(data: imageData! as Data) {
-                                            self.model.addImageInfo(category: data.key, image: image, path: ref.fullPath)
+                                            self.model.addImageInfo(of: data.key, image: image, path: ref.fullPath)
                                             self.model.setToShowSpecificImageList()
                                             self.collectionView.reloadData()
+                                            // 이거 여러번 반복하는게 싫었는데 rx 공부하면 해결할 수 있다고 함.
                                         }
                                     }
                                 }
@@ -158,8 +159,6 @@ extension ClothesViewController {
         }
     }
     
-    
-    
     // 카테고리랑 네임을 모른다.
     func updateClothesInfo(category: String, name: String) {
         let mainURL = "gs://clothsimulation-3af50.appspot.com/"
@@ -172,7 +171,7 @@ extension ClothesViewController {
                 print(error)
             } else {
                 if let image = UIImage(data: imageData! as Data) {
-                    self.model.addImageInfo(category: category, image: image, path: fullPath)
+                    self.model.addImageInfo(of: category, image: image, path: fullPath)
                     self.model.setToShowSpecificImageList(of: self.model.currentCategory)
                     self.collectionView.reloadData()
                 }
@@ -282,7 +281,7 @@ extension ClothesViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? Cell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? ClothesCollectionCell else {
             return UICollectionViewCell()
         }
         
@@ -290,17 +289,5 @@ extension ClothesViewController: UICollectionViewDataSource {
         cell.update(info: imageInfo)
         
         return cell
-    }
-}
-
-
-
-class Cell: UICollectionViewCell {
-    
-    @IBOutlet weak var imageView: UIImageView!
-    
-    func update(info: ImageInfo) {
-        imageView.image = info.image
-        // label.text = String(info.id)
     }
 }

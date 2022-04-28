@@ -20,7 +20,7 @@ class CategoryCollectionViewModel {
     let categoryList = ["OUTER", "TOP", "PANTS", "DRESS", "SKIRT"]
     let categoryDict = ["아우터": "OUTER", "상의": "TOP", "바지": "PANTS", "원피스": "DRESS", "스커트": "SKIRT"]
     
-    func addImageInfo(category: String, image: UIImage, path: String) {
+    func addImageInfo(of category: String, image: UIImage, path: String) {
         totalImageInfoList.append(ImageInfo(category: category, image: image, path: path))
     }
     

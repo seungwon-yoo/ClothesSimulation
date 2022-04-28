@@ -14,8 +14,6 @@ class CategoryViewController: UIViewController {
     @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var toolbar: UIToolbar!
     
-    let storage = Storage.storage()
-    
     let db = Firestore.firestore()
     
     let model = CategoryCollectionViewModel.shared
@@ -25,21 +23,18 @@ class CategoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Firestore에 사용자 의상 정보 초기화
-        if let uid = UserInfo.shared.uid {
-            let uidRef = db.collection("users").document(uid)
-
-            uidRef.getDocument { document, error in
-                if let document = document, document.exists {
-                    print("Document exist")
-                } else {
-                    print("Document does not exist")
-                    
-                    self.initializeUserDB(uid: uid, email: UserInfo.shared.email!)
-                }
-            }
-        }
+        initializeUserInfo()
         
+        setupUI()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationController?.navigationBar.topItem?.title = "의상"
+    }
+    
+    func setupUI() {
         // Progress View
         progressView.trackTintColor = .lightGray
         progressView.progressTintColor = .black
@@ -53,107 +48,123 @@ class CategoryViewController: UIViewController {
         self.collectionView.dataSource = self
         
         // 의상 이미지 설정
-        downloadSpecificCategoryImages()
+        fetchAllImages()
         collectionView.reloadData()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        self.navigationController?.navigationBar.topItem?.title = "의상"
+    func initializeUserInfo() {
+        // Firestore에 사용자 의상 정보 초기화
+        if let uid = UserInfo.shared.uid {
+            let uidRef = db.collection("users").document(uid)
+            
+            uidRef.getDocument { document, error in
+                if let document = document, document.exists {
+                    print("Document exist")
+                } else {
+                    print("Document does not exist")
+                    
+                    self.initializeUserDB(uid: uid, email: UserInfo.shared.email!)
+                }
+            }
+        }
     }
     
-    func downloadSpecificCategoryImages(of category: String = "전체") {
-        var categories: [String]
+    // 특정 카테고리의 이미지를 가져옴
+    func fetchClothesImages(of category: String, completion: @escaping () -> Void) {
         
-        if category == "전체" { categories = model.categoryList }
-        else { categories = [category] }
-        
-        for cat in categories {
-            let mainURL = "gs://clothsimulation-3af50.appspot.com/"
-            let url = mainURL + "clothes/" + cat
-            storage.reference(forURL: url).listAll { result, error in
-                if let error = error {
-                    print(error)
-                }
-                
-                // progressView 설정
-                var count: Int = 0 {
+        StorageService().fetchStorageClothesList(of: category) { result in
+            switch result {
+            case .success(let refArray):
+                var completionCount: Int = refArray.count {
                     didSet(oldValue) {
-                        let rate = Float(count) / Float(result.items.count)
-                        self.progressView.setProgress(rate, animated: true)
-                        
-                        if count == result.items.count {
-                            
-                            self.collectionView.reloadData()
-                            
-                            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
-                                self.progressView.trackTintColor = .white
-                                self.progressView.progressTintColor = .white
-                            }
+                        if completionCount == 0 {
+                            completion()
                         }
                     }
                 }
                 
-                result.items.forEach { ref in
-                    let url = mainURL// + ref.fullPath
+                refArray.forEach { ref in
                     
-                    let ref = self.storage.reference(forURL: url).child(ref.fullPath)
-                    
-                    ref.getData(maxSize: 1 * 1024 * 1024) { data, error in
-                        if let error = error {
-
+                    StorageService().loadImage(childURL: ref.fullPath) { [weak self] result in
+                        switch result {
+                        case .success(let image):
+                            self!.model.addImageInfo(of: category, image: image, path: ref.fullPath)
+                            
+                            completionCount -= 1
+                            
+                        case .failure(let error):
                             print(error)
-
-                        } else {
-                            if let image = UIImage(data: data! as Data) {
-                                self.model.addImageInfo(category: cat, image: image, path: ref.fullPath)
-                                
-                                if category == "전체" {
-                                    self.model.setToShowSpecificImageList()
-                                } else {
-                                    self.model.setToShowSpecificImageList(of: cat)
-                                }
-                                
-                                count += 1
-                            }
                         }
+                    }
+                }
+                
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    // 모든 이미지를 가져옴
+    func fetchAllImages() {
+        let categories = model.categoryList
+        let total = categories.count
+        
+        var count: Int = 0 {
+            didSet(oldValue) {
+                if count == total {
+                    self.model.setToShowSpecificImageList()
+                    self.collectionView.reloadData()
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
+                        self.progressView.trackTintColor = .white
+                        self.progressView.progressTintColor = .white
                     }
                 }
             }
-            
         }
+        
+        for cat in categories {
+            fetchClothesImages(of: cat) {
+                self.setProgressRate(currentValue: count+1, totalValue: total)
+                count += 1
+            }
+        }
+    }
+    
+    // 프로그레스 뷰를 설정함
+    func setProgressRate(currentValue: Int, totalValue: Int) {
+        let rate = Float(currentValue) / Float(totalValue)
+        self.progressView.setProgress(rate, animated: true)
     }
     
     //MARK: - Emphasize the toolbar items
     @IBAction func itemTapped(_ sender: UIBarButtonItem) {
         model.setToShowSpecificImageList(of: sender.title!)
-
+        
         for index in toolbar.items!.indices {
             toolbar.items![index].tintColor = .systemGray4
         }
-
+        
         if let senderIndex = toolbar.items?.firstIndex(of: sender) {
             toolbar.items![senderIndex].tintColor = .black
         }
-
-            self.collectionView.reloadData()
+        
+        self.collectionView.reloadData()
     }
     
-//    //MARK: - Emphasize the toolbar items
-//    @IBAction func itemTapped(_ sender: UIBarButtonItem) {
-//        model.setToShowSpecificImageList(of: categoryDict[sender.title!])
-//
-//        for index in toolbar.items!.indices {
-//            toolbar.items![index].tintColor = .systemGray4
-//        }
-//
-//        if let senderIndex = toolbar.items?.firstIndex(of: sender) {
-//            toolbar.items![senderIndex].tintColor = .systemBlue
-//        }
-//
-//        self.collectionView.reloadData()
-//    }
+    //    //MARK: - Emphasize the toolbar items
+    //    @IBAction func itemTapped(_ sender: UIBarButtonItem) {
+    //        model.setToShowSpecificImageList(of: categoryDict[sender.title!])
+    //
+    //        for index in toolbar.items!.indices {
+    //            toolbar.items![index].tintColor = .systemGray4
+    //        }
+    //
+    //        if let senderIndex = toolbar.items?.firstIndex(of: sender) {
+    //            toolbar.items![senderIndex].tintColor = .systemBlue
+    //        }
+    //
+    //        self.collectionView.reloadData()
+    //    }
     
     func initializeUserDB(uid: String, email: String) {
         var data: [String: Any] = ["email": email]
@@ -182,10 +193,10 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        // Firestore 사용자 의상 정보에 해당 의상 추가
-//        if let uid = UserInfo.shared.uid {
-//            insertClothesInfo(imageInfo: model.imageInfo(at: indexPath.item), uid: uid)
-//        }
+        //        // Firestore 사용자 의상 정보에 해당 의상 추가
+        //        if let uid = UserInfo.shared.uid {
+        //            insertClothesInfo(imageInfo: model.imageInfo(at: indexPath.item), uid: uid)
+        //        }
         
         guard let vc = storyboard?.instantiateViewController(identifier: "clothesItemViewController") as? ClothesItemViewController else { return }
         
@@ -198,25 +209,25 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
 
 // cell layout
 extension CategoryViewController: UICollectionViewDelegateFlowLayout {
-
+    
     // 위 아래 간격
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 1
     }
-
+    
     // 옆 간격
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 1
     }
-
+    
     // cell 사이즈( 옆 라인을 고려하여 설정 )
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-
+        
         let width = collectionView.frame.width / 3 - 1 ///  3등분하여 배치, 옆 간격이 1이므로 1을 빼줌
         print("collectionView width=\(collectionView.frame.width)")
         print("cell하나당 width=\(width)")
         print("root view width = \(self.view.frame.width)")
-
+        
         let size = CGSize(width: width, height: width)
         return size
     }

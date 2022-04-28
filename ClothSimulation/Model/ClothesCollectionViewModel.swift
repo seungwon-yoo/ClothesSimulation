@@ -18,12 +18,22 @@ class ClothesCollectionViewModel {
     let categoryList = ["OUTER", "TOP", "PANTS", "DRESS", "SKIRT"]
     let categoryDict = ["아우터": "OUTER", "상의": "TOP", "바지": "PANTS", "원피스": "DRESS", "스커트": "SKIRT"]
     
-    func addImageInfo(category: String, image: UIImage, path: String) {
+    func addImageInfo(of category: String, image: UIImage, path: String) {
         totalImageInfoList.append(ImageInfo(category: category, image: image, path: path))
     }
     
-    func addImageInfo(category: String, image: UIImage, number: Int) {
+    func addImageInfo(of category: String, image: UIImage, number: Int) {
         totalImageInfoList.append(ImageInfo(category: category, image: image, number: number))
+    }
+    
+    func addImageInfoSelectively(of category: String, image: UIImage, number: Int) {
+        for imageInfo in totalImageInfoList {
+            if imageInfo.category == category && imageInfo.number == number {
+                return
+            }
+        }
+        
+        addImageInfo(of: category, image: image, number: number)
     }
     
     var countOfImageList: Int {
