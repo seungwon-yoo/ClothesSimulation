@@ -103,7 +103,6 @@ class ClothesViewController: UIViewController, UINavigationControllerDelegate {
         }
     }
     
-    
     //MARK: - Emphasize the toolbar items
     @IBAction func itemTapped(_ sender: UIBarButtonItem) {
         model.setToShowSpecificImageList(of: sender.title!)

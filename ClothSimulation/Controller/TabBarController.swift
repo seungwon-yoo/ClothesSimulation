@@ -51,12 +51,36 @@ extension TabBarController {
     }
     
     @objc func addButtonPressed(_ sender: Any) {
-        // 갤러리 화면을 가져온다.
-        if #available(iOS 14, *) {
-            pickImage()
-        } else {
-            openGallery()
+        let cameraAction = UIAlertAction(title: "카메라", style: .default) { (action) in
+            let camera = UIImagePickerController()
+            camera.sourceType = .camera
+            camera.allowsEditing = false
+            camera.cameraDevice = .rear
+            camera.cameraCaptureMode = .photo
+            camera.delegate = self
+            self.present(camera, animated: true, completion: nil)
         }
+        let galleryAction = UIAlertAction(title: "앨범", style: .default) { (action) in
+            // 갤러리 화면을 가져온다.
+            if #available(iOS 14, *) {
+                self.pickImage()
+            } else {
+                self.openGallery()
+            }
+        }
+        let cancelAction = UIAlertAction(title: "Cancel",
+                                         style: .cancel) { (action) in
+            // Respond to user selection of the action
+        }
+        
+        let alert = UIAlertController(title: "이미지 가져오기",
+                                      message: "모델로 사용할 이미지를 가져와야 합니다.",
+                                      preferredStyle: .actionSheet)
+        alert.addAction(cameraAction)
+        alert.addAction(galleryAction)
+        alert.addAction(cancelAction)
+        
+        self.present(alert, animated: true)
     }
 }
 
@@ -70,7 +94,7 @@ extension TabBarController {
             style: .plain,
             target: self,
             action: #selector(sideMenuPressed))
-
+        
         self.navigationItem.leftBarButtonItem?.tintColor = .black
     }
     
@@ -110,6 +134,7 @@ extension TabBarController: PHPickerViewControllerDelegate {
 extension TabBarController: UIImagePickerControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         // 이미지 선택한 다음 할 것들
+        picker.dismiss(animated: true, completion: nil)
     }
     
     
