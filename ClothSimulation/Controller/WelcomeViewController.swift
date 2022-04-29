@@ -23,20 +23,34 @@ class WelcomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // 로그인이 되어있던 경우 바로 메인 화면으로 이동
+        animateTitleLabel(of: titleLabel)
+        checkLogin()
+    }
+}
+
+extension WelcomeViewController {
+    
+    // animate an titleLabel
+    func animateTitleLabel(of titleLabel: UILabel) {
+        titleLabel.text = ""
+        
+        var charIndex = 0.0
+        
+        let titleText = K.appName
+        
+        for letter in titleText {
+            Timer.scheduledTimer(withTimeInterval: 0.1 * charIndex, repeats: false) { timer in
+                self.titleLabel.text?.append(letter)
+            }
+            charIndex += 1.0
+        }
+    }
+    
+    // 로그인이 되어있던 경우 바로 메인 화면으로 이동
+    func checkLogin() {
         if let user = Auth.auth().currentUser {
             self.performSegue(withIdentifier: K.welcomeToFitSegue, sender: self)
             print("You're sign in as \(user.uid), email: \(user.email ?? "no email")")
-        }
-
-        titleLabel.text = ""
-        var charIndex = 0.0
-        let titleText = K.appName
-        for letter in titleText {
-            Timer.scheduledTimer(withTimeInterval: 0.1 * charIndex, repeats: false) { (timer) in
-                self.titleLabel.text?.append(letter)
-            }
-            charIndex += 1
         }
     }
 }

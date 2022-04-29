@@ -35,6 +35,14 @@ class SideMenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setInitialView()
+    }
+}
+
+// MARK: - Initial Setting functions
+
+extension SideMenuViewController {
+    func setInitialView() {
         emailLabel.text = UserInfo.shared.email
         
         // TableView
@@ -59,6 +67,11 @@ class SideMenuViewController: UIViewController {
 
         // Update TableView with the data
         self.sideMenuTableView.reloadData()
+    }
+    
+    func logout() {
+        CategoryCollectionViewModel.shared.logout()
+        ClothesCollectionViewModel.shared.logout()
     }
 }
 
@@ -94,20 +107,15 @@ extension SideMenuViewController: UITableViewDataSource {
         self.delegate?.selectedCell(indexPath.row)
         
         // logout
-        if indexPath.row == 6 {
+        if menu[indexPath.row].title == "Logout" {
             let firebaseAuth = Auth.auth()
             do {
                 try firebaseAuth.signOut()
-                CategoryCollectionViewModel.shared.logout()
-                ClothesCollectionViewModel.shared.logout()
+                logout()
                 performSegue(withIdentifier: K.tabBarToWelcome, sender: self)
             } catch let signOutError as NSError {
                 print("Error signing out: %@", signOutError)
             }
-        }
-        // Remove highlighted color when you press the 'Profile' and 'Like us on facebook' cell
-        if indexPath.row == 4 || indexPath.row == 6 {
-            tableView.deselectRow(at: indexPath, animated: true)
         }
     }
 }

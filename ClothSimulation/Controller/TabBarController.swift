@@ -14,21 +14,7 @@ class TabBarController: UITabBarController, UINavigationControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // side menu button
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(
-            image: UIImage(systemName: "line.3.horizontal"),
-            style: .plain,
-            target: self,
-            action: #selector(sideMenuPressed))
-
-        self.navigationItem.leftBarButtonItem?.tintColor = .black
-    }
-    
-    @objc
-    func sideMenuPressed() {
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyBoard.instantiateViewController(withIdentifier: "Nav") as! CustomSideMenuNavigation
-        self.present(vc, animated: true, completion: nil)
+        setNavItems()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -37,6 +23,12 @@ class TabBarController: UITabBarController, UINavigationControllerDelegate {
         self.navigationItem.hidesBackButton = true
     }
     
+    
+}
+
+//MARK: - Navigation right button functions
+
+extension TabBarController {
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         // 원래 뷰 컨트롤러에서 하려 했는데 self.navigationController?.navigationItem 요 부분이 먹통임.
         if item.title == "나의 모델" {
@@ -68,6 +60,30 @@ class TabBarController: UITabBarController, UINavigationControllerDelegate {
     }
 }
 
+//MARK: - Navigation Items functions
+
+extension TabBarController {
+    func setNavItems() {
+        // side menu button
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(
+            image: UIImage(systemName: "line.3.horizontal"),
+            style: .plain,
+            target: self,
+            action: #selector(sideMenuPressed))
+
+        self.navigationItem.leftBarButtonItem?.tintColor = .black
+    }
+    
+    @objc
+    func sideMenuPressed() {
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyBoard.instantiateViewController(withIdentifier: "Nav") as! CustomSideMenuNavigation
+        self.present(vc, animated: true, completion: nil)
+    }
+}
+
+//MARK: - PHPPickerView functions
+
 extension TabBarController: PHPickerViewControllerDelegate {
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         // 이미지 선택이 끝나면 할 것들
@@ -88,6 +104,8 @@ extension TabBarController: PHPickerViewControllerDelegate {
         present(picker, animated: true, completion: nil)
     }
 }
+
+//MARK: - UIImagePickerController functions
 
 extension TabBarController: UIImagePickerControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {

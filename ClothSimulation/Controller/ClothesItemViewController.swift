@@ -19,11 +19,7 @@ class ClothesItemViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        categoryLabel?.text = clothesInfo?.category
-        nameLabel?.text = String(clothesInfo!.number)
-        imageView?.image = clothesInfo?.image
-        
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonPressed(_:)))
+        setInitialView()
     }
     
     @objc func addButtonPressed(_ sender: Any) {
@@ -32,6 +28,14 @@ class ClothesItemViewController: UIViewController {
             model.addImageInfoSelectively(of: clothesInfo!.category, image: clothesInfo!.image, number: clothesInfo!.number)
             model.setToShowSpecificImageList(of: model.currentCategory)
         }
+    }
+    
+    func setInitialView() {
+        categoryLabel?.text = clothesInfo?.category
+        nameLabel?.text = String(clothesInfo!.number)
+        imageView?.image = clothesInfo?.image
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonPressed(_:)))
     }
 }
 

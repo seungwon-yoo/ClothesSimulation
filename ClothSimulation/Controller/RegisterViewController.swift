@@ -9,7 +9,7 @@ import UIKit
 import Firebase
 import GoogleSignIn
 
-class RegisterViewController: UIViewController, UITextFieldDelegate {
+class RegisterViewController: UIViewController {
     
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
@@ -17,6 +17,30 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setInitialView()
+    }
+    
+    @IBAction func registerPressed(_ sender: UIButton) {
+        if let email = emailTextField.text, let password = passwordTextField.text {
+            
+            Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+                if let e = error {
+                    print(e.localizedDescription)
+                } else {
+                    // Navigate to the ChatViewController
+                    UserInfo.shared.uid = authResult!.user.uid
+                    UserInfo.shared.email = authResult!.user.email
+                    self.performSegue(withIdentifier: K.registerToFitSegue, sender: self)
+                }
+            }
+        }
+    }
+}
+
+//MARK: - Textfield functions
+
+extension RegisterViewController: UITextFieldDelegate {
+    func setInitialView() {
         nameTextField.delegate = self
         emailTextField.delegate = self
         passwordTextField.delegate = self
@@ -47,21 +71,5 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
-    }
-    
-    @IBAction func registerPressed(_ sender: UIButton) {
-        if let email = emailTextField.text, let password = passwordTextField.text {
-            
-            Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
-                if let e = error {
-                    print(e.localizedDescription)
-                } else {
-                    // Navigate to the ChatViewController
-                    UserInfo.shared.uid = authResult!.user.uid
-                    UserInfo.shared.email = authResult!.user.email
-                    self.performSegue(withIdentifier: K.registerToFitSegue, sender: self)
-                }
-            }
-        }
     }
 }

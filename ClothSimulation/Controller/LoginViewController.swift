@@ -10,7 +10,7 @@ import Firebase
 import GoogleSignIn
 import FirebaseAuth
 
-class LoginViewController: UIViewController, UITextFieldDelegate {
+class LoginViewController: UIViewController {
     
     @IBOutlet weak var googleLoginBtn: UIButton!
     @IBOutlet weak var emailTextField: UITextField!
@@ -20,22 +20,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let image = UIImage(named: "google")
-        googleLoginBtn.setImage(image, for: .normal)
-        googleLoginBtn.imageView?.contentMode = .scaleAspectFill
-        
-        emailTextField.delegate = self
-        passwordTextField.delegate = self
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
-        emailTextField.addUnderLine()
-        passwordTextField.addUnderLine()
+        setInitialView()
     }
     
     @IBAction func findingPasswordButtonPressed(_ sender: UIButton) {
         let alert = UIAlertController(title: "비밀번호 재설정", message: "비밀번호 재설정을 위해 이메일을 입력해주세요.", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default) { ok in
+            
             Auth.auth().sendPasswordReset(withEmail: (alert.textFields?[0].text)!) { error in
                 if error != nil {
                     print("wrong email")
@@ -61,31 +52,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         alert.addTextField()
         
         self.present(alert, animated: true, completion: nil)
-    }
-    
-    
-    @objc
-    func keyboardWillShow(_ sender: Notification) {
-        self.view.frame.origin.y = -150 // Move view 150 points upward
-    }
-    
-    @objc
-    func keyboardWillHide(_ sender: Notification) {
-        self.view.frame.origin.y = 0 // Move view to original position
-    }
-
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-}
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        view.endEditing(true)
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
     }
     
     @IBAction func logInPressed(_ sender: UIButton) {
@@ -122,5 +88,47 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 self.performSegue(withIdentifier: K.loginInToFitSegue, sender: self)
             }
         }
+    }
+}
+
+//MARK: - Textfield functions
+
+extension LoginViewController: UITextFieldDelegate {
+    func setInitialView() {
+        let image = UIImage(named: "google")
+        googleLoginBtn.setImage(image, for: .normal)
+        googleLoginBtn.imageView?.contentMode = .scaleAspectFill
+        
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        emailTextField.addUnderLine()
+        passwordTextField.addUnderLine()
+    }
+    
+    @objc
+    func keyboardWillShow(_ sender: Notification) {
+        self.view.frame.origin.y = -150 // Move view 150 points upward
+    }
+    
+    @objc
+    func keyboardWillHide(_ sender: Notification) {
+        self.view.frame.origin.y = 0 // Move view to original position
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+}
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }

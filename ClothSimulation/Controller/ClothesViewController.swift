@@ -19,9 +19,6 @@ class ClothesViewController: UIViewController, UINavigationControllerDelegate {
     @IBOutlet weak var sceneView: SCNView!
     @IBOutlet weak var collectionView: UICollectionView!
     
-    
-    let storage = Storage.storage()
-    let db = Firestore.firestore()
     let model = ClothesCollectionViewModel.shared
     
     let imagePickerController = UIImagePickerController()
@@ -29,8 +26,11 @@ class ClothesViewController: UIViewController, UINavigationControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // 툴바 색 관련
         toolbar.items![toolbar.items!.startIndex].tintColor = .systemBlue
+        
         set3DModel(name: "art.scnassets/FinalBaseMesh.obj")
+        
         // set3DModel(name: "art.scnassets/bboyFixed.scn")
         
         fetchClothesInfo()
@@ -41,6 +41,8 @@ class ClothesViewController: UIViewController, UINavigationControllerDelegate {
         
         self.collectionView.reloadData()
     }
+    
+    //MARK: - 3D model View settings
     
     @IBAction func panAction(_ sender: UIPanGestureRecognizer) {
         let transition = sender.translation(in: sceneView)
@@ -121,63 +123,59 @@ class ClothesViewController: UIViewController, UINavigationControllerDelegate {
 extension ClothesViewController {
     //MARK: - fetch User's clothes information
     func fetchClothesInfo() {
-        let mainURL = "gs://clothsimulation-3af50.appspot.com/"
-        
         if let uid = UserInfo.shared.uid {
-            let uidRef = db.collection("users").document(uid)
-            
-            uidRef.getDocument { document, error in
-                if let document = document, document.exists {
-                    for data in document.data()! {
-                        if self.model.categoryList.contains(data.key) {
-                            for item in data.value as! Array<Int> {
-                                let fullPath = "clothes/\(data.key)/\(item).png"
+            FirestoreService().fetchUserCloset(uid: uid) { result in
+                switch result {
+                case .success(let categories):
+                    for categoryDict in categories {
+                        let category = categoryDict.key
+                        let elements = categoryDict.value
+                        
+                        if self.model.categoryList.contains(category) {
+                            for element in elements as! Array<Int> {
+                                let fullPath = "clothes/\(category)/\(element).png"
                                 
-                                let ref = self.storage.reference(forURL: mainURL).child(fullPath)
-                                
-                                ref.getData(maxSize: 1 * 1024 * 1024) { imageData, error in
-                                    if let error = error {
-
+                                StorageService().loadImage(childURL: fullPath) { [weak self] result in
+                                    switch result {
+                                    case .success(let image):
+                                        self!.model.addImageInfo(of: category, image: image, path: fullPath)
+                                        self!.model.setToShowSpecificImageList()
+                                        self!.collectionView.reloadData()
+                                        // 이거 여러번 반복하는게 싫었는데 rx 공부하면 해결할 수 있다고 함.
+                                    case .failure(let error):
                                         print(error)
-
-                                    } else {
-                                        if let image = UIImage(data: imageData! as Data) {
-                                            self.model.addImageInfo(of: data.key, image: image, path: ref.fullPath)
-                                            self.model.setToShowSpecificImageList()
-                                            self.collectionView.reloadData()
-                                            // 이거 여러번 반복하는게 싫었는데 rx 공부하면 해결할 수 있다고 함.
-                                        }
                                     }
                                 }
                             }
                         }
                     }
-                } else {
-                    print("Document does not exist")
+                case .failure(let error):
+                    if error == .emptyError { print("Document does not exist") }
+                    else if error == .uidError { print(error) }
                 }
             }
         }
     }
     
-    // 카테고리랑 네임을 모른다.
-    func updateClothesInfo(category: String, name: String) {
-        let mainURL = "gs://clothsimulation-3af50.appspot.com/"
-        let fullPath = "clothes/\(category)/\(name).png"
-        
-        let ref = self.storage.reference(forURL: mainURL).child(fullPath)
-        
-        ref.getData(maxSize: 1 * 1024 * 1024) { imageData, error in
-            if let error = error {
-                print(error)
-            } else {
-                if let image = UIImage(data: imageData! as Data) {
-                    self.model.addImageInfo(of: category, image: image, path: fullPath)
-                    self.model.setToShowSpecificImageList(of: self.model.currentCategory)
-                    self.collectionView.reloadData()
-                }
-            }
-        }
-    }
+//    // 카테고리랑 네임을 모른다.
+//    func updateClothesInfo(category: String, name: String) {
+//        let mainURL = "gs://clothsimulation-3af50.appspot.com/"
+//        let fullPath = "clothes/\(category)/\(name).png"
+//
+//        let ref = Storage.storage().reference(forURL: mainURL).child(fullPath)
+//
+//        ref.getData(maxSize: 1 * 1024 * 1024) { imageData, error in
+//            if let error = error {
+//                print(error)
+//            } else {
+//                if let image = UIImage(data: imageData! as Data) {
+//                    self.model.addImageInfo(of: category, image: image, path: fullPath)
+//                    self.model.setToShowSpecificImageList(of: self.model.currentCategory)
+//                    self.collectionView.reloadData()
+//                }
+//            }
+//        }
+//    }
     
 //    func startInitialSettings() {
 //        let url = "http://192.168.0.9:80"
