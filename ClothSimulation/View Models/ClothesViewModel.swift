@@ -9,6 +9,7 @@ import UIKit
 import SceneKit
 
 class ClothesViewModel {
+
     static let shared = ClothesViewModel()
     
     var imageInfoList: [ImageInfo] = []
@@ -37,6 +38,21 @@ class ClothesViewModel {
         addImageInfo(of: category, image: image, number: number)
     }
     
+    func deleteImageInfo(imageInfo: ImageInfo) {
+        FirestoreService().deleteClothesInfo(imageInfo: imageInfo, uid: UserInfo.shared.uid!)
+        
+        // 현재 삭제 후 바로 CollectionView에 반영되지 않는 문제가 있음.
+        for (i, info) in totalImageInfoList.enumerated() {
+            if info.category == imageInfo.category {
+                if info.number == imageInfo.number {
+                    totalImageInfoList.remove(at: i)
+                }
+            }
+        }
+        
+        setToShowSpecificImageList(of: currentCategory)
+    }
+    
     var countOfImageList: Int {
         return imageInfoList.count
     }
@@ -53,6 +69,8 @@ class ClothesViewModel {
         for imageInfo in totalImageInfoList {
             if imageInfo.category == categoryDict[category] {
                 imageInfoList.append(imageInfo)
+                
+                
             }
         }
     }
@@ -157,4 +175,6 @@ class ClothesViewModel {
         // Set scene settings
         sceneView.scene = scene
     }
+    
+
 }

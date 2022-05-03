@@ -26,6 +26,8 @@ class ClothesViewController: UIViewController, UINavigationControllerDelegate {
         
         model.set3DModel(sceneView: sceneView, name: K.dancingMan)
         
+        setupLongPressGestureonCollectionView(collectionView: collectionView)
+        
         // set3DModel(name: "art.scnassets/bboyFixed.scn")
         
         model.fetchClothesInfo(collectionView: collectionView)
@@ -140,5 +142,47 @@ extension ClothesViewController: UICollectionViewDataSource {
         cell.update(info: imageInfo)
         
         return cell
+    }
+}
+
+extension ClothesViewController: UIGestureRecognizerDelegate {
+    func setupLongPressGestureonCollectionView(collectionView: UICollectionView) {
+        let longPressedGesture = UILongPressGestureRecognizer()
+        longPressedGesture.addTarget(self, action: #selector(handleLongPress(gestureRecognizer:)))
+        longPressedGesture.minimumPressDuration = 0.5
+        longPressedGesture.delegate = self
+        longPressedGesture.delaysTouchesBegan = true
+        collectionView.addGestureRecognizer(longPressedGesture)
+    }
+    
+    @objc func handleLongPress(gestureRecognizer: UILongPressGestureRecognizer) {
+        if (gestureRecognizer.state != .began) {
+            return
+        }
+        
+        let p = gestureRecognizer.location(in: collectionView)
+        
+        if let indexPath = collectionView.indexPathForItem(at: p) {
+            print("Long press at item: \(indexPath.row)")
+            
+            let deleteAction = UIAlertAction(title: "Delete",
+                                             style: .destructive) { action in
+                // CollectionView Cell delete
+                let imageInfo = self.model.imageInfo(at: indexPath.item)
+                self.model.deleteImageInfo(imageInfo: imageInfo)
+                self.collectionView.reloadData()
+            }
+            
+            let cancelAction = UIAlertAction(title: "닫기", style: .cancel)
+            
+            let alert = UIAlertController(title: "의상 삭제",
+                                          message: "해당 의상을 옷장에서 삭제하려면 Delete를 눌러주세요",
+                                          preferredStyle: .actionSheet)
+            
+            alert.addAction(deleteAction)
+            alert.addAction(cancelAction)
+            
+            self.present(alert, animated: true, completion: nil)
+        }
     }
 }

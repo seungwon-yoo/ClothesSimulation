@@ -13,7 +13,6 @@ protocol SideMenuViewControllerDelegate {
 }
 
 class SideMenuViewController: UIViewController {
-    @IBOutlet weak var headerImageView: UIImageView!
     @IBOutlet weak var sideMenuTableView: UITableView!
     @IBOutlet weak var footerLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!

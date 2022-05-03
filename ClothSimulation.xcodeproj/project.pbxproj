@@ -33,7 +33,6 @@
 		E37EB00728166F5D00639BB0 /* CategoryItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37EB00628166F5D00639BB0 /* CategoryItemViewController.swift */; };
 		E37EB00B2816D9E700639BB0 /* ClothesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37EB00A2816D9E700639BB0 /* ClothesViewModel.swift */; };
 		E37EB00E28193EE600639BB0 /* ClothesCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37EB00D28193EE600639BB0 /* ClothesCollectionCell.swift */; };
-		E39AE46827F56499002363F7 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39AE46727F56499002363F7 /* Extensions.swift */; };
 		E3AC9CBC280836CC006C143B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3AC9CBB280836CC006C143B /* GoogleService-Info.plist */; };
 		E3B1330528080C900073FB62 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B1330428080C900073FB62 /* CategoryViewController.swift */; };
 		E3B1330C280814760073FB62 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B1330B280814760073FB62 /* CategoryCell.swift */; };
@@ -75,7 +74,6 @@
 		E37EB00628166F5D00639BB0 /* CategoryItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryItemViewController.swift; sourceTree = "<group>"; };
 		E37EB00A2816D9E700639BB0 /* ClothesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothesViewModel.swift; sourceTree = "<group>"; };
 		E37EB00D28193EE600639BB0 /* ClothesCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothesCollectionCell.swift; sourceTree = "<group>"; };
-		E39AE46727F56499002363F7 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		E3AC9CBB280836CC006C143B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Desktop/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E3B1330428080C900073FB62 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		E3B1330B280814760073FB62 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
@@ -119,7 +117,6 @@
 			isa = PBXGroup;
 			children = (
 				E3029672282016CF00EF774C /* UITextField+Extensions.swift */,
-				E39AE46727F56499002363F7 /* Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -372,7 +369,6 @@
 				E37EAFAE2811277300639BB0 /* TabBarController.swift in Sources */,
 				E35EDF9E27C088D9009CF075 /* ClothesViewController.swift in Sources */,
 				E35EDFAE27C0D614009CF075 /* WelcomeViewController.swift in Sources */,
-				E39AE46827F56499002363F7 /* Extensions.swift in Sources */,
 				E3EC05E227C34294007DD29D /* ImageInfo.swift in Sources */,
 				E3B1330528080C900073FB62 /* CategoryViewController.swift in Sources */,
 				E37EAFFB2811703700639BB0 /* SideMenuModel.swift in Sources */,

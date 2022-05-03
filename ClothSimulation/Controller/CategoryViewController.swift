@@ -70,7 +70,7 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        guard let vc = storyboard?.instantiateViewController(identifier: "clothesItemViewController") as? CategoryItemViewController else { return }
+        guard let vc = storyboard?.instantiateViewController(identifier: "CategoryItemViewController") as? CategoryItemViewController else { return }
         
         let info = model.imageInfo(at: indexPath.item)
         vc.clothesInfo = info

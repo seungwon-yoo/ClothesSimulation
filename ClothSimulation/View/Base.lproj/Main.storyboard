@@ -536,10 +536,10 @@
             </objects>
             <point key="canvasLocation" x="3871" y="515"/>
         </scene>
-        <!--Clothes Item View Controller-->
+        <!--Category Item View Controller-->
         <scene sceneID="0eZ-SX-Atr">
             <objects>
-                <viewController storyboardIdentifier="clothesItemViewController" id="0GL-kK-mIn" customClass="ClothesItemViewController" customModule="ClothSimulation" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CategoryItemViewController" id="0GL-kK-mIn" customClass="CategoryItemViewController" customModule="ClothSimulation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Gp6-rf-NQt">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
