@@ -14,12 +14,8 @@ enum NetworkError: Error {
     case urlError
 }
 
-struct Resource<T: Codable> {
-    
-}
-
 class StorageService {
-    let mainURL = "gs://clothsimulation-3af50.appspot.com/"
+    let mainURL = K.storageURL
     
     func loadImage(childURL: String, completion: @escaping (Result<UIImage, NetworkError>) -> Void) {
 

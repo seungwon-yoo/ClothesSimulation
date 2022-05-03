@@ -70,8 +70,8 @@ extension SideMenuViewController {
     }
     
     func logout() {
-        CategoryCollectionViewModel.shared.logout()
-        ClothesCollectionViewModel.shared.logout()
+        CategoryViewModel.shared.logout()
+        ClothesViewModel.shared.logout()
     }
 }
 

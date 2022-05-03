@@ -14,7 +14,7 @@ class ClothesItemViewController: UIViewController {
     @IBOutlet var nameLabel: UILabel?
     
     var clothesInfo: ImageInfo?
-    let model = ClothesCollectionViewModel.shared
+    let model = ClothesViewModel.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
