@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ClothesItemViewController: UIViewController {
+class CategoryItemViewController: UIViewController {
     
     @IBOutlet var imageView: UIImageView?
     @IBOutlet var categoryLabel: UILabel?

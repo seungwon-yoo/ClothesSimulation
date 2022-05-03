@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		24E4A95A261661599DE4904F /* Pods_ClothSimulation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF9E9297617AA5706BF0F4BB /* Pods_ClothSimulation.framework */; };
 		E3029673282016CF00EF774C /* UITextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3029672282016CF00EF774C /* UITextField+Extensions.swift */; };
+		E30296782820DF7D00EF774C /* SideMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30296772820DF7D00EF774C /* SideMenuViewModel.swift */; };
 		E31FE322281A9E2C000B9B34 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31FE321281A9E2C000B9B34 /* StorageService.swift */; };
 		E31FE324281BA09C000B9B34 /* FirestoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31FE323281BA09C000B9B34 /* FirestoreService.swift */; };
 		E34F446127F0957900760822 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34F446027F0957900760822 /* RegisterViewController.swift */; };
@@ -29,7 +30,7 @@
 		E37EAFFD2811706400639BB0 /* SideMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37EAFFC2811706400639BB0 /* SideMenuCell.swift */; };
 		E37EAFFF2812854F00639BB0 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37EAFFE2812854F00639BB0 /* UserModel.swift */; };
 		E37EB0052813D94E00639BB0 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37EB0042813D94E00639BB0 /* UserInfo.swift */; };
-		E37EB00728166F5D00639BB0 /* ClothesItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37EB00628166F5D00639BB0 /* ClothesItemViewController.swift */; };
+		E37EB00728166F5D00639BB0 /* CategoryItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37EB00628166F5D00639BB0 /* CategoryItemViewController.swift */; };
 		E37EB00B2816D9E700639BB0 /* ClothesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37EB00A2816D9E700639BB0 /* ClothesViewModel.swift */; };
 		E37EB00E28193EE600639BB0 /* ClothesCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37EB00D28193EE600639BB0 /* ClothesCollectionCell.swift */; };
 		E39AE46827F56499002363F7 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39AE46727F56499002363F7 /* Extensions.swift */; };
@@ -48,6 +49,7 @@
 		B9398D905BC6241BC24CFA9B /* Pods-ClothSimulation.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClothSimulation.release.xcconfig"; path = "Target Support Files/Pods-ClothSimulation/Pods-ClothSimulation.release.xcconfig"; sourceTree = "<group>"; };
 		DF9E9297617AA5706BF0F4BB /* Pods_ClothSimulation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ClothSimulation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3029672282016CF00EF774C /* UITextField+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extensions.swift"; sourceTree = "<group>"; };
+		E30296772820DF7D00EF774C /* SideMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewModel.swift; sourceTree = "<group>"; };
 		E31FE321281A9E2C000B9B34 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		E31FE323281BA09C000B9B34 /* FirestoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreService.swift; sourceTree = "<group>"; };
 		E34F446027F0957900760822 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
@@ -70,7 +72,7 @@
 		E37EAFFC2811706400639BB0 /* SideMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuCell.swift; sourceTree = "<group>"; };
 		E37EAFFE2812854F00639BB0 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		E37EB0042813D94E00639BB0 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
-		E37EB00628166F5D00639BB0 /* ClothesItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothesItemViewController.swift; sourceTree = "<group>"; };
+		E37EB00628166F5D00639BB0 /* CategoryItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryItemViewController.swift; sourceTree = "<group>"; };
 		E37EB00A2816D9E700639BB0 /* ClothesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothesViewModel.swift; sourceTree = "<group>"; };
 		E37EB00D28193EE600639BB0 /* ClothesCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothesCollectionCell.swift; sourceTree = "<group>"; };
 		E39AE46727F56499002363F7 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 			children = (
 				E3EC05E327C342ED007DD29D /* CategoryViewModel.swift */,
 				E37EB00A2816D9E700639BB0 /* ClothesViewModel.swift */,
+				E30296772820DF7D00EF774C /* SideMenuViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -196,11 +199,11 @@
 				E34F446227F0958B00760822 /* LoginViewController.swift */,
 				E35EDF9D27C088D9009CF075 /* ClothesViewController.swift */,
 				E3B1330428080C900073FB62 /* CategoryViewController.swift */,
-				E3D9071627CF5E01009A5935 /* ARViewController.swift */,
+				E37EB00628166F5D00639BB0 /* CategoryItemViewController.swift */,
 				E37EAFAD2811277300639BB0 /* TabBarController.swift */,
 				E37EAFF628116AA800639BB0 /* SideMenuViewController.swift */,
 				E37EAFF828116C9300639BB0 /* CustomSideMenuNavigation.swift */,
-				E37EB00628166F5D00639BB0 /* ClothesItemViewController.swift */,
+				E3D9071627CF5E01009A5935 /* ARViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -364,7 +367,7 @@
 				E3D9071727CF5E01009A5935 /* ARViewController.swift in Sources */,
 				E34F446327F0958B00760822 /* LoginViewController.swift in Sources */,
 				E37EAFF928116C9300639BB0 /* CustomSideMenuNavigation.swift in Sources */,
-				E37EB00728166F5D00639BB0 /* ClothesItemViewController.swift in Sources */,
+				E37EB00728166F5D00639BB0 /* CategoryItemViewController.swift in Sources */,
 				E31FE322281A9E2C000B9B34 /* StorageService.swift in Sources */,
 				E37EAFAE2811277300639BB0 /* TabBarController.swift in Sources */,
 				E35EDF9E27C088D9009CF075 /* ClothesViewController.swift in Sources */,
@@ -378,6 +381,7 @@
 				E35EDF9C27C088D9009CF075 /* SceneDelegate.swift in Sources */,
 				E37EB00E28193EE600639BB0 /* ClothesCollectionCell.swift in Sources */,
 				E37EAFFF2812854F00639BB0 /* UserModel.swift in Sources */,
+				E30296782820DF7D00EF774C /* SideMenuViewModel.swift in Sources */,
 				E3029673282016CF00EF774C /* UITextField+Extensions.swift in Sources */,
 				E37EB0052813D94E00639BB0 /* UserInfo.swift in Sources */,
 				E34F446127F0957900760822 /* RegisterViewController.swift in Sources */,
