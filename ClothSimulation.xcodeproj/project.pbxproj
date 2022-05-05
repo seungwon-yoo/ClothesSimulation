@@ -36,6 +36,7 @@
 		E3AC9CBC280836CC006C143B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3AC9CBB280836CC006C143B /* GoogleService-Info.plist */; };
 		E3B1330528080C900073FB62 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B1330428080C900073FB62 /* CategoryViewController.swift */; };
 		E3B1330C280814760073FB62 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B1330B280814760073FB62 /* CategoryCell.swift */; };
+		E3B7C40228239B3200A4F1E3 /* ActivityIndicatorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B7C40128239B3200A4F1E3 /* ActivityIndicatorService.swift */; };
 		E3D9071727CF5E01009A5935 /* ARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D9071627CF5E01009A5935 /* ARViewController.swift */; };
 		E3D9071B27CF6205009A5935 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = E3D9071A27CF6205009A5935 /* art.scnassets */; };
 		E3EC05E227C34294007DD29D /* ImageInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3EC05E127C34294007DD29D /* ImageInfo.swift */; };
@@ -77,6 +78,7 @@
 		E3AC9CBB280836CC006C143B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Desktop/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E3B1330428080C900073FB62 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		E3B1330B280814760073FB62 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
+		E3B7C40128239B3200A4F1E3 /* ActivityIndicatorService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorService.swift; sourceTree = "<group>"; };
 		E3D9071627CF5E01009A5935 /* ARViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewController.swift; sourceTree = "<group>"; };
 		E3D9071A27CF6205009A5935 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 		E3EC05E127C34294007DD29D /* ImageInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageInfo.swift; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 			children = (
 				E31FE321281A9E2C000B9B34 /* StorageService.swift */,
 				E31FE323281BA09C000B9B34 /* FirestoreService.swift */,
+				E3B7C40128239B3200A4F1E3 /* ActivityIndicatorService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -378,6 +381,7 @@
 				E37EB00E28193EE600639BB0 /* ClothesCollectionCell.swift in Sources */,
 				E37EAFFF2812854F00639BB0 /* UserModel.swift in Sources */,
 				E30296782820DF7D00EF774C /* SideMenuViewModel.swift in Sources */,
+				E3B7C40228239B3200A4F1E3 /* ActivityIndicatorService.swift in Sources */,
 				E3029673282016CF00EF774C /* UITextField+Extensions.swift in Sources */,
 				E37EB0052813D94E00639BB0 /* UserInfo.swift in Sources */,
 				E34F446127F0957900760822 /* RegisterViewController.swift in Sources */,

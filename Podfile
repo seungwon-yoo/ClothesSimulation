@@ -6,7 +6,7 @@ target 'ClothSimulation' do
   inhibit_all_warnings!
 
   # Pods for ClothSimulation
-  pod 'Alamofire', '~> 4.4'
+  # pod 'Alamofire', '~> 4.4'
 
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
@@ -15,4 +15,6 @@ target 'ClothSimulation' do
   pod 'Firebase/Storage'
   pod 'GoogleSignIn'
   pod 'SideMenu', '~> 6.5.0'
+  
+  pod 'NVActivityIndicatorView'
 end

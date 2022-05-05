@@ -9,8 +9,12 @@ import UIKit
 import SideMenu
 import Photos
 import PhotosUI
+import NVActivityIndicatorView
 
 class TabBarController: UITabBarController, UINavigationControllerDelegate {
+    
+    let activityIndicator = ActivityIndicatorService()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -110,9 +114,24 @@ extension TabBarController {
 
 extension TabBarController: PHPickerViewControllerDelegate {
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
-        // 이미지 선택이 끝나면 할 것들
+        
         picker.dismiss(animated: true, completion: nil)
+        
+        guard results.isEmpty != true else { return }
+        
+        // 1. 선택한 이미지를 웹 서버로 전송
+        // 2. 로딩창 띄우기
+        DispatchQueue.main.async {
+            self.activityIndicator.setActivityIndicator(view: self.view)
+        }
+        
+        // 로딩창 종료 로직
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+            self.activityIndicator.endActivityIndicator(view: self.view)
+        }
     }
+    
+
     
     func pickImage() {
         var configuration = PHPickerConfiguration()
@@ -133,8 +152,14 @@ extension TabBarController: PHPickerViewControllerDelegate {
 
 extension TabBarController: UIImagePickerControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        // 이미지 선택한 다음 할 것들
+        
         picker.dismiss(animated: true, completion: nil)
+        
+        // 1. 선택한 이미지를 웹 서버로 전송
+        // 2. 로딩창 띄우기
+        DispatchQueue.main.async {
+            self.activityIndicator.setActivityIndicator(view: self.view)
+        }
     }
     
     

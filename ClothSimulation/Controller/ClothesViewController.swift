@@ -15,6 +15,7 @@ class ClothesViewController: UIViewController, UINavigationControllerDelegate {
     @IBOutlet weak var collectionView: UICollectionView!
     
     let model = ClothesViewModel.shared
+    let activityIndicator = ActivityIndicatorService()
     
     let imagePickerController = UIImagePickerController()
     
@@ -22,7 +23,7 @@ class ClothesViewController: UIViewController, UINavigationControllerDelegate {
         super.viewDidLoad()
         
         // 툴바 색 관련
-        toolbar.items![toolbar.items!.startIndex].tintColor = .systemBlue
+        toolbar.items![toolbar.items!.startIndex].tintColor = .black
         
         model.set3DModel(sceneView: sceneView, name: K.dancingMan)
         
@@ -42,7 +43,6 @@ class ClothesViewController: UIViewController, UINavigationControllerDelegate {
     }
     
     //MARK: - 3D model View settings
-    
     @IBAction func panAction(_ sender: UIPanGestureRecognizer) {
         let transition = sender.translation(in: sceneView)
         sceneView.defaultCameraController.rotateBy(x: Float(-transition.x), y: Float(0))
@@ -109,7 +109,7 @@ class ClothesViewController: UIViewController, UINavigationControllerDelegate {
         }
         
         if let senderIndex = toolbar.items?.firstIndex(of: sender) {
-            toolbar.items![senderIndex].tintColor = .systemBlue
+            toolbar.items![senderIndex].tintColor = .black
         }
         
         self.collectionView.reloadData()
@@ -122,6 +122,16 @@ extension ClothesViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let image = model.imageInfo(at: indexPath.row).getImage() else {
             return
+        }
+        
+        // 로딩창 띄우기
+        DispatchQueue.main.async {
+            self.activityIndicator.setActivityIndicator(view: self.tabBarController!.view)
+        }
+        
+        // 로딩창 종료 로직
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+            self.activityIndicator.endActivityIndicator(view: self.view)
         }
     }
 }
@@ -145,6 +155,7 @@ extension ClothesViewController: UICollectionViewDataSource {
     }
 }
 
+//MARK: - UICollectionView long press gesture
 extension ClothesViewController: UIGestureRecognizerDelegate {
     func setupLongPressGestureonCollectionView(collectionView: UICollectionView) {
         let longPressedGesture = UILongPressGestureRecognizer()
