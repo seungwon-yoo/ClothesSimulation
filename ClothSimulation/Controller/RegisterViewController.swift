@@ -22,7 +22,6 @@ class RegisterViewController: UIViewController {
     
     @IBAction func registerPressed(_ sender: UIButton) {
         if let email = emailTextField.text, let password = passwordTextField.text {
-            
             Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
                 if let e = error {
                     print(e.localizedDescription)
@@ -30,6 +29,10 @@ class RegisterViewController: UIViewController {
                     // Navigate to the ChatViewController
                     UserInfo.shared.uid = authResult!.user.uid
                     UserInfo.shared.email = authResult!.user.email
+                    UserInfo.shared.name = self.nameTextField.text
+                    
+                    FirestoreService().initializeUserInfo()
+                    
                     self.performSegue(withIdentifier: K.registerToFitSegue, sender: self)
                 }
             }

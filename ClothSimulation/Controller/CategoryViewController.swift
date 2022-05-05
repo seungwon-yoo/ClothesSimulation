@@ -22,7 +22,7 @@ class CategoryViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         
-        model.initializeUserInfo()
+        // FirestoreService().initializeUserInfo()
         
         model.setupUI(progressView: progressView, toolbar: toolbar, collectionView: collectionView)
     }
@@ -30,7 +30,7 @@ class CategoryViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.navigationController?.navigationBar.topItem?.title = "의상"
+        // self.navigationController?.navigationBar.topItem?.title = "의상"
     }
     
     //MARK: - Emphasize the toolbar items

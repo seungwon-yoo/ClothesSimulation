@@ -39,7 +39,7 @@ class ClothesViewController: UIViewController, UINavigationControllerDelegate {
         
         self.collectionView.reloadData()
         
-        self.navigationController?.navigationBar.topItem?.title = "나의 옷장"
+        // self.navigationController?.navigationBar.topItem?.title = "나의 옷장"
     }
     
     //MARK: - 3D model View settings

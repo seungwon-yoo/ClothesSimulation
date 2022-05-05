@@ -19,6 +19,8 @@ class TabBarController: UITabBarController, UINavigationControllerDelegate {
         super.viewDidLoad()
         
         setNavItems()
+        
+        self.navigationItem.title = "의상"
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -35,10 +37,13 @@ class TabBarController: UITabBarController, UINavigationControllerDelegate {
 extension TabBarController {
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         // 원래 뷰 컨트롤러에서 하려 했는데 self.navigationController?.navigationItem 요 부분이 먹통임.
+        
         if item.title == "나의 모델" {
             activateRightButton()
+            self.navigationItem.title = "나의 옷장"
         } else {
             deactivateRightButton()
+            self.navigationItem.title = "의상"
         }
     }
     
@@ -78,7 +83,7 @@ extension TabBarController {
         }
         
         let alert = UIAlertController(title: "이미지 가져오기",
-                                      message: "모델로 사용할 이미지를 가져와야 합니다.",
+                                      message: "모델로 사용할 이미지를 가져옵니다.",
                                       preferredStyle: .actionSheet)
         alert.addAction(cameraAction)
         alert.addAction(galleryAction)

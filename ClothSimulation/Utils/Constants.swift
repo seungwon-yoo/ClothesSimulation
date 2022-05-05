@@ -6,6 +6,8 @@
 //
 
 struct K {
+    static var categoryList = ["OUTER", "TOP", "PANTS", "DRESS", "SKIRT"]
+    
     static let appName = "BestFit"
     
     // Segue Names

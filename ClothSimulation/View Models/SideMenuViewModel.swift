@@ -22,7 +22,7 @@ class SideMenuViewModel {
     ]
     
     func setInitialView(emailLabel: UILabel, sideMenuTableView: UITableView, footerLabel: UILabel) {
-        emailLabel.text = UserInfo.shared.email
+        emailLabel.text = "\(UserInfo.shared.name!)님 반갑습니다."
         
         sideMenuTableView.backgroundColor = .systemBlue
         sideMenuTableView.separatorStyle = .none

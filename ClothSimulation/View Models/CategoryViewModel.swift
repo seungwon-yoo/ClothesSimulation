@@ -17,7 +17,6 @@ class CategoryViewModel {
     
     var currentCategory = "전체"
     
-    let categoryList = ["OUTER", "TOP", "PANTS", "DRESS", "SKIRT"]
     let categoryDict = ["아우터": "OUTER", "상의": "TOP", "바지": "PANTS", "원피스": "DRESS", "스커트": "SKIRT"]
     
     func addImageInfo(of category: String, image: UIImage, path: String) {
@@ -67,23 +66,6 @@ class CategoryViewModel {
         collectionView.reloadData()
     }
     
-    func initializeUserInfo() {
-        // Firestore에 사용자 의상 정보 초기화
-        if let uid = UserInfo.shared.uid {
-            let uidRef = Firestore.firestore().collection("users").document(uid)
-            
-            uidRef.getDocument { document, error in
-                if let document = document, document.exists {
-                    print("Document exist")
-                } else {
-                    print("Document does not exist")
-                    
-                    self.initializeUserDB(uid: uid, email: UserInfo.shared.email!)
-                }
-            }
-        }
-    }
-    
     // 특정 카테고리의 이미지를 가져옴
     func fetchClothesImages(of category: String, completion: @escaping () -> Void) {
         
@@ -121,7 +103,7 @@ class CategoryViewModel {
     
     // 모든 이미지를 가져옴
     func fetchAllImages(progressView: UIProgressView, collectionView: UICollectionView) {
-        let categories = categoryList
+        let categories = K.categoryList
         let total = categories.count
         
         var count: Int = 0 {
@@ -149,14 +131,5 @@ class CategoryViewModel {
     func setProgressRate(progressView: UIProgressView, currentValue: Int, totalValue: Int) {
         let rate = Float(currentValue) / Float(totalValue)
         progressView.setProgress(rate, animated: true)
-    }
-    
-    func initializeUserDB(uid: String, email: String) {
-        var data: [String: Any] = ["email": email]
-        for cat in categoryList {
-            data[cat] = []
-        }
-        
-        Firestore.firestore().collection("users").document(uid).setData(data)
     }
 }

@@ -16,8 +16,6 @@ class ClothesViewModel {
     var totalImageInfoList: [ImageInfo] = []
     
     var currentCategory = "전체"
-    
-    let categoryList = ["OUTER", "TOP", "PANTS", "DRESS", "SKIRT"]
     let categoryDict = ["아우터": "OUTER", "상의": "TOP", "바지": "PANTS", "원피스": "DRESS", "스커트": "SKIRT"]
     
     func addImageInfo(of category: String, image: UIImage, path: String) {
@@ -93,7 +91,7 @@ class ClothesViewModel {
                         let category = categoryDict.key
                         let elements = categoryDict.value
                         
-                        if self.categoryList.contains(category) {
+                        if K.categoryList.contains(category) {
                             for element in elements as! Array<Int> {
                                 let fullPath = "clothes/\(category)/\(element).png"
                                 

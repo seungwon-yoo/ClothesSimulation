@@ -65,6 +65,9 @@ class LoginViewController: UIViewController {
                 } else {
                     UserInfo.shared.uid = authResult!.user.uid
                     UserInfo.shared.email = authResult!.user.email
+                    FirestoreService().getUserName(uid: authResult!.user.uid) { name in
+                        UserInfo.shared.name = name
+                    }
                     self.performSegue(withIdentifier: K.loginInToFitSegue, sender: self)
                 }
             }
@@ -85,6 +88,15 @@ class LoginViewController: UIViewController {
             // 파베 인증정보 등록
             Auth.auth().signIn(with: credential) { _, _ in
                 // token을 넘겨주면, 성공했는지 안했는지에 대한 result값과 error값을 넘겨줌
+                
+                if let user = Auth.auth().currentUser {
+                    UserInfo.shared.uid = user.uid
+                    UserInfo.shared.email = user.email
+                    UserInfo.shared.name = user.displayName
+                }
+                
+                FirestoreService().initializeUserInfo()
+                
                 self.performSegue(withIdentifier: K.loginInToFitSegue, sender: self)
             }
         }

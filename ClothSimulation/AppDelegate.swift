@@ -11,8 +11,6 @@ import Firebase
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         FirebaseApp.configure()
@@ -20,6 +18,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let user = Auth.auth().currentUser {
             UserInfo.shared.uid = user.uid
             UserInfo.shared.email = user.email
+            
+            if let name = user.displayName {
+                UserInfo.shared.name = name
+            } else {
+                FirestoreService().getUserName(uid: user.uid) { name in
+                    UserInfo.shared.name = name
+                }
+            }
             
             print("You're sign in as \(user.uid), email: \(user.email ?? "no email")")
             
