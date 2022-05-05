@@ -82,7 +82,7 @@ class ClothesViewModel {
         totalImageInfoList.removeAll()
     }
     
-    func fetchClothesInfo(collectionView: UICollectionView) {
+    func fetchClothesInfo() {
         if let uid = UserInfo.shared.uid {
             FirestoreService().fetchUserCloset(uid: uid) { result in
                 switch result {
@@ -100,7 +100,7 @@ class ClothesViewModel {
                                     case .success(let image):
                                         self!.addImageInfo(of: category, image: image, path: fullPath)
                                         self!.setToShowSpecificImageList()
-                                        collectionView.reloadData()
+                                        // collectionView.reloadData()
                                         // 이거 여러번 반복하는게 싫었는데 rx 공부하면 해결할 수 있다고 함.
                                     case .failure(let error):
                                         print(error)

@@ -51,6 +51,9 @@ extension WelcomeViewController {
         if let user = Auth.auth().currentUser {
             self.performSegue(withIdentifier: K.welcomeToFitSegue, sender: self)
             print("You're sign in as \(user.uid), email: \(user.email ?? "no email")")
+            
+            // 미리 옷장에 옷 넣어두기
+            ClothesViewModel.shared.fetchClothesInfo()
         }
     }
 }

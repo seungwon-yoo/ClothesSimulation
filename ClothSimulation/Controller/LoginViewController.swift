@@ -68,6 +68,10 @@ class LoginViewController: UIViewController {
                     FirestoreService().getUserName(uid: authResult!.user.uid) { name in
                         UserInfo.shared.name = name
                     }
+                    
+                    // 미리 옷장에 옷 넣어두기
+                    ClothesViewModel.shared.fetchClothesInfo()
+                    
                     self.performSegue(withIdentifier: K.loginInToFitSegue, sender: self)
                 }
             }
@@ -96,6 +100,9 @@ class LoginViewController: UIViewController {
                 }
                 
                 FirestoreService().initializeUserInfo()
+                
+                // 미리 옷장에 옷 넣어두기
+                ClothesViewModel.shared.fetchClothesInfo()
                 
                 self.performSegue(withIdentifier: K.loginInToFitSegue, sender: self)
             }

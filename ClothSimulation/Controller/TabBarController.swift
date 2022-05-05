@@ -141,8 +141,6 @@ extension TabBarController: PHPickerViewControllerDelegate {
     func pickImage() {
         var configuration = PHPickerConfiguration()
         
-        
-        
         configuration.selectionLimit = 1 // 가져올 이미지 갯수 제한
         configuration.filter = .any(of: [.images]) // 보여줄 asset type
         

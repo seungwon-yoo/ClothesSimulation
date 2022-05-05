@@ -31,7 +31,7 @@ class ClothesViewController: UIViewController, UINavigationControllerDelegate {
         
         // set3DModel(name: "art.scnassets/bboyFixed.scn")
         
-        model.fetchClothesInfo(collectionView: collectionView)
+        // model.fetchClothesInfo(collectionView: collectionView)
     }
     
     override func viewWillAppear(_ animated: Bool) {
