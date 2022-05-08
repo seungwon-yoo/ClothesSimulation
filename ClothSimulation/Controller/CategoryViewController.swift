@@ -36,7 +36,18 @@ class CategoryViewController: UIViewController {
     //MARK: - Emphasize the toolbar items
     @IBAction func itemTapped(_ sender: UIBarButtonItem) {
         
-        model.setToShowSpecificImageList(of: sender.title!)
+        // model.setToShowSpecificImageList(of: sender.title!)
+        
+        model.initializeCategoryItems()
+        
+        model.currentCategory = K.categoryDict[sender.title!]!
+        
+        model.setProgressView(progressView: progressView)
+        model.fetchClothesImages(page: 1) { [weak self] in
+            self!.model.setProgressRate(progressView: self!.progressView, currentValue: 5, totalValue: 5)
+            self!.collectionView.reloadData()
+            self!.collectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
+        }
         
         for index in toolbar.items!.indices {
             toolbar.items![index].tintColor = .systemGray4
@@ -45,8 +56,32 @@ class CategoryViewController: UIViewController {
         if let senderIndex = toolbar.items?.firstIndex(of: sender) {
             toolbar.items![senderIndex].tintColor = .black
         }
+    }
+    
+    @IBAction func pageNumberTapped(_ sender: UIButton) {
+        guard let pageNumber = sender.titleLabel!.text else {
+            return
+        }
+        // page 숫자가 눌리면 해당 숫자의 페이지 정보를 가져온다.
+        model.initializeCategoryItems()
         
-        self.collectionView.reloadData()
+        model.setProgressView(progressView: progressView)
+        
+        model.fetchClothesImages(page: Int(pageNumber)!) { [weak self] in
+            self!.model.setProgressRate(progressView: self!.progressView, currentValue: 5, totalValue: 5)
+            self!.collectionView.reloadData()
+            self!.collectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
+        }
+    }
+    
+    @IBAction func pageLeftTapped(_ sender: UIButton) {
+        // 페이지 5개 모두 -5한 값을 넣어주고 화면에는 보여지는 페이지의 제일 앞을 보여준다.
+        // 만약 페이지 5개 모두에 -5를 했다면 맨 처음 페이지를 보여준다.
+    }
+    
+    @IBAction func pageRightTapped(_ sender: UIButton) {
+        // 페이지 5개 모두 +5한 값을 넣어주고 화면에는 보여지는 페이지의 제일 앞을 보여준다.
+        // 만약 페이지 5개 모두에 +5를 했다면 맨 처음 페이지를 보여준다.
     }
 }
 
@@ -76,6 +111,15 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
         vc.clothesInfo = info
         
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        if kind == UICollectionView.elementKindSectionFooter {
+            let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "footer", for: indexPath)
+            return footer
+        } else {
+            return UICollectionReusableView()
+        }
     }
 }
 

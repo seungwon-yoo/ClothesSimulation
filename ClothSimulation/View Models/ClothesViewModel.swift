@@ -84,7 +84,7 @@ class ClothesViewModel {
     
     func fetchClothesInfo() {
         if let uid = UserInfo.shared.uid {
-            FirestoreService().fetchUserCloset(uid: uid) { result in
+            FirestoreService().fetchUserCloset(uid: uid) { [weak self] result in
                 switch result {
                 case .success(let categories):
                     for categoryDict in categories {

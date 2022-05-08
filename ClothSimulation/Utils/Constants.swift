@@ -8,6 +8,16 @@
 struct K {
     static var categoryList = ["OUTER", "TOP", "PANTS", "DRESS", "SKIRT"]
     
+    static let categoryDict = ["전체": "TOTAL",
+                        "아우터": "OUTER",
+                        "상의": "TOP",
+                        "바지": "PANTS",
+                        "원피스": "DRESS",
+                        "스커트": "SKIRT"]
+    
+    static let numberPerPageInCategory = 20
+    static let numberPerPageInTotal = 4
+    
     static let appName = "BestFit"
     
     // Segue Names
