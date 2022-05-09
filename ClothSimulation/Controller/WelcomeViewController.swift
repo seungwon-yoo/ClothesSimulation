@@ -10,6 +10,10 @@ import Firebase
 
 class WelcomeViewController: UIViewController {
     
+    @IBOutlet weak var textLabel1: UILabel!
+    @IBOutlet weak var textLabel2: UILabel!
+    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var registerButton: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
     
     override func viewWillAppear(_ animated: Bool) {
@@ -23,8 +27,18 @@ class WelcomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.UIButtonsAreHidden(true, button1: registerButton, button2: loginButton)
+        
         animateTitleLabel(of: titleLabel)
-        checkLogin()
+        
+        CategoryViewModel.shared.setupUI()
+        
+        
+        DispatchQueue.main.asyncAfter(deadline: .now()+3.0) {
+            self.textLabel1.isHidden = true
+            self.textLabel2.isHidden = true
+            self.checkLogin()
+        }
     }
 }
 
@@ -39,7 +53,7 @@ extension WelcomeViewController {
         let titleText = K.appName
         
         for letter in titleText {
-            Timer.scheduledTimer(withTimeInterval: 0.1 * charIndex, repeats: false) { timer in
+            Timer.scheduledTimer(withTimeInterval: 0.2 * charIndex, repeats: false) { timer in
                 self.titleLabel.text?.append(letter)
             }
             charIndex += 1.0
@@ -54,6 +68,13 @@ extension WelcomeViewController {
             
             // 미리 옷장에 옷 넣어두기
             ClothesViewModel.shared.fetchClothesInfo()
+        } else {
+            self.UIButtonsAreHidden(false, button1: self.registerButton, button2: self.loginButton)
         }
+    }
+    
+    func UIButtonsAreHidden(_ isHidden: Bool, button1: UIButton, button2: UIButton) {
+        button1.isHidden = isHidden
+        button2.isHidden = isHidden
     }
 }

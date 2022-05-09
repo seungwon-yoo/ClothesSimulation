@@ -182,6 +182,12 @@ class CategoryViewModel {
         }
     }
     
+    func setupUI() {
+        fetchClothesImages(page: 1) {
+            return
+        }
+    }
+    
     // 특정 카테고리의 이미지를 가져옴
     func fetchClothesImages(page: Int, completion: @escaping () -> Void) {
 
@@ -222,7 +228,7 @@ class CategoryViewModel {
                         StorageService().loadImage(childURL: ref.fullPath) { [weak self] result in
                             switch result {
                             case .success(let image):
-                                self!.addImageInfo(of: self!.currentCategory, image: image, path: ref.fullPath)
+                                self?.addImageInfo(of: self!.currentCategory, image: image, path: ref.fullPath)
 
                                 completionCount -= 1
 

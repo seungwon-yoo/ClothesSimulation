@@ -22,15 +22,19 @@ class CategoryViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         
+        progressView.trackTintColor = .white
+        progressView.progressTintColor = .white
+        
         // FirestoreService().initializeUserInfo()
         
-        model.setupUI(progressView: progressView, toolbar: toolbar, collectionView: collectionView)
+        // model.setupUI(progressView: progressView, toolbar: toolbar, collectionView: collectionView)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         // self.navigationController?.navigationBar.topItem?.title = "의상"
+        self.collectionView.reloadData()
     }
     
     //MARK: - Emphasize the toolbar items
