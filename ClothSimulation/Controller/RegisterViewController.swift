@@ -52,9 +52,9 @@ extension RegisterViewController: UITextFieldDelegate {
 
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         
-        nameTextField.addUnderLine()
-        emailTextField.addUnderLine()
-        passwordTextField.addUnderLine()
+        // nameTextField.addUnderLine()
+        // emailTextField.addUnderLine()
+        // passwordTextField.addUnderLine()
     }
     
     @objc

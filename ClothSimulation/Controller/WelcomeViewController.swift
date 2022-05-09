@@ -10,8 +10,7 @@ import Firebase
 
 class WelcomeViewController: UIViewController {
     
-    @IBOutlet weak var textLabel1: UILabel!
-    @IBOutlet weak var textLabel2: UILabel!
+    @IBOutlet weak var textLabel: UILabel!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var registerButton: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
@@ -35,8 +34,7 @@ class WelcomeViewController: UIViewController {
         
         
         DispatchQueue.main.asyncAfter(deadline: .now()+3.0) {
-            self.textLabel1.isHidden = true
-            self.textLabel2.isHidden = true
+            self.textLabel.isHidden = true
             self.checkLogin()
         }
     }
