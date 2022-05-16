@@ -14,7 +14,7 @@ class CategoryCell : UICollectionViewCell {
     
     func update(info: ImageInfo) {
         productImageView.image = info.image
-        productName.text = String(info.number)
+        productName.text = info.name
         // label.text = String(info.id)
     }
 }

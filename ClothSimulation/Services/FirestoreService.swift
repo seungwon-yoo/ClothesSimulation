@@ -89,7 +89,7 @@ func insertClothesInfo(imageInfo: ImageInfo, uid: String) {
             return nil
         }
         
-        guard let oldFashionArray = uidDocument.data()?[imageInfo.category] as? [Int] else {
+        guard let oldFashionArray = uidDocument.data()?[imageInfo.category] as? [String] else {
             let error = NSError(
                 domain: "AppErrorDomain",
                 code: -1,
@@ -101,8 +101,8 @@ func insertClothesInfo(imageInfo: ImageInfo, uid: String) {
             return nil
         }
         
-        var oldFashionSet: Set<Int> = Set(oldFashionArray)
-        oldFashionSet.insert(imageInfo.number)
+        var oldFashionSet: Set<String> = Set(oldFashionArray)
+        oldFashionSet.insert(imageInfo.name)
         
         transaction.updateData([imageInfo.category: Array(oldFashionSet)], forDocument: uidReference)
         return nil
@@ -127,7 +127,7 @@ func deleteClothesInfo(imageInfo: ImageInfo, uid: String) {
             return nil
         }
         
-        guard var oldFashionArray = uidDocument.data()?[imageInfo.category] as? [Int] else {
+        guard var oldFashionArray = uidDocument.data()?[imageInfo.category] as? [String] else {
             let error = NSError(
                 domain: "AppErrorDomain",
                 code: -1,
@@ -139,8 +139,8 @@ func deleteClothesInfo(imageInfo: ImageInfo, uid: String) {
             return nil
         }
         
-        for (i, num) in oldFashionArray.enumerated() {
-            if num == imageInfo.number {
+        for (i, name) in oldFashionArray.enumerated() {
+            if name == imageInfo.name {
                 oldFashionArray.remove(at: i)
             }
         }

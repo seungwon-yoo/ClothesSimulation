@@ -22,18 +22,18 @@ class ClothesViewModel {
         totalImageInfoList.append(ImageInfo(category: category, image: image, path: path))
     }
     
-    func addImageInfo(of category: String, image: UIImage, number: Int) {
-        totalImageInfoList.append(ImageInfo(category: category, image: image, number: number))
+    func addImageInfo(of category: String, image: UIImage, name: String) {
+        totalImageInfoList.append(ImageInfo(category: category, image: image, name: name))
     }
     
-    func addImageInfoSelectively(of category: String, image: UIImage, number: Int) {
+    func addImageInfoSelectively(of category: String, image: UIImage, name: String) {
         for imageInfo in totalImageInfoList {
-            if imageInfo.category == category && imageInfo.number == number {
+            if imageInfo.category == category && imageInfo.name == name {
                 return
             }
         }
         
-        addImageInfo(of: category, image: image, number: number)
+        addImageInfo(of: category, image: image, name: name)
     }
     
     func deleteImageInfo(imageInfo: ImageInfo) {
@@ -42,7 +42,7 @@ class ClothesViewModel {
         // 현재 삭제 후 바로 CollectionView에 반영되지 않는 문제가 있음.
         for (i, info) in totalImageInfoList.enumerated() {
             if info.category == imageInfo.category {
-                if info.number == imageInfo.number {
+                if info.name == imageInfo.name {
                     totalImageInfoList.remove(at: i)
                 }
             }
@@ -92,7 +92,7 @@ class ClothesViewModel {
                         let elements = categoryDict.value
                         
                         if K.categoryList.contains(category) {
-                            for element in elements as! Array<Int> {
+                            for element in elements as! Array<String> {
                                 let fullPath = "clothes/\(category)/\(element).png"
                                 
                                 StorageService().loadImage(childURL: fullPath) { [weak self] result in

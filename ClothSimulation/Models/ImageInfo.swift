@@ -11,7 +11,7 @@ import UIKit
 struct ImageInfo {
     let category: String
     let image: UIImage
-    let number: Int
+    let name: String
     
     init(category: String, image: UIImage, path: String) {
         self.category = category
@@ -20,13 +20,13 @@ struct ImageInfo {
         let start = path.index(path.lastIndex(of: "/")!, offsetBy: 1)
         let end = path.index(path.endIndex, offsetBy: -5)
         
-        self.number = Int(path[start...end])!
+        self.name = String(path[start...end])
     }
     
-    init(category: String, image: UIImage, number: Int) {
+    init(category: String, image: UIImage, name: String) {
         self.category = category
         self.image = image
-        self.number = number
+        self.name = name
     }
     
     func getImage() -> UIImage? {

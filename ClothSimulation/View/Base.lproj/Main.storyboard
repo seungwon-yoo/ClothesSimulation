@@ -323,10 +323,6 @@
                             <sceneKitView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kGf-Ap-hgJ">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="744"/>
                                 <gestureRecognizers/>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="6wh-GH-P2E" appends="YES" id="r1B-kC-MAs"/>
-                                    <outletCollection property="gestureRecognizers" destination="MQA-Pn-k10" appends="YES" id="Vaf-cF-uQ3"/>
-                                </connections>
                             </sceneKitView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="4Za-EH-BZD">
                                 <rect key="frame" x="0.0" y="644" width="414" height="100"/>
@@ -445,23 +441,12 @@
                     <tabBarItem key="tabBarItem" title="나의 모델" image="person" catalog="system" id="qgj-E0-Z2h"/>
                     <connections>
                         <outlet property="collectionView" destination="4Za-EH-BZD" id="Teo-FP-9Vt"/>
-                        <outlet property="pinchGestureRecognizer" destination="MQA-Pn-k10" id="CpB-Hn-nth"/>
                         <outlet property="sceneView" destination="kGf-Ap-hgJ" id="A2G-6P-Nlz"/>
                         <outlet property="toolbar" destination="swx-bt-NNG" id="68Q-Vp-3am"/>
                         <segue destination="2cq-vW-4aF" kind="show" identifier="FitToWelcome" id="tOb-Kl-TgW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="6wh-GH-P2E">
-                    <connections>
-                        <action selector="panAction:" destination="BYZ-38-t0r" id="0ho-ey-gc6"/>
-                    </connections>
-                </panGestureRecognizer>
-                <pinchGestureRecognizer id="MQA-Pn-k10">
-                    <connections>
-                        <action selector="pinchAction:" destination="BYZ-38-t0r" id="r5X-tU-QIY"/>
-                    </connections>
-                </pinchGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2658" y="665"/>
         </scene>
@@ -535,7 +520,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4T1-ln-jYq">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="4T1-ln-jYq">
                                         <rect key="frame" x="0.0" y="20.5" width="374" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <nil key="textColor"/>
@@ -632,7 +617,7 @@
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="6pm-Ir-EZC">
                                     <size key="itemSize" width="138" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="50" height="50"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
@@ -649,7 +634,7 @@
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WUX-Va-ork">
                                                             <rect key="frame" x="0.0" y="0.0" width="138" height="89.5"/>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="의상 이름" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZwV-hI-WVR">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="의상 이름" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ZwV-hI-WVR">
                                                             <rect key="frame" x="0.0" y="89.5" width="138" height="38.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
@@ -671,103 +656,6 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
-                                <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="footer" id="JCd-71-PJq">
-                                    <rect key="frame" x="0.0" y="128" width="414" height="50"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="WhM-iY-DyG">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rwt-Dx-4l7">
-                                                    <rect key="frame" x="0.0" y="9.5" width="138" height="31"/>
-                                                    <state key="normal" title="Button"/>
-                                                    <buttonConfiguration key="configuration" style="plain" image="chevron.backward" catalog="system">
-                                                        <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    </buttonConfiguration>
-                                                    <connections>
-                                                        <action selector="pageLeftTapped:" destination="Hyc-I1-odO" eventType="touchUpInside" id="UAl-5o-brV"/>
-                                                    </connections>
-                                                </button>
-                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Hjb-Lf-vdR">
-                                                    <rect key="frame" x="138" y="8" width="138" height="34.5"/>
-                                                    <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="246" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sbG-ae-XaN">
-                                                            <rect key="frame" x="0.0" y="0.0" width="11.5" height="34.5"/>
-                                                            <state key="normal" title="Button"/>
-                                                            <buttonConfiguration key="configuration" style="plain" title="1">
-                                                                <fontDescription key="titleFontDescription" type="system" pointSize="17"/>
-                                                                <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            </buttonConfiguration>
-                                                            <connections>
-                                                                <action selector="pageNumberTapped:" destination="Hyc-I1-odO" eventType="touchUpInside" id="YPJ-N1-9RT"/>
-                                                            </connections>
-                                                        </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RYg-19-GfN">
-                                                            <rect key="frame" x="31.5" y="0.0" width="11.5" height="34.5"/>
-                                                            <state key="normal" title="Button"/>
-                                                            <buttonConfiguration key="configuration" style="plain" title="2">
-                                                                <fontDescription key="titleFontDescription" type="system" pointSize="17"/>
-                                                                <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            </buttonConfiguration>
-                                                            <connections>
-                                                                <action selector="pageNumberTapped:" destination="Hyc-I1-odO" eventType="touchUpInside" id="9YX-6Q-5rG"/>
-                                                            </connections>
-                                                        </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VH0-pT-s89">
-                                                            <rect key="frame" x="63" y="0.0" width="12" height="34.5"/>
-                                                            <state key="normal" title="Button"/>
-                                                            <buttonConfiguration key="configuration" style="plain" title="3">
-                                                                <fontDescription key="titleFontDescription" type="system" pointSize="17"/>
-                                                                <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            </buttonConfiguration>
-                                                            <connections>
-                                                                <action selector="pageNumberTapped:" destination="Hyc-I1-odO" eventType="touchUpInside" id="go8-CM-58O"/>
-                                                            </connections>
-                                                        </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="247" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f8K-wd-2OG">
-                                                            <rect key="frame" x="95" y="0.0" width="11.5" height="34.5"/>
-                                                            <state key="normal" title="Button"/>
-                                                            <buttonConfiguration key="configuration" style="plain" title="4">
-                                                                <fontDescription key="titleFontDescription" type="system" pointSize="17"/>
-                                                                <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            </buttonConfiguration>
-                                                            <connections>
-                                                                <action selector="pageNumberTapped:" destination="Hyc-I1-odO" eventType="touchUpInside" id="BEV-Hc-g60"/>
-                                                            </connections>
-                                                        </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qcL-fN-HPO">
-                                                            <rect key="frame" x="126.5" y="0.0" width="11.5" height="34.5"/>
-                                                            <state key="normal" title="Button"/>
-                                                            <buttonConfiguration key="configuration" style="plain" title="5">
-                                                                <fontDescription key="titleFontDescription" type="system" pointSize="17"/>
-                                                                <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            </buttonConfiguration>
-                                                            <connections>
-                                                                <action selector="pageNumberTapped:" destination="Hyc-I1-odO" eventType="touchUpInside" id="iU1-5p-r8i"/>
-                                                            </connections>
-                                                        </button>
-                                                    </subviews>
-                                                </stackView>
-                                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ce3-L6-C1D">
-                                                    <rect key="frame" x="276" y="9.5" width="138" height="31"/>
-                                                    <state key="normal" title="Button"/>
-                                                    <buttonConfiguration key="configuration" style="plain" image="chevron.right" catalog="system">
-                                                        <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    </buttonConfiguration>
-                                                    <connections>
-                                                        <action selector="pageRightTapped:" destination="Hyc-I1-odO" eventType="touchUpInside" id="ee8-5I-A73"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                        </stackView>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="WhM-iY-DyG" firstAttribute="top" secondItem="JCd-71-PJq" secondAttribute="top" id="636-jA-pNa"/>
-                                        <constraint firstItem="WhM-iY-DyG" firstAttribute="leading" secondItem="JCd-71-PJq" secondAttribute="leading" id="ISM-cr-m3T"/>
-                                        <constraint firstAttribute="bottom" secondItem="WhM-iY-DyG" secondAttribute="bottom" id="ckJ-so-AZu"/>
-                                        <constraint firstAttribute="trailing" secondItem="WhM-iY-DyG" secondAttribute="trailing" id="eZ1-aT-Hqr"/>
-                                    </constraints>
-                                </collectionReusableView>
                             </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="B2D-XE-EtB"/>
@@ -777,11 +665,11 @@
                             <constraint firstItem="jn5-nb-Lbu" firstAttribute="top" secondItem="Mun-fX-EQC" secondAttribute="bottom" id="FcN-bO-8Fz"/>
                             <constraint firstItem="3Aa-9f-gsC" firstAttribute="leading" secondItem="B2D-XE-EtB" secondAttribute="leading" id="GdZ-Ro-mZm"/>
                             <constraint firstItem="Mun-fX-EQC" firstAttribute="trailing" secondItem="B2D-XE-EtB" secondAttribute="trailing" id="IdF-Ot-1dD"/>
+                            <constraint firstItem="B2D-XE-EtB" firstAttribute="bottom" secondItem="3Aa-9f-gsC" secondAttribute="bottom" id="LOk-2G-hME"/>
                             <constraint firstItem="jn5-nb-Lbu" firstAttribute="trailing" secondItem="B2D-XE-EtB" secondAttribute="trailing" id="U8P-a0-PMl"/>
                             <constraint firstItem="Mun-fX-EQC" firstAttribute="top" secondItem="B2D-XE-EtB" secondAttribute="top" id="VZs-co-sHR"/>
                             <constraint firstItem="3Aa-9f-gsC" firstAttribute="top" secondItem="jn5-nb-Lbu" secondAttribute="bottom" id="XDa-8f-yiT"/>
                             <constraint firstItem="Mun-fX-EQC" firstAttribute="leading" secondItem="B2D-XE-EtB" secondAttribute="leading" id="fxc-XX-swk"/>
-                            <constraint firstItem="B2D-XE-EtB" firstAttribute="bottom" secondItem="3Aa-9f-gsC" secondAttribute="bottom" id="iex-Vc-bBB"/>
                             <constraint firstItem="jn5-nb-Lbu" firstAttribute="leading" secondItem="B2D-XE-EtB" secondAttribute="leading" id="vzX-EC-GOE"/>
                         </constraints>
                     </view>
@@ -970,8 +858,6 @@
         <image name="Image" width="1000" height="1000"/>
         <image name="Image-1" width="1000" height="1000"/>
         <image name="at" catalog="system" width="128" height="124"/>
-        <image name="chevron.backward" catalog="system" width="96" height="128"/>
-        <image name="chevron.right" catalog="system" width="96" height="128"/>
         <image name="google.png" width="18" height="18"/>
         <image name="googleIcon" width="25" height="25"/>
         <image name="house" catalog="system" width="128" height="106"/>

@@ -15,8 +15,8 @@ struct K {
                         "원피스": "DRESS",
                         "스커트": "SKIRT"]
     
-    static let numberPerPageInCategory = 20
-    static let numberPerPageInTotal = 4
+    static let numberPerPageInCategory = 18
+    static let numberPerPageInTotal = 3
     
     static let appName = "BestFit"
     

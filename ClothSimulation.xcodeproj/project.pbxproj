@@ -179,7 +179,7 @@
 				E35EDF9927C088D9009CF075 /* AppDelegate.swift */,
 				E35EDF9B27C088D9009CF075 /* SceneDelegate.swift */,
 				E30296762820182800EF774C /* View Models */,
-				E35EDFAF27C0D68A009CF075 /* Controller */,
+				E35EDFAF27C0D68A009CF075 /* Controllers */,
 				E3B1330A2808145E0073FB62 /* Custom Cells */,
 				E35EDFB027C0D6B8009CF075 /* View */,
 				E35EDFA227C088DB009CF075 /* Assets.xcassets */,
@@ -191,7 +191,7 @@
 			path = ClothSimulation;
 			sourceTree = "<group>";
 		};
-		E35EDFAF27C0D68A009CF075 /* Controller */ = {
+		E35EDFAF27C0D68A009CF075 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				E35EDFAD27C0D614009CF075 /* WelcomeViewController.swift */,
@@ -205,7 +205,7 @@
 				E37EAFF828116C9300639BB0 /* CustomSideMenuNavigation.swift */,
 				E3D9071627CF5E01009A5935 /* ARViewController.swift */,
 			);
-			path = Controller;
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		E35EDFB027C0D6B8009CF075 /* View */ = {

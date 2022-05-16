@@ -8,10 +8,9 @@
 import UIKit
 
 class CategoryViewController: UIViewController {
-    
     @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var toolbar: UIToolbar!
-    @IBOutlet var collectionView: UICollectionView!
+    @IBOutlet weak var collectionView: UICollectionView!
     
     let model = CategoryViewModel.shared
     
@@ -25,22 +24,20 @@ class CategoryViewController: UIViewController {
         progressView.trackTintColor = .white
         progressView.progressTintColor = .white
         
-        // FirestoreService().initializeUserInfo()
+        collectionView.register(PageCollectionViewCell.nib(), forCellWithReuseIdentifier: PageCollectionViewCell.identifier)
         
-        // model.setupUI(progressView: progressView, toolbar: toolbar, collectionView: collectionView)
+        // tool bar 선택 색상
+        toolbar.items![toolbar.items!.startIndex].tintColor = .black
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        // self.navigationController?.navigationBar.topItem?.title = "의상"
         self.collectionView.reloadData()
     }
     
     //MARK: - Emphasize the toolbar items
     @IBAction func itemTapped(_ sender: UIBarButtonItem) {
-        
-        // model.setToShowSpecificImageList(of: sender.title!)
         
         model.initializeCategoryItems()
         
@@ -60,32 +57,6 @@ class CategoryViewController: UIViewController {
         if let senderIndex = toolbar.items?.firstIndex(of: sender) {
             toolbar.items![senderIndex].tintColor = .black
         }
-    }
-    
-    @IBAction func pageNumberTapped(_ sender: UIButton) {
-        guard let pageNumber = sender.titleLabel!.text else {
-            return
-        }
-        // page 숫자가 눌리면 해당 숫자의 페이지 정보를 가져온다.
-        model.initializeCategoryItems()
-        
-        model.setProgressView(progressView: progressView)
-        
-        model.fetchClothesImages(page: Int(pageNumber)!) { [weak self] in
-            self!.model.setProgressRate(progressView: self!.progressView, currentValue: 5, totalValue: 5)
-            self!.collectionView.reloadData()
-            self!.collectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
-        }
-    }
-    
-    @IBAction func pageLeftTapped(_ sender: UIButton) {
-        // 페이지 5개 모두 -5한 값을 넣어주고 화면에는 보여지는 페이지의 제일 앞을 보여준다.
-        // 만약 페이지 5개 모두에 -5를 했다면 맨 처음 페이지를 보여준다.
-    }
-    
-    @IBAction func pageRightTapped(_ sender: UIButton) {
-        // 페이지 5개 모두 +5한 값을 넣어주고 화면에는 보여지는 페이지의 제일 앞을 보여준다.
-        // 만약 페이지 5개 모두에 +5를 했다면 맨 처음 페이지를 보여준다.
     }
 }
 
@@ -117,12 +88,14 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        if kind == UICollectionView.elementKindSectionFooter {
-            let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "footer", for: indexPath)
-            return footer
-        } else {
-            return UICollectionReusableView()
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if collectionView.contentOffset.y > (collectionView.contentSize.height - collectionView.bounds.size.height) {
+            if !model.fetchingMore {
+                model.beginBatchFetch {
+                    self.model.fetchingMore = false
+                    self.collectionView.reloadData()
+                }
+            }
         }
     }
 }
@@ -143,13 +116,25 @@ extension CategoryViewController: UICollectionViewDelegateFlowLayout {
     // cell 사이즈( 옆 라인을 고려하여 설정 )
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let width = collectionView.frame.width / 3 - 1 ///  3등분하여 배치, 옆 간격이 1이므로 1을 빼줌
-        
-//        print("collectionView width=\(collectionView.frame.width)")
-//        print("cell하나당 width=\(width)")
-//        print("root view width = \(self.view.frame.width)")
-        
-        let size = CGSize(width: width, height: width)
-        return size
+        if indexPath.row == model.countOfImageList {
+            
+            let width = collectionView.frame.width
+            
+            let height = collectionView.frame.width / 2 - 1
+            
+            let size = CGSize(width: width, height: height)
+            
+            return size
+            
+        } else {
+            let width = collectionView.frame.width / 2 - 1 ///  2등분하여 배치, 옆 간격이 1이므로 1을 빼줌
+            
+            //        print("collectionView width=\(collectionView.frame.width)")
+            //        print("cell하나당 width=\(width)")
+            //        print("root view width = \(self.view.frame.width)")
+            
+            let size = CGSize(width: width, height: width)
+            return size
+        }
     }
 }

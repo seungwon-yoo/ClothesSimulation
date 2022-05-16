@@ -29,6 +29,8 @@ class ClothesViewController: UIViewController, UINavigationControllerDelegate {
         
         setupLongPressGestureonCollectionView(collectionView: collectionView)
         
+        sceneView.allowsCameraControl = true
+        
         // set3DModel(name: "art.scnassets/bboyFixed.scn")
         
         // model.fetchClothesInfo(collectionView: collectionView)
@@ -40,34 +42,34 @@ class ClothesViewController: UIViewController, UINavigationControllerDelegate {
         self.collectionView.reloadData()
     }
     
-    //MARK: - 3D model View settings
-    @IBAction func panAction(_ sender: UIPanGestureRecognizer) {
-        let transition = sender.translation(in: sceneView)
-        sceneView.defaultCameraController.rotateBy(x: Float(-transition.x), y: Float(0))
-        sender.setTranslation(CGPoint.zero, in: sceneView)
-    }
+//    //MARK: - 3D model View settings
+//    @IBAction func panAction(_ sender: UIPanGestureRecognizer) {
+//        let transition = sender.translation(in: sceneView)
+//        sceneView.defaultCameraController.rotateBy(x: Float(-transition.x), y: Float(0))
+//        sender.setTranslation(CGPoint.zero, in: sceneView)
+//    }
     
-    @IBAction func pinchAction(_ sender: UIPinchGestureRecognizer) {
-        // 모델 자체를 확대 축소해야 한다.
-        let cameraNode = sceneView.scene?.rootNode.childNodes[1]
-        let maximumFOV:CGFloat = 25
-        let minimumFOV:CGFloat = 90
-        
-        switch sender.state {
-        case .began:
-            break
-        case .changed:
-            cameraNode?.camera?.fieldOfView = (cameraNode?.camera!.fieldOfView)! - sender.velocity
-            if (cameraNode?.camera!.fieldOfView)! <= maximumFOV {
-                cameraNode?.camera?.fieldOfView = maximumFOV
-            }
-            if (cameraNode?.camera!.fieldOfView)! >= minimumFOV {
-                cameraNode?.camera?.fieldOfView = minimumFOV
-            }
-        default:
-            break
-        }
-    }
+//    @IBAction func pinchAction(_ sender: UIPinchGestureRecognizer) {
+//        // 모델 자체를 확대 축소해야 한다.
+//        let cameraNode = sceneView.scene?.rootNode.childNodes[1]
+//        let maximumFOV:CGFloat = 25
+//        let minimumFOV:CGFloat = 90
+//
+//        switch sender.state {
+//        case .began:
+//            break
+//        case .changed:
+//            cameraNode?.camera?.fieldOfView = (cameraNode?.camera!.fieldOfView)! - sender.velocity
+//            if (cameraNode?.camera!.fieldOfView)! <= maximumFOV {
+//                cameraNode?.camera?.fieldOfView = maximumFOV
+//            }
+//            if (cameraNode?.camera!.fieldOfView)! >= minimumFOV {
+//                cameraNode?.camera?.fieldOfView = minimumFOV
+//            }
+//        default:
+//            break
+//        }
+//    }
     
     @IBAction func changeButtonPressed(_ sender: UIButton) {
         // Create the action buttons for the alert.

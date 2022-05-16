@@ -25,14 +25,14 @@ class CategoryItemViewController: UIViewController {
     @objc func addButtonPressed(_ sender: Any) {
         if let uid = UserInfo.shared.uid {
             FirestoreService().insertClothesInfo(imageInfo: clothesInfo!, uid: uid)
-            model.addImageInfoSelectively(of: clothesInfo!.category, image: clothesInfo!.image, number: clothesInfo!.number)
+            model.addImageInfoSelectively(of: clothesInfo!.category, image: clothesInfo!.image, name: clothesInfo!.name)
             model.setToShowSpecificImageList(of: model.currentCategory)
         }
     }
     
     func setInitialView() {
         categoryLabel?.text = clothesInfo?.category
-        nameLabel?.text = String(clothesInfo!.number)
+        nameLabel?.text = clothesInfo?.name
         imageView?.image = clothesInfo?.image
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonPressed(_:)))
