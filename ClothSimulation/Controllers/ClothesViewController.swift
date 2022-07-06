@@ -38,7 +38,7 @@ class ClothesViewController: UIViewController, UINavigationControllerDelegate {
         // 툴바 색 관련
         toolbar.items![toolbar.items!.startIndex].tintColor = .black
         
-        model.set3DModel(sceneView: sceneView, name: K.dancingMan)
+        model.set3DModel(sceneView: sceneView, name: "art.scnassets/personFixed.dae")
         
         setupLongPressGestureonCollectionView(collectionView: collectionView)
         
@@ -85,6 +85,11 @@ class ClothesViewController: UIViewController, UINavigationControllerDelegate {
 //    }
     
     @IBAction func changeButtonPressed(_ sender: UIButton) {
+        // Create and configure the alert controller.
+        let alert = UIAlertController(title: "모델 선택",
+                                      message: "",
+                                      preferredStyle: .actionSheet)
+        
         // Create the action buttons for the alert.
         let bulkyManAction = UIAlertAction(title: "일반 남성",
                                       style: .default) { (action) in
@@ -98,12 +103,14 @@ class ClothesViewController: UIViewController, UINavigationControllerDelegate {
                                         style: .default) { (action) in
             self.model.set3DModel(sceneView: self.sceneView, name: K.SMPLWoman)
         }
-        let cancelAction = UIAlertAction(title: "닫기", style: .cancel)
         
-        // Create and configure the alert controller.
-        let alert = UIAlertController(title: "모델 선택",
-                                      message: "",
-                                      preferredStyle: .actionSheet)
+        if let url = userModelService.userModelPath.value {
+            let userModelAction = UIAlertAction(title: "사용자 모델", style: .default) { (action) in
+                self.model.set3DModelUsingFileDirectory(sceneView: self.sceneView, url: url)
+            }
+            alert.addAction(userModelAction)
+        }
+        let cancelAction = UIAlertAction(title: "닫기", style: .cancel)
         
         alert.addAction(bulkyManAction)
         alert.addAction(skinnyManAction)

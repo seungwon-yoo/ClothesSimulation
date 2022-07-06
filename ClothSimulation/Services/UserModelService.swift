@@ -14,6 +14,12 @@ class UserModelService {
     
     var userModelPath: Observable<URL?> = Observable(nil)
     
+    init() {
+        if let path = self.getFilePathInDocuments(fileName: "my_mesh.obj") {
+            userModelPath.value = try! path.asURL()
+        }
+    }
+    
     func getUserModel(_ image: UIImage, completion: @escaping () -> Void) {
         let url = K.flaskURL + "createUserModel"
         let headers: HTTPHeaders = ["Content-type": "multipart/form-data"]
