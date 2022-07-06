@@ -257,7 +257,7 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Image" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="beI-ik-EHW">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="closet" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="beI-ik-EHW">
                                 <rect key="frame" x="60" y="44" width="294" height="294"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="beI-ik-EHW" secondAttribute="height" multiplier="1:1" id="cBh-l6-918"/>
@@ -849,15 +849,15 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ksb-cu-jyM"/>
+        <segue reference="Ktq-Zh-xh0"/>
         <segue reference="Z5F-ar-Tkx"/>
         <segue reference="3Qt-mh-WyO"/>
         <segue reference="oSr-C3-BNY"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="Image" width="1000" height="1000"/>
         <image name="Image-1" width="1000" height="1000"/>
         <image name="at" catalog="system" width="128" height="124"/>
+        <image name="closet" width="175" height="175"/>
         <image name="google.png" width="18" height="18"/>
         <image name="googleIcon" width="25" height="25"/>
         <image name="house" catalog="system" width="128" height="106"/>

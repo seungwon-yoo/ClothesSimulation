@@ -17,4 +17,6 @@ target 'ClothSimulation' do
   pod 'SideMenu', '~> 6.5.0'
   
   pod 'NVActivityIndicatorView'
+  
+  pod 'Alamofire'
 end

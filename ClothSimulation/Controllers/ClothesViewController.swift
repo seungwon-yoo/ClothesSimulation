@@ -15,12 +15,25 @@ class ClothesViewController: UIViewController, UINavigationControllerDelegate {
     @IBOutlet weak var collectionView: UICollectionView!
     
     let model = ClothesViewModel.shared
+    let userModelService = UserModelService.shared
     let activityIndicator = ActivityIndicatorService()
     
     let imagePickerController = UIImagePickerController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        userModelService.userModelPath.bind { url in
+            if let url = url {
+                self.model.set3DModelUsingFileDirectory(sceneView: self.sceneView, url: url)
+            }
+        }
+        
+//        userModelService.userModelPath.bind { path in
+//            if let path = path {
+//                self.model.set3DModel(sceneView: self.sceneView, name: path)
+//            }
+//        }
         
         // 툴바 색 관련
         toolbar.items![toolbar.items!.startIndex].tintColor = .black

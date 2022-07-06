@@ -1,0 +1,88 @@
+//
+//  UserModelService.swift
+//  ClothSimulation
+//
+//  Created by 유승원 on 2022/07/05.
+//
+
+import UIKit
+import Alamofire
+
+class UserModelService {
+    
+    static let shared = UserModelService()
+    
+    var userModelPath: Observable<URL?> = Observable(nil)
+    
+    func getUserModel(_ image: UIImage, completion: @escaping () -> Void) {
+        let url = K.flaskURL + "createUserModel"
+        let headers: HTTPHeaders = ["Content-type": "multipart/form-data"]
+        
+        AF.upload(multipartFormData: { multipart in
+            if let imageData = image.pngData() {
+                multipart.append(imageData, withName: "file", fileName: "\(UserInfo.shared.uid!).png", mimeType: "image/png")
+            }
+            //            if let imageData = image.jpegData(compressionQuality: 1) {
+            //                multipart.append(imageData, withName: "file", fileName: "k.jpg", mimeType: "image/jpeg")
+            //            }
+        },
+                  to: url,
+                  method: .post,
+                  headers: headers).responseJSON { response in
+            
+            switch response.result {
+            case .success:
+                print("Success")
+                guard let result = response.data else { return }
+                do {
+                    let decoder = JSONDecoder()
+                    
+                    let json = try decoder.decode(SceneModel.self, from: result)
+                    self.getTempUserModel(url: json.url)
+                    completion()
+                } catch {
+                    print("error!\(error)")
+                }
+                
+            case .failure(let e):
+                print(e)
+            }
+        }
+    }
+    
+    func getFilePathInDocuments(fileName:String) -> String? {
+        let path        = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
+        let url         = URL(fileURLWithPath: path)
+        let fileManager = FileManager.default
+        let filePath    = url.appendingPathComponent(fileName).path
+        
+        if (fileManager.fileExists(atPath: filePath)) {
+            return filePath
+        }else{
+            return nil
+        }
+    }
+    
+    func getTempUserModel(url: String) {
+        let destinationPath: DownloadRequest.Destination = { _, _ in
+            let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0];
+            let fileURL = documentsURL.appendingPathComponent("my_mesh.obj")
+            return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
+        }
+        
+        let url = K.flaskURL + url
+        AF.download(url, to: destinationPath)
+            .downloadProgress { progress in
+            }
+            .responseData { response in
+                switch response.result {
+                case .success:
+                    print("Success")
+                    // self.userModelPath.value = self.getFilePathInDocuments(fileName: "my_mesh.obj")
+                    self.userModelPath.value = response.fileURL
+                case .failure(let e):
+                    print(e)
+                }
+            }
+    }
+}

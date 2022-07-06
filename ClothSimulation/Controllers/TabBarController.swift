@@ -10,9 +10,11 @@ import SideMenu
 import Photos
 import PhotosUI
 import NVActivityIndicatorView
+import Alamofire
 
 class TabBarController: UITabBarController, UINavigationControllerDelegate {
-    
+    let model = ClothesViewModel.shared
+    let userModelService = UserModelService.shared
     let activityIndicator = ActivityIndicatorService()
     
     override func viewDidLoad() {
@@ -125,18 +127,37 @@ extension TabBarController: PHPickerViewControllerDelegate {
         guard results.isEmpty != true else { return }
         
         // 1. 선택한 이미지를 웹 서버로 전송
+        let itemProvider = results[0].itemProvider
+        
+        if itemProvider.canLoadObject(ofClass: UIImage.self) {
+            itemProvider.loadObject(ofClass: UIImage.self) { object, error in
+                if let error = error {
+                    print(error.localizedDescription)
+                }
+                
+                if let image = object as? UIImage {
+                    self.userModelService.getUserModel(image) {
+                        // 로딩창 종료 로직
+                        self.activityIndicator.endActivityIndicator(view: self.view)
+                    }
+                    // self.userModelService.getTempUserModel()
+                }
+            }
+        }
+        
+        
         // 2. 로딩창 띄우기
         DispatchQueue.main.async {
             self.activityIndicator.setActivityIndicator(view: self.view)
         }
-        
-        // 로딩창 종료 로직
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
-            self.activityIndicator.endActivityIndicator(view: self.view)
-        }
+//
+//        // 로딩창 종료 로직
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+//            self.activityIndicator.endActivityIndicator(view: self.view)
+//        }
     }
     
-
+    
     
     func pickImage() {
         var configuration = PHPickerConfiguration()
@@ -159,6 +180,17 @@ extension TabBarController: UIImagePickerControllerDelegate {
         picker.dismiss(animated: true, completion: nil)
         
         // 1. 선택한 이미지를 웹 서버로 전송
+        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage{
+            // userModelService.getTempUserModel()
+            userModelService.getUserModel(image) {
+                // 로딩창 종료 로직
+                self.activityIndicator.endActivityIndicator(view: self.view)
+            }
+            
+            dismiss(animated: true, completion: nil)
+        }
+        
+        
         // 2. 로딩창 띄우기
         DispatchQueue.main.async {
             self.activityIndicator.setActivityIndicator(view: self.view)

@@ -24,8 +24,6 @@ class CategoryViewController: UIViewController {
         progressView.trackTintColor = .white
         progressView.progressTintColor = .white
         
-        collectionView.register(PageCollectionViewCell.nib(), forCellWithReuseIdentifier: PageCollectionViewCell.identifier)
-        
         // tool bar 선택 색상
         toolbar.items![toolbar.items!.startIndex].tintColor = .black
     }

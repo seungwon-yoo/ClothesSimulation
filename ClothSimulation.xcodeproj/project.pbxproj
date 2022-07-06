@@ -33,12 +33,15 @@
 		E37EB00728166F5D00639BB0 /* CategoryItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37EB00628166F5D00639BB0 /* CategoryItemViewController.swift */; };
 		E37EB00B2816D9E700639BB0 /* ClothesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37EB00A2816D9E700639BB0 /* ClothesViewModel.swift */; };
 		E37EB00E28193EE600639BB0 /* ClothesCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37EB00D28193EE600639BB0 /* ClothesCollectionCell.swift */; };
-		E3AC9CBC280836CC006C143B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3AC9CBB280836CC006C143B /* GoogleService-Info.plist */; };
+		E39054922851ED5E0072BEEE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E39054912851ED5E0072BEEE /* GoogleService-Info.plist */; };
 		E3B1330528080C900073FB62 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B1330428080C900073FB62 /* CategoryViewController.swift */; };
 		E3B1330C280814760073FB62 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B1330B280814760073FB62 /* CategoryCell.swift */; };
 		E3B7C40228239B3200A4F1E3 /* ActivityIndicatorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B7C40128239B3200A4F1E3 /* ActivityIndicatorService.swift */; };
 		E3D9071727CF5E01009A5935 /* ARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D9071627CF5E01009A5935 /* ARViewController.swift */; };
 		E3D9071B27CF6205009A5935 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = E3D9071A27CF6205009A5935 /* art.scnassets */; };
+		E3E189C9287405AE007E7EBA /* UserModelService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E189C8287405AE007E7EBA /* UserModelService.swift */; };
+		E3E189CB287411D3007E7EBA /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E189CA287411D3007E7EBA /* Observable.swift */; };
+		E3E189CD287524A0007E7EBA /* SceneModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E189CC287524A0007E7EBA /* SceneModel.swift */; };
 		E3EC05E227C34294007DD29D /* ImageInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3EC05E127C34294007DD29D /* ImageInfo.swift */; };
 		E3EC05E427C342ED007DD29D /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3EC05E327C342ED007DD29D /* CategoryViewModel.swift */; };
 		E3EC05E627C3BC73007DD29D /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3EC05E527C3BC73007DD29D /* Settings.swift */; };
@@ -75,12 +78,15 @@
 		E37EB00628166F5D00639BB0 /* CategoryItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryItemViewController.swift; sourceTree = "<group>"; };
 		E37EB00A2816D9E700639BB0 /* ClothesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothesViewModel.swift; sourceTree = "<group>"; };
 		E37EB00D28193EE600639BB0 /* ClothesCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothesCollectionCell.swift; sourceTree = "<group>"; };
-		E3AC9CBB280836CC006C143B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Desktop/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E39054912851ED5E0072BEEE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E3B1330428080C900073FB62 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		E3B1330B280814760073FB62 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		E3B7C40128239B3200A4F1E3 /* ActivityIndicatorService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorService.swift; sourceTree = "<group>"; };
 		E3D9071627CF5E01009A5935 /* ARViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewController.swift; sourceTree = "<group>"; };
 		E3D9071A27CF6205009A5935 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
+		E3E189C8287405AE007E7EBA /* UserModelService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModelService.swift; sourceTree = "<group>"; };
+		E3E189CA287411D3007E7EBA /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		E3E189CC287524A0007E7EBA /* SceneModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneModel.swift; sourceTree = "<group>"; };
 		E3EC05E127C34294007DD29D /* ImageInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageInfo.swift; sourceTree = "<group>"; };
 		E3EC05E327C342ED007DD29D /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
 		E3EC05E527C3BC73007DD29D /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
@@ -147,6 +153,7 @@
 				E31FE321281A9E2C000B9B34 /* StorageService.swift */,
 				E31FE323281BA09C000B9B34 /* FirestoreService.swift */,
 				E3B7C40128239B3200A4F1E3 /* ActivityIndicatorService.swift */,
+				E3E189C8287405AE007E7EBA /* UserModelService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -185,8 +192,9 @@
 				E35EDFA227C088DB009CF075 /* Assets.xcassets */,
 				E35EDFA427C088DB009CF075 /* LaunchScreen.storyboard */,
 				E35EDFA727C088DB009CF075 /* Info.plist */,
-				E3AC9CBB280836CC006C143B /* GoogleService-Info.plist */,
+				E39054912851ED5E0072BEEE /* GoogleService-Info.plist */,
 				E3D9071A27CF6205009A5935 /* art.scnassets */,
+				E3E189CA287411D3007E7EBA /* Observable.swift */,
 			);
 			path = ClothSimulation;
 			sourceTree = "<group>";
@@ -233,8 +241,9 @@
 				E3EC05E127C34294007DD29D /* ImageInfo.swift */,
 				E3EC05E527C3BC73007DD29D /* Settings.swift */,
 				E37EAFFA2811703700639BB0 /* SideMenuModel.swift */,
-				E37EAFFE2812854F00639BB0 /* UserModel.swift */,
 				E37EB0042813D94E00639BB0 /* UserInfo.swift */,
+				E3E189CC287524A0007E7EBA /* SceneModel.swift */,
+				E37EAFFE2812854F00639BB0 /* UserModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -301,10 +310,10 @@
 			files = (
 				E35EDFA627C088DB009CF075 /* LaunchScreen.storyboard in Resources */,
 				E3D9071B27CF6205009A5935 /* art.scnassets in Resources */,
-				E3AC9CBC280836CC006C143B /* GoogleService-Info.plist in Resources */,
 				E35EDFA327C088DB009CF075 /* Assets.xcassets in Resources */,
 				E35EDFA127C088D9009CF075 /* Main.storyboard in Resources */,
 				E37EAFB628115AB300639BB0 /* SideMenuCell.xib in Resources */,
+				E39054922851ED5E0072BEEE /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -361,6 +370,7 @@
 				E37EAFF728116AA800639BB0 /* SideMenuViewController.swift in Sources */,
 				E3EC05E427C342ED007DD29D /* CategoryViewModel.swift in Sources */,
 				E31FE324281BA09C000B9B34 /* FirestoreService.swift in Sources */,
+				E3E189C9287405AE007E7EBA /* UserModelService.swift in Sources */,
 				E37EAFFD2811706400639BB0 /* SideMenuCell.swift in Sources */,
 				E35EDFB227C0D6E9009CF075 /* Constants.swift in Sources */,
 				E3EC05E627C3BC73007DD29D /* Settings.swift in Sources */,
@@ -372,6 +382,7 @@
 				E37EAFAE2811277300639BB0 /* TabBarController.swift in Sources */,
 				E35EDF9E27C088D9009CF075 /* ClothesViewController.swift in Sources */,
 				E35EDFAE27C0D614009CF075 /* WelcomeViewController.swift in Sources */,
+				E3E189CB287411D3007E7EBA /* Observable.swift in Sources */,
 				E3EC05E227C34294007DD29D /* ImageInfo.swift in Sources */,
 				E3B1330528080C900073FB62 /* CategoryViewController.swift in Sources */,
 				E37EAFFB2811703700639BB0 /* SideMenuModel.swift in Sources */,
@@ -384,6 +395,7 @@
 				E3B7C40228239B3200A4F1E3 /* ActivityIndicatorService.swift in Sources */,
 				E3029673282016CF00EF774C /* UITextField+Extensions.swift in Sources */,
 				E37EB0052813D94E00639BB0 /* UserInfo.swift in Sources */,
+				E3E189CD287524A0007E7EBA /* SceneModel.swift in Sources */,
 				E34F446127F0957900760822 /* RegisterViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

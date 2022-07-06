@@ -32,6 +32,9 @@ struct K {
     // Firebase Storage
     static let storageURL = "gs://clothsimulation-3af50.appspot.com/"
     
+    // flask server
+    static let flaskURL = "http://192.168.0.9:80/"
+    
     // Model Info
     static let dancingMan = "art.scnassets/FinalBaseMesh.obj"
     static let ordinaryMan = "art.scnassets/FinalBaseMesh.obj"
