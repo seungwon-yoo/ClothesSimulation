@@ -32,4 +32,8 @@ struct ImageInfo {
     func getImage() -> UIImage? {
         return image
     }
+    
+    func getImageName() -> String {
+        return name
+    }
 }

@@ -38,7 +38,8 @@ class ClothesViewController: UIViewController, UINavigationControllerDelegate {
         // 툴바 색 관련
         toolbar.items![toolbar.items!.startIndex].tintColor = .black
         
-        model.set3DModel(sceneView: sceneView, name: "art.scnassets/personFixed.dae")
+        // model.set3DModel(sceneView: sceneView, name: "art.scnassets/personFixed.dae")
+        model.setTemp3DModel(sceneView: sceneView)
         
         setupLongPressGestureonCollectionView(collectionView: collectionView)
         
@@ -140,9 +141,7 @@ class ClothesViewController: UIViewController, UINavigationControllerDelegate {
 
 extension ClothesViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let image = model.imageInfo(at: indexPath.row).getImage() else {
-            return
-        }
+        let imageName = model.imageInfo(at: indexPath.row).getImageName()
         
         // 로딩창 띄우기
         DispatchQueue.main.async {

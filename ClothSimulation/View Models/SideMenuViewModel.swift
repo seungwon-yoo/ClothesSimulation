@@ -5,7 +5,6 @@
 //  Created by 유승원 on 2022/05/03.
 //
 
-import Foundation
 import UIKit
 
 class SideMenuViewModel {

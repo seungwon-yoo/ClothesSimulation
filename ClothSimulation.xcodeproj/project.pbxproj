@@ -179,12 +179,12 @@
 		E35EDF9827C088D9009CF075 /* ClothSimulation */ = {
 			isa = PBXGroup;
 			children = (
+				E35EDF9927C088D9009CF075 /* AppDelegate.swift */,
+				E35EDF9B27C088D9009CF075 /* SceneDelegate.swift */,
 				E30296752820174900EF774C /* Utils */,
 				E3029674282016D600EF774C /* Extensions */,
 				E31FE320281A9E05000B9B34 /* Services */,
 				E3EC05E027C34288007DD29D /* Models */,
-				E35EDF9927C088D9009CF075 /* AppDelegate.swift */,
-				E35EDF9B27C088D9009CF075 /* SceneDelegate.swift */,
 				E30296762820182800EF774C /* View Models */,
 				E35EDFAF27C0D68A009CF075 /* Controllers */,
 				E3B1330A2808145E0073FB62 /* Custom Cells */,

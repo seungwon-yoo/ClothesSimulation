@@ -91,4 +91,29 @@ class UserModelService {
                 }
             }
     }
+    
+    func getModelToPutClothes(clothes_name: String) {
+        let destinationPath: DownloadRequest.Destination = { _, _ in
+            let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0];
+            let fileURL = documentsURL.appendingPathComponent(clothes_name + ".obj")
+            return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
+        }
+        
+        let url = K.flaskURL + "putClothes/" + clothes_name
+        AF.download(url, to: destinationPath)
+            .downloadProgress { progress in
+            }
+            .responseData { response in
+                switch response.result {
+                case .success:
+                    print("Success")
+                    // self.userModelPath.value = self.getFilePathInDocuments(fileName: "my_mesh.obj")
+                    // self.userModelPath.value = response.fileURL
+                    // response.fileURL -> 의상을 입은 모델이 저장된 경로
+                    // 해당 경로를 set3DModel로 보내야 함.
+                case .failure(let e):
+                    print(e)
+                }
+            }
+    }
 }
