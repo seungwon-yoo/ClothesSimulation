@@ -733,14 +733,14 @@
             <objects>
                 <viewController id="2cq-vW-4aF" customClass="WelcomeViewController" customModule="ClothSimulation" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ERL-dn-mfa">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="9do-x4-b2t">
-                                <rect key="frame" x="100" y="642" width="214" height="91"/>
+                                <rect key="frame" x="100" y="626.5" width="214" height="86.5"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SNu-SI-Yag">
-                                        <rect key="frame" x="0.0" y="0.0" width="214" height="35.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="214" height="33"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="회원가입" cornerStyle="capsule">
                                             <fontDescription key="titleFontDescription" type="system" pointSize="18"/>
@@ -751,7 +751,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Qb-qx-fXh">
-                                        <rect key="frame" x="0.0" y="55.5" width="214" height="35.5"/>
+                                        <rect key="frame" x="0.0" y="53" width="214" height="33.5"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="로그인" cornerStyle="capsule">
                                             <fontDescription key="titleFontDescription" type="system" pointSize="18"/>
@@ -765,13 +765,13 @@
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="안녕하세요 전기정보공학과 가상피팅 어플입니다!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="iCo-u6-qfV" userLabel="Text Label">
-                                <rect key="frame" x="50" y="424" width="314" height="48"/>
+                                <rect key="frame" x="50" y="398.5" width="314" height="45"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BestFit" textAlignment="center" lineBreakMode="tailTruncation" minimumScaleFactor="0.10000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="IWH-OV-tKA">
-                                <rect key="frame" x="129" y="218" width="156.5" height="43"/>
+                                <rect key="frame" x="129" y="174" width="156.5" height="40.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="black" pointSize="44"/>
                                 <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -849,10 +849,10 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Ktq-Zh-xh0"/>
-        <segue reference="Z5F-ar-Tkx"/>
-        <segue reference="3Qt-mh-WyO"/>
-        <segue reference="oSr-C3-BNY"/>
+        <segue reference="tOb-Kl-TgW"/>
+        <segue reference="1Sr-cn-a0f"/>
+        <segue reference="XCO-QC-NyI"/>
+        <segue reference="0Qh-ey-uyT"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Image-1" width="1000" height="1000"/>
