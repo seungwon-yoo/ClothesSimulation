@@ -9,14 +9,16 @@ import UIKit
 import SceneKit
 
 class ClothesViewModel {
-
+    
     static let shared = ClothesViewModel()
     
     var imageInfoList: [ImageInfo] = []
-    var totalImageInfoList: [ImageInfo] = []
+    var totalImageInfoList: [ImageInfo] = [ImageInfo(category: "TOP", image: UIImage(named: "black_top")!, name: "black_top"), ImageInfo(category: "SKIRT", image: UIImage(named: "black_skirt")!, name: "black_skirt")]
     
     var currentCategory = "전체"
     let categoryDict = ["아우터": "OUTER", "상의": "TOP", "바지": "PANTS", "원피스": "DRESS", "스커트": "SKIRT"]
+    
+    var countOfImageList: Int { return imageInfoList.count }
     
     func addImageInfo(of category: String, image: UIImage, path: String) {
         totalImageInfoList.append(ImageInfo(category: category, image: image, path: path))
@@ -27,10 +29,8 @@ class ClothesViewModel {
     }
     
     func addImageInfoSelectively(of category: String, image: UIImage, name: String) {
-        for imageInfo in totalImageInfoList {
-            if imageInfo.category == category && imageInfo.name == name {
-                return
-            }
+        totalImageInfoList.forEach {
+            if $0.category == category && $0.name == name { return }
         }
         
         addImageInfo(of: category, image: image, name: name)
@@ -39,20 +39,13 @@ class ClothesViewModel {
     func deleteImageInfo(imageInfo: ImageInfo) {
         FirestoreService().deleteClothesInfo(imageInfo: imageInfo, uid: UserInfo.shared.uid!)
         
-        // 현재 삭제 후 바로 CollectionView에 반영되지 않는 문제가 있음.
-        for (i, info) in totalImageInfoList.enumerated() {
-            if info.category == imageInfo.category {
-                if info.name == imageInfo.name {
-                    totalImageInfoList.remove(at: i)
-                }
+        totalImageInfoList.enumerated().forEach {
+            if $1.category == imageInfo.category && $1.name == imageInfo.name {
+                totalImageInfoList.remove(at: $0)
             }
         }
         
         setToShowSpecificImageList(of: currentCategory)
-    }
-    
-    var countOfImageList: Int {
-        return imageInfoList.count
     }
     
     func setToShowSpecificImageList(of category: String = "전체") {
@@ -64,11 +57,9 @@ class ClothesViewModel {
             return
         }
         
-        for imageInfo in totalImageInfoList {
-            if imageInfo.category == categoryDict[category] {
-                imageInfoList.append(imageInfo)
-                
-                
+        totalImageInfoList.forEach {
+            if $0.category == categoryDict[category] {
+                imageInfoList.append($0)
             }
         }
     }
@@ -83,41 +74,41 @@ class ClothesViewModel {
     }
     
     func fetchClothesInfo() {
-        if let uid = UserInfo.shared.uid {
-            FirestoreService().fetchUserCloset(uid: uid) { [weak self] result in
-                switch result {
-                case .success(let categories):
-                    for categoryDict in categories {
-                        let category = categoryDict.key
-                        let elements = categoryDict.value
+        guard let uid = UserInfo.shared.uid else { return }
+        
+        FirestoreService().fetchUserCloset(uid: uid) { [weak self] result in
+            switch result {
+            case .success(let categories):
+                categories.forEach { category, elements in
+                    guard K.categoryList.contains(category) else { return }
+                    for element in elements as! Array<String> {
+                        let fullPath = "clothes/\(category)/\(element).png"
                         
-                        if K.categoryList.contains(category) {
-                            for element in elements as! Array<String> {
-                                let fullPath = "clothes/\(category)/\(element).png"
-                                
-                                StorageService().loadImage(childURL: fullPath) { [weak self] result in
-                                    switch result {
-                                    case .success(let image):
-                                        self!.addImageInfo(of: category, image: image, path: fullPath)
-                                        self!.setToShowSpecificImageList()
-                                        // collectionView.reloadData()
-                                        // 이거 여러번 반복하는게 싫었는데 rx 공부하면 해결할 수 있다고 함.
-                                    case .failure(let error):
-                                        print(error)
-                                    }
-                                }
+                        StorageService().loadImage(childURL: fullPath) { [weak self] result in
+                            switch result {
+                            case .success(let image):
+                                self!.addImageInfo(of: category, image: image, path: fullPath)
+                                self!.setToShowSpecificImageList()
+                                // collectionView.reloadData()
+                                // 이거 여러번 반복하는게 싫었는데 rx 공부하면 해결할 수 있다고 함.
+                            case .failure(let error):
+                                print(error)
                             }
                         }
                     }
-                case .failure(let error):
-                    if error == .emptyError { print("Document does not exist") }
-                    else if error == .uidError { print(error) }
+                }
+                
+            case .failure(let error):
+                switch error {
+                case .emptyError: print("Document does not exist")
+                case .uidError: print(error)
                 }
             }
         }
     }
     
-    func set3DModelUsingFileDirectory(url: URL, completion: @escaping (SCNScene) -> Void) {
+    /// file URL을 이용하여 3D 모델을 불러온다.
+    func set3DModel(url: URL, completion: @escaping (SCNScene) -> Void) {
         guard let scene = try? SCNScene(url: url) else { fatalError("Unable to load scene file.") }
         
         // 2: Add camera node
@@ -166,6 +157,7 @@ class ClothesViewModel {
         // sceneView.showsStatistics = true
     }
     
+    /// art에 저장된 3D 모델을 불러온다.
     func set3DModel(modelName: String, completion: @escaping (SCNScene) -> Void) {
         // 1: Load .obj file
         guard let scene = SCNScene(named: modelName) else { fatalError("Unable to load scene file.") }
@@ -220,16 +212,16 @@ class ClothesViewModel {
         // 1: Load .obj file
         guard let scene = SCNScene(named: "art.scnassets/any_copy.scn") else { fatalError("Unable to load scene file.") }
         
-//        guard let topScene = SCNScene(named: "art.scnassets/clothes.scn") else { fatalError("Unable to load top clothes scene file.") }
-//
-//        guard let botScene = SCNScene(named: "art.scnassets/bottom.scn") else { fatalError("Unable to load bot clothes scene file.") }
+        //        guard let topScene = SCNScene(named: "art.scnassets/clothes.scn") else { fatalError("Unable to load top clothes scene file.") }
+        //
+        //        guard let botScene = SCNScene(named: "art.scnassets/bottom.scn") else { fatalError("Unable to load bot clothes scene file.") }
         
         // 2: Add camera node
         let cameraNode = SCNNode()
         cameraNode.camera = SCNCamera()
         
         // 3: Place camera
-        cameraNode.position = SCNVector3(x: 0, y: 0, z: 20)
+        cameraNode.position = SCNVector3(x: 0, y: 0, z: 3)
         
         // 4: Set camera on scene
         scene.rootNode.addChildNode(cameraNode)
@@ -270,19 +262,26 @@ class ClothesViewModel {
         // sceneView.showsStatistics = true
         
         // 모델에 의상을 직접 렌더링하기
-//        guard let topNode = topScene.rootNode.childNode(withName: "top", recursively: true) else {
-//            fatalError("error is occured about topNode.")
-//        }
-//
-//        guard let botNode = botScene.rootNode.childNode(withName: "bot", recursively: true) else {
-//            fatalError("error is occured about botNode.")
-//        }
+        //        guard let topNode = topScene.rootNode.childNode(withName: "top", recursively: true) else {
+        //            fatalError("error is occured about topNode.")
+        //        }
+        //
+        //        guard let botNode = botScene.rootNode.childNode(withName: "bot", recursively: true) else {
+        //            fatalError("error is occured about botNode.")
+        //        }
         
-//        sceneView.scene?.rootNode.addChildNode(topNode)
-//        sceneView.scene?.rootNode.addChildNode(botNode)
+        //        sceneView.scene?.rootNode.addChildNode(topNode)
+        //        sceneView.scene?.rootNode.addChildNode(botNode)
     }
     
-    func putOnClothes(imageName: String) {
+    /// 의상을 현재 전시된 모델에 입힌다.
+    func putOnClothes(of name: String, completion: @escaping (SCNNode) -> Void) {
+        let path = "art.scnassets/\(name).scn"
         
+        guard let newScene = SCNScene(named: path) else { fatalError("Unable to load top clothes scene file.") }
+        
+        guard let newNode = newScene.rootNode.childNode(withName: "\(name)", recursively: true) else { fatalError("error is occured about topNode.") }
+        
+        completion(newNode)
     }
 }

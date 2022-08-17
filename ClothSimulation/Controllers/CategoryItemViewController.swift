@@ -23,11 +23,12 @@ class CategoryItemViewController: UIViewController {
     }
     
     @objc func addButtonPressed(_ sender: Any) {
-        if let uid = UserInfo.shared.uid {
-            FirestoreService().insertClothesInfo(imageInfo: clothesInfo!, uid: uid)
-            model.addImageInfoSelectively(of: clothesInfo!.category, image: clothesInfo!.image, name: clothesInfo!.name)
-            model.setToShowSpecificImageList(of: model.currentCategory)
-        }
+        guard let uid = UserInfo.shared.uid else { return }
+        guard let clothesInfo = clothesInfo else { return }
+
+        FirestoreService().insertClothesInfo(imageInfo: clothesInfo, uid: uid)
+        model.addImageInfoSelectively(of: clothesInfo.category, image: clothesInfo.image, name: clothesInfo.name)
+        model.setToShowSpecificImageList(of: model.currentCategory)
     }
     
     func setInitialView() {

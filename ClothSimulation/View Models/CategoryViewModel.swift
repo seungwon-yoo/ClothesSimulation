@@ -35,9 +35,7 @@ class CategoryViewModel {
     // currentCategory가 '전체'일 경우 -> 각 카테고리 당 5개씩 옷을 들고 온다
     // currentCategory가 개별 카테고리일 경우 -> 20개의 옷을 들고 온다
     
-    var countOfImageList: Int {
-        return imageInfoDict[currentCategory]!.count
-    }
+    var countOfImageList: Int { return imageInfoDict[currentCategory]!.count }
     
     func addImageInfo(of category: String, image: UIImage, path: String) {
         imageInfoDict[category]!.append(ImageInfo(category: category, image: image, path: path))
@@ -62,9 +60,7 @@ class CategoryViewModel {
     }
     
     func setupUI() {
-        fetchClothesImages(page: 1) {
-            return
-        }
+        fetchClothesImages(page: 1) { return }
     }
     
     // 특정 카테고리의 이미지를 가져옴

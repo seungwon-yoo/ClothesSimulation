@@ -24,12 +24,10 @@ class ClothesViewController: UIViewController, UINavigationControllerDelegate {
         super.viewDidLoad()
         
         userModelService.userModelPath.bind { url in
-            if let url = url {
-                self.model.set3DModelUsingFileDirectory(url: url) { scene in
-                    self.sceneView.backgroundColor = UIColor.white
-                    self.sceneView.cameraControlConfiguration.allowsTranslation = false
-                    self.sceneView.scene = scene
-                }
+            guard let url = url else { return }
+            
+            self.model.set3DModel(url: url) { scene in
+                self.setSceneViewConfiguration(scene)
             }
         }
         
@@ -38,9 +36,7 @@ class ClothesViewController: UIViewController, UINavigationControllerDelegate {
         
         // model.set3DModel(sceneView: sceneView, name: "art.scnassets/personFixed.dae")
         model.setTemp3DModel { scene in
-            self.sceneView.backgroundColor = UIColor.white
-            self.sceneView.cameraControlConfiguration.allowsTranslation = false
-            self.sceneView.scene = scene
+            self.setSceneViewConfiguration(scene)
         }
         
         setupLongPressGestureonCollectionView(collectionView: collectionView)
@@ -58,34 +54,34 @@ class ClothesViewController: UIViewController, UINavigationControllerDelegate {
         self.collectionView.reloadData()
     }
     
-//    //MARK: - 3D model View settings
-//    @IBAction func panAction(_ sender: UIPanGestureRecognizer) {
-//        let transition = sender.translation(in: sceneView)
-//        sceneView.defaultCameraController.rotateBy(x: Float(-transition.x), y: Float(0))
-//        sender.setTranslation(CGPoint.zero, in: sceneView)
-//    }
+    //    //MARK: - 3D model View settings
+    //    @IBAction func panAction(_ sender: UIPanGestureRecognizer) {
+    //        let transition = sender.translation(in: sceneView)
+    //        sceneView.defaultCameraController.rotateBy(x: Float(-transition.x), y: Float(0))
+    //        sender.setTranslation(CGPoint.zero, in: sceneView)
+    //    }
     
-//    @IBAction func pinchAction(_ sender: UIPinchGestureRecognizer) {
-//        // 모델 자체를 확대 축소해야 한다.
-//        let cameraNode = sceneView.scene?.rootNode.childNodes[1]
-//        let maximumFOV:CGFloat = 25
-//        let minimumFOV:CGFloat = 90
-//
-//        switch sender.state {
-//        case .began:
-//            break
-//        case .changed:
-//            cameraNode?.camera?.fieldOfView = (cameraNode?.camera!.fieldOfView)! - sender.velocity
-//            if (cameraNode?.camera!.fieldOfView)! <= maximumFOV {
-//                cameraNode?.camera?.fieldOfView = maximumFOV
-//            }
-//            if (cameraNode?.camera!.fieldOfView)! >= minimumFOV {
-//                cameraNode?.camera?.fieldOfView = minimumFOV
-//            }
-//        default:
-//            break
-//        }
-//    }
+    //    @IBAction func pinchAction(_ sender: UIPinchGestureRecognizer) {
+    //        // 모델 자체를 확대 축소해야 한다.
+    //        let cameraNode = sceneView.scene?.rootNode.childNodes[1]
+    //        let maximumFOV:CGFloat = 25
+    //        let minimumFOV:CGFloat = 90
+    //
+    //        switch sender.state {
+    //        case .began:
+    //            break
+    //        case .changed:
+    //            cameraNode?.camera?.fieldOfView = (cameraNode?.camera!.fieldOfView)! - sender.velocity
+    //            if (cameraNode?.camera!.fieldOfView)! <= maximumFOV {
+    //                cameraNode?.camera?.fieldOfView = maximumFOV
+    //            }
+    //            if (cameraNode?.camera!.fieldOfView)! >= minimumFOV {
+    //                cameraNode?.camera?.fieldOfView = minimumFOV
+    //            }
+    //        default:
+    //            break
+    //        }
+    //    }
     
     @IBAction func changeButtonPressed(_ sender: UIButton) {
         // Create and configure the alert controller.
@@ -94,41 +90,18 @@ class ClothesViewController: UIViewController, UINavigationControllerDelegate {
                                       preferredStyle: .actionSheet)
         
         // Create the action buttons for the alert.
-        let bulkyManAction = UIAlertAction(title: "일반 남성",
-                                      style: .default) { (action) in
-            self.model.set3DModel(modelName: K.ordinaryMan) { scene in
-                self.sceneView.backgroundColor = UIColor.white
-                self.sceneView.cameraControlConfiguration.allowsTranslation = false
-                self.sceneView.scene = scene
-            }
-        }
-        let skinnyManAction = UIAlertAction(title: "SMPL 남성",
-                                      style: .default) { (action) in
-            self.model.set3DModel(modelName: K.SMPLMan) { scene in
-                self.sceneView.backgroundColor = UIColor.white
-                self.sceneView.cameraControlConfiguration.allowsTranslation = false
-                self.sceneView.scene = scene
-            }
-        }
-        let womanAction = UIAlertAction(title: "SMPL 여성",
-                                        style: .default) { (action) in
-            self.model.set3DModel(modelName: K.SMPLWoman) { scene in
-                self.sceneView.backgroundColor = UIColor.white
-                self.sceneView.cameraControlConfiguration.allowsTranslation = false
-                self.sceneView.scene = scene
-            }
-        }
+        let bulkyManAction = createAlertAction(title: "일반 남성", modelName: K.ordinaryMan)
+        let skinnyManAction = createAlertAction(title: "SMPL 남성", modelName: K.SMPLMan)
+        let womanAction = createAlertAction(title: "SMPL 여성", modelName: K.SMPLWoman)
         
-        if let url = userModelService.userModelPath.value {
-            let userModelAction = UIAlertAction(title: "사용자 모델", style: .default) { (action) in
-                self.model.set3DModelUsingFileDirectory(url: url) { scene in
-                    self.sceneView.backgroundColor = UIColor.white
-                    self.sceneView.cameraControlConfiguration.allowsTranslation = false
-                    self.sceneView.scene = scene
-                }
+        guard let url = userModelService.userModelPath.value else { return }
+        let userModelAction = UIAlertAction(title: "사용자 모델", style: .default) { (action) in
+            self.model.set3DModel(url: url) { scene in
+                self.setSceneViewConfiguration(scene)
             }
-            alert.addAction(userModelAction)
         }
+        alert.addAction(userModelAction)
+        
         let cancelAction = UIAlertAction(title: "닫기", style: .cancel)
         
         alert.addAction(bulkyManAction)
@@ -143,15 +116,30 @@ class ClothesViewController: UIViewController, UINavigationControllerDelegate {
     @IBAction func itemTapped(_ sender: UIBarButtonItem) {
         model.setToShowSpecificImageList(of: sender.title!)
         
-        for index in toolbar.items!.indices {
-            toolbar.items![index].tintColor = .systemGray4
+        toolbar.items!.indices.forEach {
+            toolbar.items![$0].tintColor = .systemGray4
         }
         
-        if let senderIndex = toolbar.items?.firstIndex(of: sender) {
-            toolbar.items![senderIndex].tintColor = .black
-        }
+        guard let senderIndex = toolbar.items?.firstIndex(of: sender) else { return }
+        toolbar.items![senderIndex].tintColor = .black
         
         self.collectionView.reloadData()
+    }
+}
+
+extension ClothesViewController {
+    func setSceneViewConfiguration(_ scene: SCNScene) {
+        sceneView.backgroundColor = UIColor.white
+        sceneView.cameraControlConfiguration.allowsTranslation = false
+        sceneView.scene = scene
+    }
+    
+    func createAlertAction(title: String, modelName: String) -> UIAlertAction {
+        UIAlertAction(title: title, style: .default) { (action) in
+            self.model.set3DModel(modelName: modelName) { scene in
+                self.setSceneViewConfiguration(scene)
+            }
+        }
     }
 }
 
@@ -161,17 +149,20 @@ extension ClothesViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let imageName = model.imageInfo(at: indexPath.row).getImageName()
         
-        
-        
-        // 로딩창 띄우기
-        DispatchQueue.main.async {
-            self.activityIndicator.setActivityIndicator(view: self.tabBarController!.view)
+        // 해당 이름을 가진 3D 의상을 모델에 입힌다.
+        model.putOnClothes(of: imageName) { node in
+            self.sceneView.scene?.rootNode.addChildNode(node)
         }
         
-        // 로딩창 종료 로직
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
-            self.activityIndicator.endActivityIndicator(view: self.view)
-        }
+//        // 로딩창 띄우기
+//        DispatchQueue.main.async {
+//            self.activityIndicator.setActivityIndicator(view: self.tabBarController!.view)
+//        }
+//
+//        // 로딩창 종료 로직
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+//            self.activityIndicator.endActivityIndicator(view: self.view)
+//        }
     }
 }
 
@@ -206,9 +197,7 @@ extension ClothesViewController: UIGestureRecognizerDelegate {
     }
     
     @objc func handleLongPress(gestureRecognizer: UILongPressGestureRecognizer) {
-        if (gestureRecognizer.state != .began) {
-            return
-        }
+        if (gestureRecognizer.state != .began) { return }
         
         let p = gestureRecognizer.location(in: collectionView)
         

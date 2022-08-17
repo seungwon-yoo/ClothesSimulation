@@ -37,3 +37,9 @@ struct ImageInfo {
         return name
     }
 }
+
+extension ImageInfo: Equatable {
+    static func ==(left: ImageInfo, right: ImageInfo) -> Bool {
+        return left.category == right.category && left.name == right.name
+    }
+}
