@@ -117,7 +117,7 @@ class ClothesViewModel {
         }
     }
     
-    func set3DModelUsingFileDirectory(sceneView: SCNView, url: URL) {
+    func set3DModelUsingFileDirectory(url: URL, completion: @escaping (SCNScene) -> Void) {
         guard let scene = try? SCNScene(url: url) else { fatalError("Unable to load scene file.") }
         
         // 2: Add camera node
@@ -151,6 +151,8 @@ class ClothesViewModel {
         ambientLightNode.light?.color = UIColor.lightGray
         scene.rootNode.addChildNode(ambientLightNode)
         
+        completion(scene)
+        
         // If you don't want to fix manually the lights
         // sceneView.autoenablesDefaultLighting = true
         
@@ -162,20 +164,11 @@ class ClothesViewModel {
         
         // Show FPS logs and timming
         // sceneView.showsStatistics = true
-        
-        // Set background color
-        sceneView.backgroundColor = UIColor.white
-        
-        // Allow user translate image
-        sceneView.cameraControlConfiguration.allowsTranslation = false
-        
-        // Set scene settings
-        sceneView.scene = scene
     }
     
-    func set3DModel(sceneView: SCNView, name: String) {
+    func set3DModel(modelName: String, completion: @escaping (SCNScene) -> Void) {
         // 1: Load .obj file
-        guard let scene = SCNScene(named: name) else { fatalError("Unable to load scene file.") }
+        guard let scene = SCNScene(named: modelName) else { fatalError("Unable to load scene file.") }
         
         // 2: Add camera node
         let cameraNode = SCNNode()
@@ -208,6 +201,8 @@ class ClothesViewModel {
         ambientLightNode.light?.color = UIColor.lightGray
         scene.rootNode.addChildNode(ambientLightNode)
         
+        completion(scene)
+        
         // If you don't want to fix manually the lights
         // sceneView.autoenablesDefaultLighting = true
         
@@ -216,27 +211,18 @@ class ClothesViewModel {
         
         // Set to manipulate camera
         
-        
         // Show FPS logs and timming
         // sceneView.showsStatistics = true
         
-        // Set background color
-        sceneView.backgroundColor = UIColor.white
-        
-        // Allow user translate image
-        sceneView.cameraControlConfiguration.allowsTranslation = false
-        
-        // Set scene settings
-        sceneView.scene = scene
     }
     
-    func setTemp3DModel(sceneView: SCNView) {
+    func setTemp3DModel(completion: @escaping (SCNScene) -> Void) {
         // 1: Load .obj file
         guard let scene = SCNScene(named: "art.scnassets/any_copy.scn") else { fatalError("Unable to load scene file.") }
         
-        guard let topScene = SCNScene(named: "art.scnassets/clothes.scn") else { fatalError("Unable to load top clothes scene file.") }
-        
-        guard let botScene = SCNScene(named: "art.scnassets/bottom.scn") else { fatalError("Unable to load bot clothes scene file.") }
+//        guard let topScene = SCNScene(named: "art.scnassets/clothes.scn") else { fatalError("Unable to load top clothes scene file.") }
+//
+//        guard let botScene = SCNScene(named: "art.scnassets/bottom.scn") else { fatalError("Unable to load bot clothes scene file.") }
         
         // 2: Add camera node
         let cameraNode = SCNNode()
@@ -269,6 +255,8 @@ class ClothesViewModel {
         ambientLightNode.light?.color = UIColor.lightGray
         scene.rootNode.addChildNode(ambientLightNode)
         
+        completion(scene)
+        
         // If you don't want to fix manually the lights
         // sceneView.autoenablesDefaultLighting = true
         
@@ -281,25 +269,20 @@ class ClothesViewModel {
         // Show FPS logs and timming
         // sceneView.showsStatistics = true
         
-        // Set background color
-        sceneView.backgroundColor = UIColor.white
-        
-        // Allow user translate image
-        sceneView.cameraControlConfiguration.allowsTranslation = false
-        
-        // Set scene settings
-        sceneView.scene = scene
-        
         // 모델에 의상을 직접 렌더링하기
-        guard let topNode = topScene.rootNode.childNode(withName: "top", recursively: true) else {
-            fatalError("error is occured about topNode.")
-        }
+//        guard let topNode = topScene.rootNode.childNode(withName: "top", recursively: true) else {
+//            fatalError("error is occured about topNode.")
+//        }
+//
+//        guard let botNode = botScene.rootNode.childNode(withName: "bot", recursively: true) else {
+//            fatalError("error is occured about botNode.")
+//        }
         
-        guard let botNode = botScene.rootNode.childNode(withName: "bot", recursively: true) else {
-            fatalError("error is occured about botNode.")
-        }
+//        sceneView.scene?.rootNode.addChildNode(topNode)
+//        sceneView.scene?.rootNode.addChildNode(botNode)
+    }
+    
+    func putOnClothes(imageName: String) {
         
-        sceneView.scene?.rootNode.addChildNode(topNode)
-        sceneView.scene?.rootNode.addChildNode(botNode)
     }
 }

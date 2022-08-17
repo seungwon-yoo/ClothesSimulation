@@ -25,21 +25,23 @@ class ClothesViewController: UIViewController, UINavigationControllerDelegate {
         
         userModelService.userModelPath.bind { url in
             if let url = url {
-                self.model.set3DModelUsingFileDirectory(sceneView: self.sceneView, url: url)
+                self.model.set3DModelUsingFileDirectory(url: url) { scene in
+                    self.sceneView.backgroundColor = UIColor.white
+                    self.sceneView.cameraControlConfiguration.allowsTranslation = false
+                    self.sceneView.scene = scene
+                }
             }
         }
-        
-//        userModelService.userModelPath.bind { path in
-//            if let path = path {
-//                self.model.set3DModel(sceneView: self.sceneView, name: path)
-//            }
-//        }
         
         // 툴바 색 관련
         toolbar.items![toolbar.items!.startIndex].tintColor = .black
         
         // model.set3DModel(sceneView: sceneView, name: "art.scnassets/personFixed.dae")
-        model.setTemp3DModel(sceneView: sceneView)
+        model.setTemp3DModel { scene in
+            self.sceneView.backgroundColor = UIColor.white
+            self.sceneView.cameraControlConfiguration.allowsTranslation = false
+            self.sceneView.scene = scene
+        }
         
         setupLongPressGestureonCollectionView(collectionView: collectionView)
         
@@ -94,20 +96,36 @@ class ClothesViewController: UIViewController, UINavigationControllerDelegate {
         // Create the action buttons for the alert.
         let bulkyManAction = UIAlertAction(title: "일반 남성",
                                       style: .default) { (action) in
-            self.model.set3DModel(sceneView: self.sceneView, name: K.ordinaryMan)
+            self.model.set3DModel(modelName: K.ordinaryMan) { scene in
+                self.sceneView.backgroundColor = UIColor.white
+                self.sceneView.cameraControlConfiguration.allowsTranslation = false
+                self.sceneView.scene = scene
+            }
         }
         let skinnyManAction = UIAlertAction(title: "SMPL 남성",
                                       style: .default) { (action) in
-            self.model.set3DModel(sceneView: self.sceneView, name: K.SMPLMan)
+            self.model.set3DModel(modelName: K.SMPLMan) { scene in
+                self.sceneView.backgroundColor = UIColor.white
+                self.sceneView.cameraControlConfiguration.allowsTranslation = false
+                self.sceneView.scene = scene
+            }
         }
         let womanAction = UIAlertAction(title: "SMPL 여성",
                                         style: .default) { (action) in
-            self.model.set3DModel(sceneView: self.sceneView, name: K.SMPLWoman)
+            self.model.set3DModel(modelName: K.SMPLWoman) { scene in
+                self.sceneView.backgroundColor = UIColor.white
+                self.sceneView.cameraControlConfiguration.allowsTranslation = false
+                self.sceneView.scene = scene
+            }
         }
         
         if let url = userModelService.userModelPath.value {
             let userModelAction = UIAlertAction(title: "사용자 모델", style: .default) { (action) in
-                self.model.set3DModelUsingFileDirectory(sceneView: self.sceneView, url: url)
+                self.model.set3DModelUsingFileDirectory(url: url) { scene in
+                    self.sceneView.backgroundColor = UIColor.white
+                    self.sceneView.cameraControlConfiguration.allowsTranslation = false
+                    self.sceneView.scene = scene
+                }
             }
             alert.addAction(userModelAction)
         }
@@ -142,6 +160,8 @@ class ClothesViewController: UIViewController, UINavigationControllerDelegate {
 extension ClothesViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let imageName = model.imageInfo(at: indexPath.row).getImageName()
+        
+        
         
         // 로딩창 띄우기
         DispatchQueue.main.async {
