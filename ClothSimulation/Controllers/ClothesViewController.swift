@@ -34,7 +34,6 @@ class ClothesViewController: UIViewController, UINavigationControllerDelegate {
         // 툴바 색 관련
         toolbar.items![toolbar.items!.startIndex].tintColor = .black
         
-        // model.set3DModel(sceneView: sceneView, name: "art.scnassets/personFixed.dae")
         model.setTemp3DModel { scene in
             self.setSceneViewConfiguration(scene)
         }
@@ -42,10 +41,6 @@ class ClothesViewController: UIViewController, UINavigationControllerDelegate {
         setupLongPressGestureonCollectionView(collectionView: collectionView)
         
         sceneView.allowsCameraControl = true
-        
-        // set3DModel(name: "art.scnassets/bboyFixed.scn")
-        
-        // model.fetchClothesInfo(collectionView: collectionView)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -53,35 +48,6 @@ class ClothesViewController: UIViewController, UINavigationControllerDelegate {
         
         self.collectionView.reloadData()
     }
-    
-    //    //MARK: - 3D model View settings
-    //    @IBAction func panAction(_ sender: UIPanGestureRecognizer) {
-    //        let transition = sender.translation(in: sceneView)
-    //        sceneView.defaultCameraController.rotateBy(x: Float(-transition.x), y: Float(0))
-    //        sender.setTranslation(CGPoint.zero, in: sceneView)
-    //    }
-    
-    //    @IBAction func pinchAction(_ sender: UIPinchGestureRecognizer) {
-    //        // 모델 자체를 확대 축소해야 한다.
-    //        let cameraNode = sceneView.scene?.rootNode.childNodes[1]
-    //        let maximumFOV:CGFloat = 25
-    //        let minimumFOV:CGFloat = 90
-    //
-    //        switch sender.state {
-    //        case .began:
-    //            break
-    //        case .changed:
-    //            cameraNode?.camera?.fieldOfView = (cameraNode?.camera!.fieldOfView)! - sender.velocity
-    //            if (cameraNode?.camera!.fieldOfView)! <= maximumFOV {
-    //                cameraNode?.camera?.fieldOfView = maximumFOV
-    //            }
-    //            if (cameraNode?.camera!.fieldOfView)! >= minimumFOV {
-    //                cameraNode?.camera?.fieldOfView = minimumFOV
-    //            }
-    //        default:
-    //            break
-    //        }
-    //    }
     
     @IBAction func changeButtonPressed(_ sender: UIButton) {
         // Create and configure the alert controller.
@@ -111,6 +77,34 @@ class ClothesViewController: UIViewController, UINavigationControllerDelegate {
         
         self.present(alert, animated: true, completion: nil)
     }
+    
+    @IBAction func skinChangeButtonPressed(_ sender: UIButton) {
+        let alert = UIAlertController(title: "피부색 선택",
+                                      message: "",
+                                      preferredStyle: .actionSheet)
+        
+        let whiteSkinAction = UIAlertAction(title: "하얀 피부", style: .default) { (action) in
+            self.sceneView.scene?.rootNode.childNode(withName: "human", recursively: true)?.geometry?.firstMaterial?.diffuse.contents = UIColor(rgb: 0xFBE8D4)
+        }
+        
+        let middleSkinAction = UIAlertAction(title: "중간 피부", style: .default) { (action) in
+            self.sceneView.scene?.rootNode.childNode(withName: "human", recursively: true)?.geometry?.firstMaterial?.diffuse.contents = UIColor(rgb: 0xCDAC7F)
+        }
+        
+        let darkSkinAction = UIAlertAction(title: "어두운 피부", style: .default) { (action) in
+            self.sceneView.scene?.rootNode.childNode(withName: "human", recursively: true)?.geometry?.firstMaterial?.diffuse.contents = UIColor(rgb: 0x9E694F)
+        }
+        
+        let cancelAction = UIAlertAction(title: "닫기", style: .cancel)
+        
+        alert.addAction(whiteSkinAction)
+        alert.addAction(middleSkinAction)
+        alert.addAction(darkSkinAction)
+        alert.addAction(cancelAction)
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     
     //MARK: - Emphasize the toolbar items
     @IBAction func itemTapped(_ sender: UIBarButtonItem) {
@@ -154,15 +148,15 @@ extension ClothesViewController: UICollectionViewDelegate {
             self.sceneView.scene?.rootNode.addChildNode(node)
         }
         
-//        // 로딩창 띄우기
-//        DispatchQueue.main.async {
-//            self.activityIndicator.setActivityIndicator(view: self.tabBarController!.view)
-//        }
-//
-//        // 로딩창 종료 로직
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
-//            self.activityIndicator.endActivityIndicator(view: self.view)
-//        }
+        //        // 로딩창 띄우기
+        //        DispatchQueue.main.async {
+        //            self.activityIndicator.setActivityIndicator(view: self.tabBarController!.view)
+        //        }
+        //
+        //        // 로딩창 종료 로직
+        //        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+        //            self.activityIndicator.endActivityIndicator(view: self.view)
+        //        }
     }
 }
 

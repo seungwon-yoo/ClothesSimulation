@@ -413,17 +413,31 @@
                                     <constraint firstAttribute="height" constant="50" id="0i8-Jw-2og"/>
                                     <constraint firstAttribute="width" constant="50" id="wQi-Of-4Xx"/>
                                 </constraints>
-                                <buttonConfiguration key="configuration" style="gray" image="modelChanging" cornerStyle="capsule">
+                                <buttonConfiguration key="configuration" style="gray" image="person.crop.rectangle.stack" catalog="system" cornerStyle="capsule">
                                     <color key="baseBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="changeButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qRH-7K-GQg"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CEo-A9-oty">
+                                <rect key="frame" x="344" y="96" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="OBQ-Pp-b47"/>
+                                    <constraint firstAttribute="height" constant="50" id="vTQ-kP-uNa"/>
+                                </constraints>
+                                <buttonConfiguration key="configuration" style="gray" image="eyedropper" catalog="system" cornerStyle="capsule">
+                                    <color key="baseBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="skinChangeButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lnE-9u-XbW"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="VLn-al-22J"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="VLn-al-22J" firstAttribute="trailing" secondItem="CEo-A9-oty" secondAttribute="trailing" constant="20" id="5xu-Mo-im7"/>
                             <constraint firstItem="kGf-Ap-hgJ" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="6LO-m5-NVD"/>
                             <constraint firstAttribute="trailing" secondItem="swx-bt-NNG" secondAttribute="trailing" id="Fqa-GP-hRx"/>
                             <constraint firstItem="UhF-NJ-0WT" firstAttribute="top" secondItem="VLn-al-22J" secondAttribute="top" constant="20" id="LCs-aj-evj"/>
@@ -431,6 +445,7 @@
                             <constraint firstItem="swx-bt-NNG" firstAttribute="top" secondItem="kGf-Ap-hgJ" secondAttribute="bottom" id="PVJ-9S-sjd"/>
                             <constraint firstItem="kGf-Ap-hgJ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Q1m-nd-hac"/>
                             <constraint firstItem="VLn-al-22J" firstAttribute="bottom" secondItem="swx-bt-NNG" secondAttribute="bottom" id="Riq-cl-tdq"/>
+                            <constraint firstItem="CEo-A9-oty" firstAttribute="top" secondItem="UhF-NJ-0WT" secondAttribute="bottom" constant="26" id="T6E-6A-d0j"/>
                             <constraint firstItem="kGf-Ap-hgJ" firstAttribute="top" secondItem="VLn-al-22J" secondAttribute="top" id="Tgy-cJ-JOX"/>
                             <constraint firstItem="swx-bt-NNG" firstAttribute="top" secondItem="4Za-EH-BZD" secondAttribute="bottom" id="dAa-Az-ay0"/>
                             <constraint firstItem="swx-bt-NNG" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="lV1-sL-7Z0"/>
@@ -858,12 +873,13 @@
         <image name="Image-1" width="1000" height="1000"/>
         <image name="at" catalog="system" width="128" height="124"/>
         <image name="closet" width="175" height="175"/>
+        <image name="eyedropper" catalog="system" width="128" height="119"/>
         <image name="google.png" width="18" height="18"/>
         <image name="googleIcon" width="25" height="25"/>
         <image name="house" catalog="system" width="128" height="106"/>
         <image name="lock" catalog="system" width="128" height="128"/>
-        <image name="modelChanging" width="50" height="50"/>
         <image name="person" catalog="system" width="128" height="117"/>
+        <image name="person.crop.rectangle.stack" catalog="system" width="128" height="122"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

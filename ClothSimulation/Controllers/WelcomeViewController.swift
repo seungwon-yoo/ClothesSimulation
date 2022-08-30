@@ -32,7 +32,6 @@ class WelcomeViewController: UIViewController {
         
         CategoryViewModel.shared.setupUI()
         
-        
         DispatchQueue.main.asyncAfter(deadline: .now()+3.0) {
             self.textLabel.isHidden = true
             self.checkLogin()

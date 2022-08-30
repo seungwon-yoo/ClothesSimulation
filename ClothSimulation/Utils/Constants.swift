@@ -40,4 +40,5 @@ struct K {
     static let ordinaryMan = "art.scnassets/FinalBaseMesh.obj"
     static let SMPLMan = "art.scnassets/SMPL_male.obj"
     static let SMPLWoman = "art.scnassets/SMPL_female.obj"
+    static let tempModel = "art.scnassets/any_copy.scn"
 }

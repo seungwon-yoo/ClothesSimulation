@@ -282,6 +282,8 @@ class ClothesViewModel {
         
         guard let newNode = newScene.rootNode.childNode(withName: "\(name)", recursively: true) else { fatalError("error is occured about topNode.") }
         
+        newNode.geometry?.firstMaterial?.diffuse.contents = UIImage(named: "tex")
+        
         completion(newNode)
     }
 }

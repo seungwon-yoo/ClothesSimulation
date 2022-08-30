@@ -22,6 +22,7 @@
 		E35EDFA627C088DB009CF075 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E35EDFA427C088DB009CF075 /* LaunchScreen.storyboard */; };
 		E35EDFAE27C0D614009CF075 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35EDFAD27C0D614009CF075 /* WelcomeViewController.swift */; };
 		E35EDFB227C0D6E9009CF075 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35EDFB127C0D6E9009CF075 /* Constants.swift */; };
+		E37BFCCC28BA572C005F1753 /* HumanModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37BFCCB28BA572C005F1753 /* HumanModel.swift */; };
 		E37EAFAE2811277300639BB0 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37EAFAD2811277300639BB0 /* TabBarController.swift */; };
 		E37EAFB628115AB300639BB0 /* SideMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E37EAFB528115AB300639BB0 /* SideMenuCell.xib */; };
 		E37EAFF728116AA800639BB0 /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37EAFF628116AA800639BB0 /* SideMenuViewController.swift */; };
@@ -67,6 +68,7 @@
 		E35EDFA727C088DB009CF075 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E35EDFAD27C0D614009CF075 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		E35EDFB127C0D6E9009CF075 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		E37BFCCB28BA572C005F1753 /* HumanModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HumanModel.swift; sourceTree = "<group>"; };
 		E37EAFAD2811277300639BB0 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		E37EAFB528115AB300639BB0 /* SideMenuCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SideMenuCell.xib; sourceTree = "<group>"; };
 		E37EAFF628116AA800639BB0 /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 				E30296752820174900EF774C /* Utils */,
 				E3029674282016D600EF774C /* Extensions */,
 				E31FE320281A9E05000B9B34 /* Services */,
+				E37BFCCA28BA569E005F1753 /* 3D Models */,
 				E3EC05E027C34288007DD29D /* Models */,
 				E30296762820182800EF774C /* View Models */,
 				E35EDFAF27C0D68A009CF075 /* Controllers */,
@@ -223,6 +226,14 @@
 				E35EDF9F27C088D9009CF075 /* Main.storyboard */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		E37BFCCA28BA569E005F1753 /* 3D Models */ = {
+			isa = PBXGroup;
+			children = (
+				E37BFCCB28BA572C005F1753 /* HumanModel.swift */,
+			);
+			path = "3D Models";
 			sourceTree = "<group>";
 		};
 		E3B1330A2808145E0073FB62 /* Custom Cells */ = {
@@ -387,6 +398,7 @@
 				E3B1330528080C900073FB62 /* CategoryViewController.swift in Sources */,
 				E37EAFFB2811703700639BB0 /* SideMenuModel.swift in Sources */,
 				E3B1330C280814760073FB62 /* CategoryCell.swift in Sources */,
+				E37BFCCC28BA572C005F1753 /* HumanModel.swift in Sources */,
 				E35EDF9A27C088D9009CF075 /* AppDelegate.swift in Sources */,
 				E35EDF9C27C088D9009CF075 /* SceneDelegate.swift in Sources */,
 				E37EB00E28193EE600639BB0 /* ClothesCollectionCell.swift in Sources */,
