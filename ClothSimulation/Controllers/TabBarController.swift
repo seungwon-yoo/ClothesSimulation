@@ -180,7 +180,7 @@ extension TabBarController: UIImagePickerControllerDelegate {
         picker.dismiss(animated: true, completion: nil)
         
         // 1. 선택한 이미지를 웹 서버로 전송
-        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage{
+        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             // userModelService.getTempUserModel()
             userModelService.getUserModel(image) {
                 // 로딩창 종료 로직

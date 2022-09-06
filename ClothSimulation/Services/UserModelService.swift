@@ -28,9 +28,6 @@ class UserModelService {
             if let imageData = image.pngData() {
                 multipart.append(imageData, withName: "file", fileName: "\(UserInfo.shared.uid!).png", mimeType: "image/png")
             }
-            //            if let imageData = image.jpegData(compressionQuality: 1) {
-            //                multipart.append(imageData, withName: "file", fileName: "k.jpg", mimeType: "image/jpeg")
-            //            }
         },
                   to: url,
                   method: .post,
@@ -70,9 +67,12 @@ class UserModelService {
     }
     
     func getTempUserModel(url: String) {
+        let fileName = "yyyy_MM_dd_HH_mm_ss".stringToDate() + ".obj"
+        
         let destinationPath: DownloadRequest.Destination = { _, _ in
-            let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0];
-            let fileURL = documentsURL.appendingPathComponent("my_mesh.obj")
+            let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+            
+            let fileURL = documentsURL.appendingPathComponent(fileName)
             return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
         }
         
@@ -86,6 +86,11 @@ class UserModelService {
                     print("Success")
                     // self.userModelPath.value = self.getFilePathInDocuments(fileName: "my_mesh.obj")
                     self.userModelPath.value = response.fileURL
+                    
+                    // 이 부분에 코어데이터에 저장하는 코드 넣기
+                    let human =  Human(fileURL: response.fileURL, name: fileName)
+                    
+                    PersistenceManager.shared.insertHumanModel(human: human)
                 case .failure(let e):
                     print(e)
                 }
@@ -117,3 +122,4 @@ class UserModelService {
             }
     }
 }
+

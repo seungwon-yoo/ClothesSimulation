@@ -23,6 +23,12 @@ class ClothesViewController: UIViewController, UINavigationControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // CoreData 정보 가져오는 로직(임시로 여기다 테스트)
+        let request = HumanModel.fetchRequest()
+        let data = PersistenceManager.shared.fetch(request: request)
+        let kkk = data[0]
+        let fileURL = kkk.fileURL
+        
         userModelService.userModelPath.bind { url in
             guard let url = url else { return }
             
@@ -88,7 +94,7 @@ class ClothesViewController: UIViewController, UINavigationControllerDelegate {
         }
         
         let middleSkinAction = UIAlertAction(title: "중간 피부", style: .default) { (action) in
-            self.sceneView.scene?.rootNode.childNode(withName: "human", recursively: true)?.geometry?.firstMaterial?.diffuse.contents = UIColor(rgb: 0xCDAC7F)
+            self.sceneView.scene?.rootNode.childNode(withName: "human", recursively: true)?.geometry?.firstMaterial?.diffuse.contents = UIColor(rgb: 0xE5BEA3)
         }
         
         let darkSkinAction = UIAlertAction(title: "어두운 피부", style: .default) { (action) in
