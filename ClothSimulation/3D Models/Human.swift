@@ -14,7 +14,6 @@ enum SkinColor {
 }
 
 struct Human {
-    var fileURL: URL?
     var name: String
 }
 

@@ -23,19 +23,13 @@ class ClothesViewController: UIViewController, UINavigationControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // CoreData 정보 가져오는 로직(임시로 여기다 테스트)
-        let request = HumanModel.fetchRequest()
-        let data = PersistenceManager.shared.fetch(request: request)
-        let kkk = data[0]
-        let fileURL = kkk.fileURL
-        
-        userModelService.userModelPath.bind { url in
-            guard let url = url else { return }
-            
-            self.model.set3DModel(url: url) { scene in
-                self.setSceneViewConfiguration(scene)
-            }
-        }
+//        userModelService.userModelPath.bind { url in
+//            guard let url = url else { return }
+//
+//            self.model.set3DModel(url: url) { scene in
+//                self.setSceneViewConfiguration(scene)
+//            }
+//        }
         
         // 툴바 색 관련
         toolbar.items![toolbar.items!.startIndex].tintColor = .black
@@ -66,13 +60,20 @@ class ClothesViewController: UIViewController, UINavigationControllerDelegate {
         let skinnyManAction = createAlertAction(title: "SMPL 남성", modelName: K.SMPLMan)
         let womanAction = createAlertAction(title: "SMPL 여성", modelName: K.SMPLWoman)
         
-        guard let url = userModelService.userModelPath.value else { return }
-        let userModelAction = UIAlertAction(title: "사용자 모델", style: .default) { (action) in
-            self.model.set3DModel(url: url) { scene in
-                self.setSceneViewConfiguration(scene)
-            }
+//        guard let url = userModelService.userModelPath.value else { return }
+//        let userModelAction = UIAlertAction(title: "사용자 모델", style: .default) { (action) in
+//            self.model.set3DModel(url: url) { scene in
+//                self.setSceneViewConfiguration(scene)
+//            }
+//        }
+//        alert.addAction(userModelAction)
+        
+        let request = HumanModel.fetchRequest()
+        let data = PersistenceManager.shared.fetch(request: request)
+        for (i, model) in data.enumerated() {
+            let url = URL(string: UserModelService.shared.getFilePathInDocuments(fileName: model.fileName!)!)!
+            alert.addAction(createAlertAction(title: "사용자 모델 \(i+1)", url: url))
         }
-        alert.addAction(userModelAction)
         
         let cancelAction = UIAlertAction(title: "닫기", style: .cancel)
         
@@ -137,6 +138,14 @@ extension ClothesViewController {
     func createAlertAction(title: String, modelName: String) -> UIAlertAction {
         UIAlertAction(title: title, style: .default) { (action) in
             self.model.set3DModel(modelName: modelName) { scene in
+                self.setSceneViewConfiguration(scene)
+            }
+        }
+    }
+    
+    func createAlertAction(title: String, url: URL) -> UIAlertAction {
+        UIAlertAction(title: title, style: .default) { action in
+            self.model.set3DModel(url: url) { scene in
                 self.setSceneViewConfiguration(scene)
             }
         }

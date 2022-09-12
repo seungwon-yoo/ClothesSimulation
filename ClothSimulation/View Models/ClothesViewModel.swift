@@ -212,10 +212,6 @@ class ClothesViewModel {
         // 1: Load .obj file
         guard let scene = SCNScene(named: "art.scnassets/any_copy.scn") else { fatalError("Unable to load scene file.") }
         
-        //        guard let topScene = SCNScene(named: "art.scnassets/clothes.scn") else { fatalError("Unable to load top clothes scene file.") }
-        //
-        //        guard let botScene = SCNScene(named: "art.scnassets/bottom.scn") else { fatalError("Unable to load bot clothes scene file.") }
-        
         // 2: Add camera node
         let cameraNode = SCNNode()
         cameraNode.camera = SCNCamera()
@@ -248,30 +244,6 @@ class ClothesViewModel {
         scene.rootNode.addChildNode(ambientLightNode)
         
         completion(scene)
-        
-        // If you don't want to fix manually the lights
-        // sceneView.autoenablesDefaultLighting = true
-        
-        // Allow user to manipulate camera
-        // sceneView.allowsCameraControl = true
-        
-        // Set to manipulate camera
-        
-        
-        // Show FPS logs and timming
-        // sceneView.showsStatistics = true
-        
-        // 모델에 의상을 직접 렌더링하기
-        //        guard let topNode = topScene.rootNode.childNode(withName: "top", recursively: true) else {
-        //            fatalError("error is occured about topNode.")
-        //        }
-        //
-        //        guard let botNode = botScene.rootNode.childNode(withName: "bot", recursively: true) else {
-        //            fatalError("error is occured about botNode.")
-        //        }
-        
-        //        sceneView.scene?.rootNode.addChildNode(topNode)
-        //        sceneView.scene?.rootNode.addChildNode(botNode)
     }
     
     /// 의상을 현재 전시된 모델에 입힌다.
@@ -282,12 +254,27 @@ class ClothesViewModel {
         
         guard let newNode = newScene.rootNode.childNode(withName: "\(name)", recursively: true) else { fatalError("error is occured about topNode.") }
         
-        let imageMaterial = SCNMaterial()
-        imageMaterial.isDoubleSided = false
-        imageMaterial.diffuse.contents = UIImage(named: "texture")
-        
-        newNode.geometry?.materials = [imageMaterial]
+//        let imageMaterial = SCNMaterial()
+//        imageMaterial.isDoubleSided = false
+//        imageMaterial.diffuse.contents = UIImage(named: "texture")
+//        
+//        newNode.geometry?.materials = [imageMaterial]
         
         completion(newNode)
+    }
+    
+    /// 의상을 현재 전시된 모델에 입힌다.
+    func putOnClothes() {
+        // 1. 현재 인체 모델과 부합하는 의상 모델이 있는지 확인한다.
+        let request = ClothesModel.fetchRequest()
+        let data = PersistenceManager.shared.fetch(request: request)
+        for model in data {
+            if model.fileName == HumanModelInfo.shared.modelName {
+                
+            }
+        }
+        
+        // 2. 있으면 입힌다.
+        // 3. 없으면 서버에서 해당 의상 모델을 다운로드받고 CoreData에 저장한 뒤 인체 모델에 입힌다.
     }
 }

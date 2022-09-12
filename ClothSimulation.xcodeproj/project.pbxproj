@@ -25,6 +25,8 @@
 		E35EDFA627C088DB009CF075 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E35EDFA427C088DB009CF075 /* LaunchScreen.storyboard */; };
 		E35EDFAE27C0D614009CF075 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35EDFAD27C0D614009CF075 /* WelcomeViewController.swift */; };
 		E35EDFB227C0D6E9009CF075 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35EDFB127C0D6E9009CF075 /* Constants.swift */; };
+		E367888628CF19380024C0F0 /* Garment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E367888528CF19380024C0F0 /* Garment.swift */; };
+		E367888828CF1A940024C0F0 /* HumanModelInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E367888728CF1A940024C0F0 /* HumanModelInfo.swift */; };
 		E37BFCCC28BA572C005F1753 /* Human.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37BFCCB28BA572C005F1753 /* Human.swift */; };
 		E37EAFAE2811277300639BB0 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37EAFAD2811277300639BB0 /* TabBarController.swift */; };
 		E37EAFB628115AB300639BB0 /* SideMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E37EAFB528115AB300639BB0 /* SideMenuCell.xib */; };
@@ -74,6 +76,8 @@
 		E35EDFA727C088DB009CF075 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E35EDFAD27C0D614009CF075 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		E35EDFB127C0D6E9009CF075 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		E367888528CF19380024C0F0 /* Garment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Garment.swift; sourceTree = "<group>"; };
+		E367888728CF1A940024C0F0 /* HumanModelInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HumanModelInfo.swift; sourceTree = "<group>"; };
 		E37BFCCB28BA572C005F1753 /* Human.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Human.swift; sourceTree = "<group>"; };
 		E37EAFAD2811277300639BB0 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		E37EAFB528115AB300639BB0 /* SideMenuCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SideMenuCell.xib; sourceTree = "<group>"; };
@@ -241,6 +245,7 @@
 			isa = PBXGroup;
 			children = (
 				E37BFCCB28BA572C005F1753 /* Human.swift */,
+				E367888528CF19380024C0F0 /* Garment.swift */,
 			);
 			path = "3D Models";
 			sourceTree = "<group>";
@@ -259,6 +264,7 @@
 			isa = PBXGroup;
 			children = (
 				E3EC05E127C34294007DD29D /* ImageInfo.swift */,
+				E367888728CF1A940024C0F0 /* HumanModelInfo.swift */,
 				E3EC05E527C3BC73007DD29D /* Settings.swift */,
 				E37EAFFA2811703700639BB0 /* SideMenuModel.swift */,
 				E37EB0042813D94E00639BB0 /* UserInfo.swift */,
@@ -401,9 +407,11 @@
 				E306164D28C790F600C62DC8 /* String+Extensions.swift in Sources */,
 				E31FE322281A9E2C000B9B34 /* StorageService.swift in Sources */,
 				E37EAFAE2811277300639BB0 /* TabBarController.swift in Sources */,
+				E367888828CF1A940024C0F0 /* HumanModelInfo.swift in Sources */,
 				E35EDF9E27C088D9009CF075 /* ClothesViewController.swift in Sources */,
 				E35EDFAE27C0D614009CF075 /* WelcomeViewController.swift in Sources */,
 				E3E189CB287411D3007E7EBA /* Observable.swift in Sources */,
+				E367888628CF19380024C0F0 /* Garment.swift in Sources */,
 				E3EC05E227C34294007DD29D /* ImageInfo.swift in Sources */,
 				E3B1330528080C900073FB62 /* CategoryViewController.swift in Sources */,
 				E37EAFFB2811703700639BB0 /* SideMenuModel.swift in Sources */,

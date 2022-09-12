@@ -88,7 +88,7 @@ class UserModelService {
                     self.userModelPath.value = response.fileURL
                     
                     // 이 부분에 코어데이터에 저장하는 코드 넣기
-                    let human =  Human(fileURL: response.fileURL, name: fileName)
+                    let human =  Human(name: fileName)
                     
                     PersistenceManager.shared.insertHumanModel(human: human)
                 case .failure(let e):

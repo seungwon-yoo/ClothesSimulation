@@ -42,8 +42,7 @@ class PersistenceManager {
         if let entity = entity {
             let managedObject = NSManagedObject(entity: entity, insertInto: self.context)
             
-            managedObject.setValue(human.name, forKey: "name")
-            managedObject.setValue(human.fileURL, forKey: "fileURL")
+            managedObject.setValue(human.name, forKey: "fileName")
             
             do {
                 try self.context.save()
