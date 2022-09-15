@@ -72,7 +72,7 @@ class ClothesViewController: UIViewController, UINavigationControllerDelegate {
         let data = PersistenceManager.shared.fetch(request: request)
         for (i, model) in data.enumerated() {
             let url = URL(string: UserModelService.shared.getFilePathInDocuments(fileName: model.fileName!)!)!
-            alert.addAction(createAlertAction(title: "사용자 모델 \(i+1)", url: url))
+            alert.addAction(createAlertAction(title: "사용자 모델", number: i+1, url: url))
         }
         
         let cancelAction = UIAlertAction(title: "닫기", style: .cancel)
@@ -143,10 +143,13 @@ extension ClothesViewController {
         }
     }
     
-    func createAlertAction(title: String, url: URL) -> UIAlertAction {
-        UIAlertAction(title: title, style: .default) { action in
+    func createAlertAction(title: String, number: Int, url: URL) -> UIAlertAction {
+        let title = title + "\(number)"
+        
+            return UIAlertAction(title: title, style: .default) { action in
             self.model.set3DModel(url: url) { scene in
                 self.setSceneViewConfiguration(scene)
+                UserInfo.shared.addModeFilelName(modelFileName: "\(number).obj")
             }
         }
     }
@@ -158,20 +161,44 @@ extension ClothesViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let imageName = model.imageInfo(at: indexPath.row).getImageName()
         
-        // 해당 이름을 가진 3D 의상을 모델에 입힌다.
-        model.putOnClothes(of: imageName) { node in
-            self.sceneView.scene?.rootNode.addChildNode(node)
+        // 해당 의상 이름 + 현재 인체 모델 -> CoreData에 저장되어 있는지 확인
+        if let humanModelFileName = UserInfo.shared.modelFileName {
+            let request = ClothesModel.fetchRequest()
+            var data = PersistenceManager.shared.fetch(request: request)
+            
+            data = data.filter{$0.humanModelFileName == humanModelFileName && $0.name == imageName}
+            
+            // 1. 저장되어 있으면 입힌다
+            if !data.isEmpty {
+                let url = URL(string: UserModelService.shared.getFilePathInDocuments(fileName: data[0].fileName!)!)!
+                
+                model.putOnClothes(url: url) { node in
+                    self.sceneView.scene?.rootNode.addChildNode(node)
+                }
+            }
+            // 2. 저장되어 있지 않으면 의상을 다운로드 받는다
+            else {
+                //TODO: 의상 다운로드받는 코드 삽입
+                userModelService.downloadClothesModel(humanFileName: humanModelFileName, clothesName: imageName)
+            }
         }
-        
-        //        // 로딩창 띄우기
-        //        DispatchQueue.main.async {
-        //            self.activityIndicator.setActivityIndicator(view: self.tabBarController!.view)
-        //        }
-        //
-        //        // 로딩창 종료 로직
-        //        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
-        //            self.activityIndicator.endActivityIndicator(view: self.view)
-        //        }
+        // UserInfo에 인체 모델 파일 이름이 없으면 임시방편으로 이미지 이름에 해당하는 옷을 art asset에서 찾아 입힌다
+        else {
+            // 해당 이름을 가진 3D 의상을 모델에 입힌다.
+            model.putOnClothes(of: imageName) { node in
+                self.sceneView.scene?.rootNode.addChildNode(node)
+            }
+            
+            //        // 로딩창 띄우기
+            //        DispatchQueue.main.async {
+            //            self.activityIndicator.setActivityIndicator(view: self.tabBarController!.view)
+            //        }
+            //
+            //        // 로딩창 종료 로직
+            //        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+            //            self.activityIndicator.endActivityIndicator(view: self.view)
+            //        }
+        }
     }
 }
 

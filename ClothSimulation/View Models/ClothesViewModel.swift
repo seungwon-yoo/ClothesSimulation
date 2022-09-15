@@ -116,7 +116,7 @@ class ClothesViewModel {
         cameraNode.camera = SCNCamera()
         
         // 3: Place camera
-        cameraNode.position = SCNVector3(x: 0, y: 10, z: 25)
+        cameraNode.position = SCNVector3(x: 0, y: 0, z: 3)
         
         // 4: Set camera on scene
         scene.rootNode.addChildNode(cameraNode)
@@ -209,6 +209,8 @@ class ClothesViewModel {
     }
     
     func setTemp3DModel(completion: @escaping (SCNScene) -> Void) {
+        
+        
         // 1: Load .obj file
         guard let scene = SCNScene(named: "art.scnassets/any_copy.scn") else { fatalError("Unable to load scene file.") }
         
@@ -264,17 +266,11 @@ class ClothesViewModel {
     }
     
     /// 의상을 현재 전시된 모델에 입힌다.
-    func putOnClothes() {
-        // 1. 현재 인체 모델과 부합하는 의상 모델이 있는지 확인한다.
-        let request = ClothesModel.fetchRequest()
-        let data = PersistenceManager.shared.fetch(request: request)
-        for model in data {
-            if model.fileName == HumanModelInfo.shared.modelName {
-                
-            }
-        }
+    func putOnClothes(url: URL, completion: @escaping (SCNNode) -> Void) {
+        guard let newScene = try? SCNScene(url: url) else { fatalError("Unable to load scene file.") }
         
-        // 2. 있으면 입힌다.
-        // 3. 없으면 서버에서 해당 의상 모델을 다운로드받고 CoreData에 저장한 뒤 인체 모델에 입힌다.
+        let newNode = newScene.rootNode.childNodes[0]
+        
+        completion(newNode)
     }
 }

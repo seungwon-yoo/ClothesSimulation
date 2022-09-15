@@ -15,25 +15,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FirebaseApp.configure()
         
-        if let user = Auth.auth().currentUser {
-            UserInfo.shared.uid = user.uid
-            UserInfo.shared.email = user.email
-            
-            if let name = user.displayName {
-                UserInfo.shared.name = name
-            } else {
-                FirestoreService().getUserName(uid: user.uid) { name in
-                    UserInfo.shared.name = name
-                }
-            }
-            
-            print("You're sign in as \(user.uid), email: \(user.email ?? "no email")")
-            
-        }
-
-        let db = Firestore.firestore()
+        guard let user = Auth.auth().currentUser else { return false }
         
-        print(db)
+        if let name = user.displayName {
+            UserInfo.shared.setUserInfo(uid: user.uid, email: user.email, name: name)
+        } else {
+            FirestoreService().getUserName(uid: user.uid) { name in
+                UserInfo.shared.setUserInfo(uid: user.uid, email: user.email, name: name)
+            }
+        }
+        
+        print("You're sign in as \(user.uid), email: \(user.email ?? "no email")")
         
         return true
     }

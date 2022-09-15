@@ -55,4 +55,27 @@ class PersistenceManager {
             return false
         }
     }
+    
+    @discardableResult
+    func insertClothesModel(garment: Garment) -> Bool {
+        let entity = NSEntityDescription.entity(forEntityName: "ClothesModel", in: self.context)
+        
+        if let entity = entity {
+            let managedObject = NSManagedObject(entity: entity, insertInto: self.context)
+            
+            managedObject.setValue(garment.name, forKey: "name")
+            managedObject.setValue(garment.fileName, forKey: "fileName")
+            managedObject.setValue(garment.humanModelFileName, forKey: "humanModelFileName")
+            
+            do {
+                try self.context.save()
+                return true
+            } catch {
+                print(error.localizedDescription)
+                return false
+            }
+        } else {
+            return false
+        }
+    }
 }

@@ -27,9 +27,8 @@ class RegisterViewController: UIViewController {
                     print(e.localizedDescription)
                 } else {
                     // Navigate to the ChatViewController
-                    UserInfo.shared.uid = authResult!.user.uid
-                    UserInfo.shared.email = authResult!.user.email
-                    UserInfo.shared.name = self.nameTextField.text
+                    guard let nameText = self.nameTextField.text else { return }
+                    UserInfo.shared.setUserInfo(uid: authResult!.user.uid, email: authResult!.user.email, name: nameText)
                     
                     FirestoreService().initializeUserInfo()
                     

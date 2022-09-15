@@ -8,6 +8,7 @@
 import Foundation
 
 struct Garment {
+    var name: String
     var fileName: String
     var humanModelFileName: String
 }

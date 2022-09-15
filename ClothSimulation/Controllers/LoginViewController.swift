@@ -63,10 +63,8 @@ class LoginViewController: UIViewController {
                     self.passwordTextField.shakeTextField()
                     self.warningTextField.text = "이메일 혹은 비밀번호가 틀렸습니다."
                 } else {
-                    UserInfo.shared.uid = authResult!.user.uid
-                    UserInfo.shared.email = authResult!.user.email
                     FirestoreService().getUserName(uid: authResult!.user.uid) { name in
-                        UserInfo.shared.name = name
+                        UserInfo.shared.setUserInfo(uid: authResult!.user.uid, email: authResult!.user.email, name: name)
                     }
                     
                     // 미리 옷장에 옷 넣어두기
@@ -94,9 +92,7 @@ class LoginViewController: UIViewController {
                 // token을 넘겨주면, 성공했는지 안했는지에 대한 result값과 error값을 넘겨줌
                 
                 if let user = Auth.auth().currentUser {
-                    UserInfo.shared.uid = user.uid
-                    UserInfo.shared.email = user.email
-                    UserInfo.shared.name = user.displayName
+                    UserInfo.shared.setUserInfo(uid: user.uid, email: user.email, name: user.displayName)
                 }
                 
                 FirestoreService().initializeUserInfo()
