@@ -16,15 +16,3 @@ iOS 앱을 이용하며, 원하는 사용자와 의상의 사진을 입력하면
 - 사용자의 이미지를 바탕으로 사용자의 아바타 생성
 - 의상 선택 시 사용자의 아바타에 맞게 의상을 변형하여 착용
 <img width="150" alt="1231231" src="https://user-images.githubusercontent.com/78123636/208248565-9af2dc03-4d64-4095-8b0b-4caf714fa0a6.png">
-
-# 기술적 도전
-## 문제 상황
-3D 모델마다 Bounding box의 Width, Height가 달라서 다음 그림과 같이 카메라와 같은 거리만큼 떨어져 있어도 화면에는 다르게 보이는 문제점이 발생하였다. 이때 기준 모델보다 height가 커서 화면에 다 담기지 않거나 기준 모델보다 height가 작아 모델이 너무 작게 보이는 현상이 발생하였다.
-
-<img width="300" alt="1231231" src="https://user-images.githubusercontent.com/78123636/214622422-e2b2620f-1233-41de-b507-c5133c6bdd8b.jpeg">
-
-## 해결 방안
-문제 상황의 그림과 같이 $theta_1 = 3 * theta_2$일 경우, $theta_1 = theta_2$이 될 수 있도록 카메라와 물체 사이의 거리를 3배만큼 떨어뜨려 주면 된다.
-이렇게 삼각함수를 이용하여 모델마다 높이가 달라 화면에서 잘리거나 너무 작게 보이는 현상을 카메라와 물체 사이의 거리를 보정해주는 방식을 통해 해결하였다.
-
-<img width="600" alt="1231231" src="https://user-images.githubusercontent.com/78123636/214626548-f49ae917-18c1-40ae-ba14-77d62ebb4268.jpeg">
